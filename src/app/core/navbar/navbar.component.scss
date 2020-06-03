@@ -1,0 +1,312 @@
+@import "./../../../styles.scss";
+$hamburger-layer-color:white;
+@import '~hamburgers/_sass/hamburgers/hamburgers.scss';
+
+
+svg {
+    width: 2rem;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+.mainNavList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 5rem;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  li {
+    display: inline-block;
+    vertical-align: center;
+    font-size: 1.5rem;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  li a {
+    display: block;
+    color:white;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  li:hover {
+    background-color: $primaryAcescent;
+  }
+
+  span{
+    color:white;
+    font-size: 3rem;
+  }
+
+
+.arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    margin-top: 10px;
+    margin-left: 10px;
+    transition: all 0.4s ease;
+  }
+
+  li:hover .arrow-down{
+    transform: rotateZ(180deg);
+  }
+
+.navDropLabel{
+    display: flex;
+    justify-content: center;
+}
+.dropdownContainer{
+    position: relative;
+}
+
+.dropdownList{
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color:$primary;
+    opacity: 0;
+    padding:0;
+    transition: all 0.4s ease;
+    visibility: hidden;
+}
+
+.dropdownList li{
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.dropdownContainer:hover .dropdownList{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+// .changingText:hover:before{
+//     content: "Retirement Investment Planing & Education";
+// }
+
+// .changingText:hover ~ .logoSection{
+//     grid-column-end: end;
+// }
+
+// .changingText:hover ~ .mainNavList{
+//     visibility: hidden;
+//     opacity: 0;
+// }
+
+
+.icon{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-font-smoothing: subpixel-antialiased;
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    text-indent: 0 !important;
+    width: 45px;
+    height: 45px;
+    background: #c4c6c9;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 50px;
+    display: inline-block;
+    padding: 0;
+}
+
+.signInOptions{
+    padding-left: 10px;
+}
+
+.signInOptions a{
+    color: white;
+}
+
+
+
+.verticalAlign{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+  .navContainer {
+    display: grid;
+    grid-template-columns: [logo] 25%  [mainNav] 50% [signIn] 25% [end];
+    background-color:$primary;
+  }
+
+
+  .mainNav{
+    grid-column-start: mainNav;
+    grid-column-end: signIn;
+}
+
+  .logoSection {
+    grid-column-start: logo;
+    grid-column-end: mainNav;
+    display: flex;
+
+  }
+  
+  .signInWidget{
+    grid-column-start: signIn;
+    grid-column-end: end;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.hideDesktop{
+  display: none;
+}
+
+.hamburger{
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.mobileNav{
+  position: absolute;
+  top: 60px;
+  height: calc(100% - 60px);
+  width: 0;
+  background-color: $mobileHamburger;
+  transition: 0.5s;
+}
+
+.slideMobileNav{
+  width: 65%;
+}
+
+.hamburgerTurn{
+  transform: rotateZ(90deg);
+}
+
+
+.mobileNav li{
+  height: auto;
+  width: 100%;
+  padding-top: 20px;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+  .hideMobile {
+    display: none;
+  }
+
+  .hideDesktop{
+    display: block;
+  }
+
+  .navContainer {
+    grid-template-columns: [logo] 75%  [signIn] 25% [end];
+  }
+
+  .logoSection {
+    grid-column-end: signIn;
+  }
+
+  .mainNavList{
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+  }
+
+  .dropdownContainer{
+    position: static;    
+  }
+
+  .dropdownList{
+    position: static;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    max-height: 0;
+    opacity: 1;
+    transition:all 0.4;
+    height:auto;
+    overflow: hidden;
+    background-color: $mobileHamburger;
+  }
+
+  .mobileHover{
+    ul{
+      max-height:200px;
+      visibility: visible;
+    }
+    .arrow-down{
+      transform: rotateZ(180deg);
+    }
+  }
+
+  .mobileSignInOptions{
+    width: 100px;
+    height: auto;
+    border-style: solid;
+    background-color: black;
+    position: absolute;
+    top: 60px + 10px;
+    right: calc(12.5% - 50px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+    clip-path: polygon(50% 0%, 70% 13%, 100% 13%, 100% 100%, 0 100%, 0 13%, 31% 13%);
+
+    a{
+      color: black;
+      font-size: 18px;
+    }
+    ul{
+      padding: 0px;
+      margin: 0;
+    }
+    li{
+      width: 100%;
+    }
+    .mobileSignInOptionsClippy{
+      clip-path: polygon(50% -2%, 70% 13%, 100% 13%, 100% 100%, 0% 199%, 0% 13%, 30% 13%);
+      background-color: white;
+    }
+    .mobileSignInOptionsSignIn{
+      padding-top: 8px;
+    }
+    
+  }
+  
+  .mobileSignInOptionsShow{
+    visibility: visible;
+    opacity: 1;
+  }
+
+  //remove hover color incase of hover on mobile
+  li:hover {
+    background-color: $mobileHamburger;
+  }
+
+}
+
+@media only screen and (max-width: 400px) {
+  .mobileSignInOptions{
+    right: 0;
+  }
+}
