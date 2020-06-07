@@ -1,5 +1,5 @@
 <div class="navContainer">
-    <div class="logoSection">
+    <div class="logoSection" [routerLink]="['/']" >
         <div class="hamburger hamburger--spin hideDesktop"
         (click)="hamburgerIsActive=!hamburgerIsActive" 
         [ngClass]="hamburgerIsActive ? 'is-active hamburgerTurn' : ''">
@@ -19,15 +19,10 @@
                     <div class="arrow-down"></div>
                 </div>
                 <ul class="dropdownList">
-                    <li>
-                        <a href="">Intro To Investing</a>
+                    <li *ngFor="let course of courses | async">
+                        <a [routerLink]="['/courses', course[0]]">{{course[1].courseTitle}}</a>
                     </li>
-                    <li>
-                        <a href="">Smart Saving</a>
-                    </li>
-                    <li>
-                        <a href="">How do I Begin?</a>
-                    </li>     
+  
                 </ul>
                 
             </li>
@@ -102,15 +97,9 @@
                 <div class="arrow-down"></div>
             </div>
             <ul class="dropdownList">
-                <li>
-                    <a href="">Intro To Investing</a>
-                </li>
-                <li>
-                    <a href="">Smart Saving</a>
-                </li>
-                <li>
-                    <a href="">How do I Begin?</a>
-                </li>     
+                <li *ngFor="let course of courses | async as Course">
+                    <a href="">{{course.title}}</a>
+                </li>  
             </ul>
         </li>
 
