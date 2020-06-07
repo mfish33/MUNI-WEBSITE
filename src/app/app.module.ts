@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NgxSafePipesModule } from "@it-era/ngx-safe-pipes";
-
 import { CoreModule } from './core/core.module'
 import { SharedModule } from './shared/shared.module'
+import { HomeModule } from './modules/home/home.module';
+import { CourseModule } from './modules/course/course.module';
+import { LessonModule } from './modules/lesson/lesson.module';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { SharedModule } from './shared/shared.module'
     SharedModule,
     BrowserModule,
     AppRoutingModule,
-    NgxSafePipesModule
+    HomeModule,
+    LessonModule,
+    CourseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

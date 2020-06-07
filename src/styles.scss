@@ -10,5 +10,15 @@ body{
 }
 
 html, body {
-    font-family: 'Muli';
+    font-family: 'Frank Ruhl Libre', serif;
+    font-style: normal;
+}
+
+/* Utils */
+
+.verticalAlign{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
 }
