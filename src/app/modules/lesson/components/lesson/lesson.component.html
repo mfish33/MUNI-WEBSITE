@@ -1,26 +1,28 @@
 <div class="content" *ngIf="lesson$ | async as lesson;">
 
+  <div class="lessonTitle">
+    <img #titleImg [ngStyle]="{filter:'blur('+ blur +'px)'}"
+      [src]="'https:' + lesson.fields.titleGraphic.fields.file.url" alt="">
+    <h2 [ngStyle]="{opacity:titleOpacity +'%'}">{{lesson.fields.titleText}}</h2>
+  </div>
 
-  <h2 class="lessonTitle">{{lesson.fields.titleText}}</h2>
 
   <div class="introBlock">
     <div class="text">
       <h2>Introduction</h2>
-      <div [innerHTML] = "content.convertRichText(lesson.fields.introduction)"></div>
+      <div [innerHTML]="content.convertRichText(lesson.fields.introduction)"></div>
     </div>
 
     <div class="infoGraphic verticalAlign">
-      <img [src] = "'https:' + lesson.fields.introductionInfographic.fields.file.url" alt="">
+      <img [src]="'https:' + lesson.fields.introductionInfographic.fields.file.url" alt="">
     </div>
 
   </div>
 
   <div class="videoBlock">
     <iframe [src]="lesson.fields.introVideo | safe" frameborder="0" allowfullscreen></iframe>
-
-
     <div class="caption">
-      <div class="text" [innerHTML] = "content.convertRichText(lesson.fields.introVideoCaption)"></div>
+      <div class="text" [innerHTML]="content.convertRichText(lesson.fields.introVideoCaption)"></div>
     </div>
   </div>
 
@@ -35,13 +37,16 @@
     </div>
   </div>
 
-  <div class="mainContent">
+  <div class="banner">
+    <h2 class="verticalAlign">What Do I Need to Know?</h2>
+  </div>
+
+  <div [ngClass]="pageSettings.whatDoINeedToKnowAlt ? 'mainContentAlt' : 'mainContent'">
     <div class="contentSide">
-      <h2>What do I need to know?</h2>
-      <div [innerHTML] = "content.convertRichText(lesson.fields.whatDoINeedToKnow)"></div>
+      <div [innerHTML]="content.convertRichText(lesson.fields.whatDoINeedToKnow)"></div>
     </div>
     <div class="graphic">
-      <img class="verticalAlign" [src] = "'https:' + lesson.fields.whatDoINeedToKnowInfographic.fields.file.url" alt="">
+      <img class="verticalAlign" [src]="'https:' + lesson.fields.whatDoINeedToKnowInfographic.fields.file.url" alt="">
     </div>
   </div>
 
@@ -54,7 +59,8 @@
     <div class="listItem" *ngFor="let item of lesson.fields.whereDoIStart;let i = index;">
       <h2 class="number">{{i+1}}</h2>
       <p class="text">{{item}}</p>
-      <img [src]="'https:' + lesson.fields.whereDoIStartMedia[i].fields.file.url"alt="">
+      <iframe
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRKqp7RDRPh9D8KFBGCmGXIBT5Jn2E4lCVGs2qD7RzXuws2JkQXSSRcj1ZovRRKhuh-dPteRk1VB5NZ/pubhtml?gid=213958007&amp;single=true&amp;widget=false&amp;range=A7:F20&amp;widget=false&amp;chrome=false"></iframe>
     </div>
   </div>
 
@@ -65,11 +71,11 @@
   <div class="dosDonts">
     <div class="column">
       <h2>Do</h2>
-      <div class="content" [innerHTML] = "content.convertRichText(lesson.fields.dos)"></div>
+      <div class="content" [innerHTML]="content.convertRichText(lesson.fields.dos)"></div>
     </div>
     <div class="column">
       <h2>Don't</h2>
-      <div class="content" [innerHTML] = "content.convertRichText(lesson.fields.donts)"></div>
+      <div class="content" [innerHTML]="content.convertRichText(lesson.fields.donts)"></div>
     </div>
   </div>
 
@@ -78,19 +84,20 @@
   </div>
 
   <div class="summary">
-    <div class="content" [innerHTML] = "content.convertRichText(lesson.fields.summary)"></div>
+    <div class="content" [innerHTML]="content.convertRichText(lesson.fields.summary)"></div>
   </div>
 
   <div class="sources">
     <h3>Sources</h3>
-    <div class="content" [innerHTML] = "content.convertRichText(lesson.fields.sources)"></div>
+    <div class="content" [innerHTML]="content.convertRichText(lesson.fields.sources)"></div>
   </div>
 
   <div class="nextButtons">
     <h2 *ngIf="!nextLesson">Congrats You Have Finished the Course!</h2>
     <div class="buttons">
       <button [routerLink]="['/courses',courseId]">Course Home</button>
-      <button *ngIf="nextLesson" [routerLink]="['/lessons',courseId,nextLesson.sys.id]">{{nextLesson.fields.titleText}}</button>
+      <button *ngIf="nextLesson"
+        [routerLink]="['/lessons',courseId,nextLesson.sys.id]">{{nextLesson.fields.titleText}}</button>
     </div>
 
   </div>

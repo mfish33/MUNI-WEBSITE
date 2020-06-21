@@ -1,7 +1,7 @@
 <div *ngIf="course$ | async as course;">
     <h2>{{course.courseTitle}}</h2>
 
-    <div *ngFor="let lesson of course.lessonLinks">
-        <a [routerLink]="['/lessons', courseId, lesson.sys.id]">{{lesson.fields.titleText}}</a>
+    <div *ngFor="let lessonLink of course.lessons">
+        <a [routerLink]="['/lessons', courseId, lessonLink.fields.lesson.sys.id]">{{lessonLink.fields.lessonTitle}}</a>
     </div>
-  </div>
+</div>

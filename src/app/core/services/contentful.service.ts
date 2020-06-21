@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as contentful from 'contentful'
-import { Course } from '../../shared/models/course'
-import { Lesson } from 'src/app/shared/models/lesson';
+import { Lesson, LessonLink, Course } from '../../shared/models/contentfulTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 @Injectable({
@@ -16,16 +15,16 @@ export class ContentfulService {
 
   // Local Cache for content. Clears on app reload
   private content: { [key: string]: Course } = {}
-  private assets:object
+  private assets: object
 
   constructor() {
     this.getCourses()
-   }
+  }
 
-  public async getCourses() : Promise<[string,Course][]> {
+  public async getCourses(): Promise<[string, Course][]> {
     if (Object.keys(this.content).length == 0) {
       try {
-        let res = await this.client.getEntries({ content_type: 'courseOverviewPageTemplate' })
+        let res = await this.client.getEntries({ content_type: 'courseOverviewPageTemplate', include: 10 })
         this.content = res.items.reduce((acc, item) => {
           acc[item.sys.id] = item.fields
           return acc
@@ -38,61 +37,61 @@ export class ContentfulService {
   }
 
 
-  public getLessons(courseId: string) : Lesson[] {
+  public getLessonLinks(courseId: string): LessonLink[] {
     try {
-      return this.content[courseId].lessonLinks
+      return this.content[courseId].lessons
     } catch (e) {
-      console.error('Could not find the specified articles from givin Course', e)
+      console.error('Could not find the specified lessons from givin Course', e)
     }
   }
 
-  public getNextLesson(courseId: string, articleId) : Lesson {
-    try{
-      let articleLength = this.content[courseId].lessonLinks.length
-      let newIndex = this.content[courseId].lessonLinks.map(article => article.sys.id).indexOf(articleId) + 1
-      return newIndex < articleLength ? this.content[courseId].lessonLinks[newIndex] : null
-      
-    } catch(e) {
-      console.error('Error in getNextArticle Function. Incorrect ids',e)
+  public getNextLesson(courseId: string, lessonId: string): Lesson {
+    try {
+      let courseLength = this.content[courseId].lessons.length
+      let newIndex = this.content[courseId].lessons.map(lessonLink => lessonLink.fields.lesson.sys.id).indexOf(lessonId) + 1
+      return newIndex < courseLength ? this.content[courseId].lessons[newIndex].fields.lesson : null
+
+    } catch (e) {
+      console.error('Error in getNextArticle Function. Incorrect ids', e)
     }
   }
-  
-  public getAllLessons() : Lesson[] {
-    return Object.values(this.content).map(course => course.lessonLinks).reduce((allArticles,courseArticles) => {
-      for(let article of courseArticles) {
-        allArticles.push(article)
+
+  public getAllLessons(): Lesson[] {
+    return Object.values(this.content).map(course => course.lessons.map(lessonLink => lessonLink.fields.lesson)).reduce((allLessons, lessons) => {
+      for (let lesson of lessons) {
+        allLessons.push(lesson)
       }
-      return allArticles
-    },[])
+      return allLessons
+    }, [])
   }
 
-  public async getCourse(id:string) : Promise<Course> {
+  public async getCourse(id: string): Promise<Course> {
     await this.getCourses()
     return this.content[id]
   }
 
-  public async getLesson(cid:string,lid:string) : Promise<Lesson> {
+  public async getLesson(cid: string, lid: string): Promise<Lesson> {
     await this.getCourses()
-    try{
-      let lessonIndex = this.content[cid].lessonLinks.map(l => l.sys.id).indexOf(lid)
-      if(lessonIndex == -1) {
+    try {
+      let lessonIndex = this.content[cid].lessons.map(lessonLink => lessonLink.fields.lesson.sys.id).indexOf(lid)
+      if (lessonIndex == -1) {
         throw new Error('Invalid Lesson Id')
       }
-      return this.content[cid].lessonLinks[lessonIndex]
-    } catch(e) {
-      console.error('Lesson Could not be found',e)
+      return this.content[cid].lessons[lessonIndex].fields.lesson
+    } catch (e) {
+      console.error('Lesson Could not be found', e)
     }
   }
-  
 
-  public convertRichText(doc) : string {
+
+  public convertRichText(doc): string {
     return documentToHtmlString(doc)
   }
 
-  public async getAsset(id:string):Promise<contentful.Asset | void>{
-    return this.client.getAsset(id).catch(e=>console.error('Error retrieving asset',e))
+  public async getAsset(id: string): Promise<contentful.Asset | void> {
+    return this.client.getAsset(id).catch(e => console.error('Error retrieving asset', e))
   }
-  
+
 
 
 }
