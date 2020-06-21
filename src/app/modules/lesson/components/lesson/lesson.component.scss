@@ -5,17 +5,28 @@ $groupSpacing:40px;
 
 /* Layout */
 .lessonTitle{
-    font-weight: bold;
-    font-size: 72px;
-    margin-top: 40px;
-    margin-left: 5%;
+    position: relative;
+    overflow: hidden;
+    img{
+        width: 100%;
+        transform: scale(1.1);
+    }
+    h2{
+        color:white;
+        font-weight: bold;
+        font-size: 72px;
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .introBlock{
     display: grid;
     grid-template-columns: [start] 5%  [text] 60%  [graphic] 30% [spaceRight] 5% [end];
     background-color:$primary;
-    margin-top: $groupSpacing;
     .text{
         grid-column-start: text;
         grid-column-end: graphic;
@@ -50,19 +61,18 @@ $groupSpacing:40px;
 }
 
 .videoBlock{
-    display: grid;
-    grid-template-columns: [start] 5%  [video] 60%  [caption] 30% [spaceRight] 5% [end];
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-top:$groupSpacing;
     iframe{
         //see if I can set aspect ratio dynamically
-        grid-column-start: video;
-        grid-column-end: caption;
-        width:100%;
-        height:600px;
+        width:1300px;
+        height:730px;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
     }
     .caption{
-        grid-column-start: caption;
-        grid-column-end: spaceRight;
         display: flex;
         justify-content: center;
         .text{
@@ -127,11 +137,6 @@ $groupSpacing:40px;
     .contentSide{
         grid-column-start: text;
         grid-column-end: spaceBetween;
-        h2{
-            font-weight: bold;
-            font-size: 64px;
-            line-height: 83px;
-        }
         div{
             font-weight: 300;
             font-size: 24px;
@@ -141,6 +146,30 @@ $groupSpacing:40px;
     .graphic{
         grid-column-start: graphic;
         grid-column-end: spaceRight;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.mainContentAlt{
+    margin-top: $groupSpacing;
+    display: grid;
+    grid-template-columns: [start] 10%  [content] auto 10% [end];
+    grid-template-rows: [graphic] auto [text] auto;
+    .contentSide{
+        grid-column:content;
+        grid-row: text;
+        div{
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 31px;
+        }
+    }
+    .graphic{
+        grid-column:content;
+        grid-row: graphic;
         img{
             width: 100%;
             height: auto;
@@ -196,12 +225,12 @@ $groupSpacing:40px;
             font-size: 24px;
             line-height: 31px;
         }
-        img{
+        iframe{
             grid-column-start: img;
             grid-column-end: spaceRight;
             width:100%;
             margin: 20px;
-            height: auto;
+            height: 330px;
         }
     }
 }
@@ -246,7 +275,8 @@ $groupSpacing:40px;
 .sources{
     display: flex;
     flex-direction: column;
-    padding-top: 40px;
+    padding-top: $groupSpacing;
+    padding-left: $groupSpacing;
     h3{
         font-weight: bold;
         font-size: 24px;
@@ -256,7 +286,7 @@ $groupSpacing:40px;
         font-weight: 300;
         font-size: 18px;
         line-height: 23px;
-        max-width: 1000px;
+        max-width: 1500px;
     }
 }
 
