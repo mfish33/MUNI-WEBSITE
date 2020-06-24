@@ -1,0 +1,18 @@
+.lessonTitle{
+    position: relative;
+    overflow: hidden;
+    img{
+        width: 100%;
+        transform: scale(1.1);
+    }
+    h2{
+        color:white;
+        font-weight: bold;
+        font-size: 72px;
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

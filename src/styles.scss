@@ -1,7 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-
-$primary: #2c7ad0;
-$primaryAcescent: #2366af;
+$bluePrimary: #427AA1;
+$blueAcescent: #6EA0C4;
+$greenPrimary:#679436;
+$greenAcescent:#A5BE00;
 
 $mobileHamburger:#464853;
 
@@ -21,4 +21,51 @@ html, body {
     justify-content: center;
     flex-direction: column;
     height: 100%;
+}
+
+/* FONTS */
+
+.frank{
+    font-family: 'Frank Ruhl Libre', serif;
+    font-style: normal;
+}
+
+.frank-picture-header{
+    @extend .frank;
+    font-weight: bold;
+    font-size: 115px;
+    line-height: 124px;
+}
+
+.frank-small-header{
+    @extend .frank;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 83px;
+}
+
+.frank-numbers{
+    @extend .frank;
+    font-weight: bold;
+    font-size: 96px;
+    line-height: 124px;
+}
+
+.frank-sources{
+    @extend .frank;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+.nunito{
+    font-family: Nunito Sans;
+    font-style: normal;
+}
+
+.nunito-body{
+    @extend .nunito;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 33px;
 }

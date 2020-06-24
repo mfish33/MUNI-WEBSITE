@@ -15,7 +15,6 @@ export class ContentfulService {
 
   // Local Cache for content. Clears on app reload
   private content: { [key: string]: Course } = {}
-  private assets: object
 
   constructor() {
     this.getCourses()
@@ -88,10 +87,9 @@ export class ContentfulService {
     return documentToHtmlString(doc)
   }
 
-  public async getAsset(id: string): Promise<contentful.Asset | void> {
-    return this.client.getAsset(id).catch(e => console.error('Error retrieving asset', e))
+  public getAsset(asset: contentful.Asset): string {
+    return `https:${asset.fields.file.url}`
   }
-
 
 
 }

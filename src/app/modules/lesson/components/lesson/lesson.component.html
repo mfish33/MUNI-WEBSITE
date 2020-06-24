@@ -1,20 +1,17 @@
 <div class="content" *ngIf="lesson$ | async as lesson;">
 
-  <div class="lessonTitle">
-    <img #titleImg [ngStyle]="{filter:'blur('+ blur +'px)'}"
-      [src]="'https:' + lesson.fields.titleGraphic.fields.file.url" alt="">
-    <h2 [ngStyle]="{opacity:titleOpacity +'%'}">{{lesson.fields.titleText}}</h2>
-  </div>
+  <app-parallax-title imgUrl="{{content.getAsset(lesson.fields.titleGraphic)}}" title="{{lesson.fields.titleText}}">
+  </app-parallax-title>
 
 
   <div class="introBlock">
     <div class="text">
-      <h2>Introduction</h2>
-      <div [innerHTML]="content.convertRichText(lesson.fields.introduction)"></div>
+      <h2 class="frank-small-header">Introduction</h2>
+      <div [innerHTML]="content.convertRichText(lesson.fields.introduction)" class="nunito-body"></div>
     </div>
 
     <div class="infoGraphic verticalAlign">
-      <img [src]="'https:' + lesson.fields.introductionInfographic.fields.file.url" alt="">
+      <img [src]="content.getAsset(lesson.fields.introductionInfographic)" alt="">
     </div>
 
   </div>
@@ -32,8 +29,8 @@
 
   <div class="overviewPoints">
     <div class="listItem" *ngFor="let item of lesson.fields.goalsListField;let i = index;">
-      <h2 class="number">{{i+1}}</h2>
-      <p class="text">{{item}}</p>
+      <h2 class="number frank-numbers">{{i+1}}</h2>
+      <p class="text nunito-body">{{item}}</p>
     </div>
   </div>
 
@@ -43,24 +40,23 @@
 
   <div [ngClass]="pageSettings.whatDoINeedToKnowAlt ? 'mainContentAlt' : 'mainContent'">
     <div class="contentSide">
-      <div [innerHTML]="content.convertRichText(lesson.fields.whatDoINeedToKnow)"></div>
+      <div [innerHTML]="content.convertRichText(lesson.fields.whatDoINeedToKnow)" class="nunito-body"></div>
     </div>
     <div class="graphic">
-      <img class="verticalAlign" [src]="'https:' + lesson.fields.whatDoINeedToKnowInfographic.fields.file.url" alt="">
+      <img class="verticalAlign" [src]="content.getAsset(lesson.fields.whatDoINeedToKnowInfographic)" alt="">
     </div>
   </div>
 
   <div class="WDISBanner">
-    <h2 class="verticalAlign">Where do I start?</h2>
+    <h2 class="verticalAlign frank-small-header">Where do I start?</h2>
     <a class="verticalAlign">Click here to get the template</a>
   </div>
 
   <div class="WDSI">
     <div class="listItem" *ngFor="let item of lesson.fields.whereDoIStart;let i = index;">
-      <h2 class="number">{{i+1}}</h2>
-      <p class="text">{{item}}</p>
-      <iframe
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRKqp7RDRPh9D8KFBGCmGXIBT5Jn2E4lCVGs2qD7RzXuws2JkQXSSRcj1ZovRRKhuh-dPteRk1VB5NZ/pubhtml?gid=213958007&amp;single=true&amp;widget=false&amp;range=A7:F20&amp;widget=false&amp;chrome=false"></iframe>
+      <h2 class="number frank-numbers">{{i+1}}</h2>
+      <p class="text nunito-body">{{item}}</p>
+      <img [src]="content.getAsset(lesson.fields.whereDoIStartMedia[i])" alt="">
     </div>
   </div>
 
@@ -71,11 +67,11 @@
   <div class="dosDonts">
     <div class="column">
       <h2>Do</h2>
-      <div class="content" [innerHTML]="content.convertRichText(lesson.fields.dos)"></div>
+      <div class="nunito-body" [innerHTML]="content.convertRichText(lesson.fields.dos)"></div>
     </div>
     <div class="column">
       <h2>Don't</h2>
-      <div class="content" [innerHTML]="content.convertRichText(lesson.fields.donts)"></div>
+      <div class="nunito-body" [innerHTML]="content.convertRichText(lesson.fields.donts)"></div>
     </div>
   </div>
 
@@ -84,12 +80,12 @@
   </div>
 
   <div class="summary">
-    <div class="content" [innerHTML]="content.convertRichText(lesson.fields.summary)"></div>
+    <div class="content nunito-body" [innerHTML]="content.convertRichText(lesson.fields.summary)"></div>
   </div>
 
   <div class="sources">
     <h3>Sources</h3>
-    <div class="content" [innerHTML]="content.convertRichText(lesson.fields.sources)"></div>
+    <div class="frank-sources" [innerHTML]="content.convertRichText(lesson.fields.sources)"></div>
   </div>
 
   <div class="nextButtons">

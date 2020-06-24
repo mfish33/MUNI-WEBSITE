@@ -39,7 +39,7 @@ svg {
   }
   
   li:hover {
-    background-color: $primaryAcescent;
+    background-color: $greenAcescent;
   }
 
   span{
@@ -75,7 +75,7 @@ svg {
     position: absolute;
     top: 100%;
     width: 100%;
-    background-color:$primary;
+    background-color:$greenPrimary;
     opacity: 0;
     padding:0;
     transition: all 0.4s ease;
@@ -142,7 +142,7 @@ svg {
   .navContainer {
     display: grid;
     grid-template-columns: [logo] 25%  [mainNav] 50% [signIn] 25% [end];
-    background-color:$primary;
+    background-color:$greenPrimary;
   }
 
 
