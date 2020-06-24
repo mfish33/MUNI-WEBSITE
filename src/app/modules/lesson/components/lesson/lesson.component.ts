@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentfulService } from 'src/app/core/services/contentful.service';
 import { Lesson, defaultPageSettings } from 'src/app/shared/models/contentfulTypes';
+
 
 @Component({
   selector: 'app-lesson',
@@ -20,7 +21,7 @@ export class LessonComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     public content: ContentfulService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {

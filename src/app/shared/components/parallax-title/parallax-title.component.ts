@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import simpleParallax from 'simple-parallax-js';
+
 
 @Component({
   selector: 'app-parallax-title',
   templateUrl: './parallax-title.component.html',
   styleUrls: ['./parallax-title.component.scss']
 })
-export class ParallaxTitleComponent implements OnInit, AfterViewInit {
+export class ParallaxTitleComponent implements AfterViewInit {
 
   @Input() imgUrl: string
   @Input() title: string
@@ -26,10 +27,6 @@ export class ParallaxTitleComponent implements OnInit, AfterViewInit {
     let effectiveImageHeight = imgHeight - this.imgHeightOffset * imgHeight
     this.blur = this.blurMax - this.blurMax * scrollHeight / effectiveImageHeight
     this.titleOpacity = 100 - 100 * scrollHeight / effectiveImageHeight
-  }
-
-
-  ngOnInit() {
   }
 
   ngAfterViewInit() {
