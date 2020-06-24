@@ -11,7 +11,7 @@ export class ParallaxTitleComponent implements OnInit, AfterViewInit {
   @Input() imgUrl: string
   @Input() title: string
 
-  @ViewChild('titleImg', { static: false }) titleImg: ElementRef
+  @ViewChild('titleImg') titleImg: ElementRef
 
   private blurMax = 8
   private imgHeightOffset = .5
