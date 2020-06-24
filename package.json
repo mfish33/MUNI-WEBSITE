@@ -29,17 +29,17 @@
     "rxjs": "~6.5.5",
     "simple-parallax-js": "^5.5.1",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.3",
-    "@angular/cli": "~8.3.3",
+    "@angular-devkit/build-angular": "~0.901.9",
+    "@angular/cli": "~9.1.9",
     "@angular/compiler-cli": "~9.1.11",
     "@angular/language-service": "~9.1.11",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.9.4",
-    "codelyzer": "^5.0.0",
+    "@types/node": "^12.11.1",
+    "codelyzer": "^5.1.2",
     "firebase-tools": "^8.4.2",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
