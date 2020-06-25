@@ -4,7 +4,14 @@ $hamburger-layer-color:white;
 
 :host{
   font-family: 'Muli';
+  color: $bluePrimary;
+  a{
+    // IDK WHY I NEED THIS FOR LINKS TO BE WHITE
+    color: $bluePrimary
+  }
 }
+
+
 svg {
     width: 2rem;
     padding-left: 10%;
@@ -33,17 +40,15 @@ svg {
   
   li a {
     display: block;
-    color:white;
     text-align: center;
     text-decoration: none;
   }
   
   li:hover {
-    background-color: $greenAcescent;
+    background-color: $blueAcescent;
   }
 
   span{
-    color:white;
     font-size: 3rem;
   }
 
@@ -75,7 +80,7 @@ svg {
     position: absolute;
     top: 100%;
     width: 100%;
-    background-color:$greenPrimary;
+    background-color:$greyPrimary;
     opacity: 0;
     padding:0;
     transition: all 0.4s ease;
@@ -123,7 +128,6 @@ svg {
     width: 45px;
     height: 45px;
     background: #c4c6c9;
-    color: #fff;
     text-align: center;
     font-size: 30px;
     border-radius: 50px;
@@ -135,14 +139,10 @@ svg {
     padding-left: 10px;
 }
 
-.signInOptions a{
-    color: white;
-}
-
   .navContainer {
     display: grid;
     grid-template-columns: [logo] 25%  [mainNav] 50% [signIn] 25% [end];
-    background-color:$greenPrimary;
+    background-color:$greyPrimary;
   }
 
 
@@ -172,7 +172,6 @@ svg {
 }
 
 .hamburger{
-  color: white;
   padding-left: 20px;
   padding-right: 20px;
 }
