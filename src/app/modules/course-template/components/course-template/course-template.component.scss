@@ -1,0 +1,22 @@
+@import './src/styles.scss';
+
+:host {
+  box-sizing: border-box;
+}
+
+.introBlock{
+  margin: 0px 40px 0px 40px;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 31px;
+}
+
+.lesson{
+  margin: 20px 40px 20px 40px;
+  display: flex;
+  flex-flow: row;
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  min-height: 25%;
+}

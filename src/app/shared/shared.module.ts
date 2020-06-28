@@ -4,17 +4,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SafePipe } from './pipes/safe.pipe';
 import { ParallaxTitleComponent } from './components/parallax-title/parallax-title.component';
+import { CourseBarItemComponent } from './components/course-bar-item/course-bar-item.component';
 
 
 @NgModule({
   imports: [CommonModule, RouterModule, HttpClientModule],
-  declarations: [SafePipe, ParallaxTitleComponent],
+  declarations: [SafePipe, ParallaxTitleComponent, CourseBarItemComponent],
   exports: [
     CommonModule,
     RouterModule,
     HttpClientModule,
     SafePipe,
-    ParallaxTitleComponent
+    ParallaxTitleComponent,
+    CourseBarItemComponent
   ]
 })
 export class SharedModule { }

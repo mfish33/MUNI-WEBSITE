@@ -1,0 +1,56 @@
+@import './src/styles.scss';
+
+:host {
+  display: flex;
+  flex-flow: row;
+}
+
+img{
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.lessonText{
+  h3{
+    font-size: 64px;
+  }
+  padding: 0px 0px 20px 20px;
+  width: 50%;
+  font-size: 24px;
+  margin-bottom: 1em;
+  pointer-events: none;
+  z-index: 100;
+}
+
+svg
+{
+  cursor: pointer;
+  display: block;
+  fill: $grey;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+
+  #highlighted{
+    fill: $bluePrimary;
+    stroke: #427AA1;
+    clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+    transition: all .5s;
+  }
+  #normal{
+    fill: $grey;
+    stroke: $grey;
+  }
+
+  .tab{
+    stroke-linecap: round;
+    stroke-width: 20;
+  }
+}
+
+svg:hover #highlighted{
+  clip-path: polygon(0% 0%, 0% 100%, 110% 100%, 110% 0%);
+}
