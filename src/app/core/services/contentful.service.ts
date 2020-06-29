@@ -4,6 +4,8 @@ import { Lesson, LessonLink, Course } from '../../shared/models/contentfulTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { ProgressTrackerService } from './progress-tracker.service';
 
+//TODO: Optimize calls by having a retrieve back end so it is not doing Object.entries on every call to async functions like getLesson
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +37,13 @@ export class ContentfulService {
       }
     }
     return Object.entries(this.content)
+  }
+
+  public async getCoursesNoId(): Promise<Course[]> {
+    if (Object.keys(this.content).length == 0) {
+      await this.getCourses()
+    }
+    return Object.values(this.content)
   }
 
 

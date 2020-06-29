@@ -30,7 +30,7 @@ export class ParallaxTitleComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    new simpleParallax(this.titleImg.nativeElement)
+    new simpleParallax(this.titleImg.nativeElement, { scale: 1.4 })
   }
 
 }

@@ -11,7 +11,7 @@ import { Course } from 'src/app/shared/models/contentfulTypes';
 })
 export class CourseComponent implements OnInit {
 
-  constructor(private activeRoute: ActivatedRoute, private content: ContentfulService, private router: Router) { }
+  constructor(private activeRoute: ActivatedRoute, public content: ContentfulService, private router: Router) { }
 
   public courseId: string
   public course$: Promise<Course>

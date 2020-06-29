@@ -9,6 +9,7 @@ export class ProgressTrackerService {
 
   private readonly localStorageKey = 'courseProgress'
   private progress: progress
+  private cache: report = null
 
   constructor() {
     let storedData = localStorage.getItem(this.localStorageKey)
@@ -16,6 +17,7 @@ export class ProgressTrackerService {
   }
 
   public hasVisited(course: Course, lid: string): void {
+    this.cache = null
     if (this.progress[course.courseTitle]) {
       if (this.progress[course.courseTitle].lessons.indexOf(lid) != -1) {
         // Lesson has already been stored
@@ -32,6 +34,9 @@ export class ProgressTrackerService {
   }
 
   public progressReport(): report {
+    if (this.cache) {
+      return this.cache
+    }
     let report = {}
     for (let courseName in this.progress) {
       report[courseName] = this.progress[courseName].lessons.length / this.progress[courseName].total

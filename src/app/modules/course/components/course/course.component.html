@@ -1,7 +1,10 @@
 <div *ngIf="course$ | async as course;">
-    <h2>{{course.courseTitle}}</h2>
+    <app-parallax-title imgUrl="{{content.getAsset(course.courseImage)}}" title="{{course.courseTitle}}">
+    </app-parallax-title>
 
     <div *ngFor="let lessonLink of course.lessons">
         <a [routerLink]="['/lessons', courseId, lessonLink.fields.lesson.sys.id]">{{lessonLink.fields.lessonTitle}}</a>
     </div>
 </div>
+
+<app-flowchart></app-flowchart>

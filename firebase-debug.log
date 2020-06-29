@@ -1,0 +1,10 @@
+[debug] [2020-06-29T14:11:11.249Z] ----------------------------------------------------------------------
+[debug] [2020-06-29T14:11:11.253Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\maxmf\shadow\ripewebsite\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2020-06-29T14:11:11.253Z] CLI Version:   8.4.2
+[debug] [2020-06-29T14:11:11.253Z] Platform:      win32
+[debug] [2020-06-29T14:11:11.253Z] Node Version:  v10.15.3
+[debug] [2020-06-29T14:11:11.254Z] Time:          Mon Jun 29 2020 10:11:11 GMT-0400 (Eastern Daylight Time)
+[debug] [2020-06-29T14:11:11.254Z] ----------------------------------------------------------------------
+[debug] [2020-06-29T14:11:11.256Z] 
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 

@@ -5,6 +5,7 @@ export interface Course {
     courseTitle: string
     courseDescription: RichTextContent
     lessons: LessonLink[]
+    flowchartImg: Asset
 }
 
 export interface LessonLink {
