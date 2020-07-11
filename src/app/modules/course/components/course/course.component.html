@@ -5,6 +5,7 @@
     <div *ngFor="let lessonLink of course.lessons">
         <a [routerLink]="['/lessons', courseId, lessonLink.fields.lesson.sys.id]">{{lessonLink.fields.lessonTitle}}</a>
     </div>
-</div>
 
-<app-flowchart></app-flowchart>
+    <app-flowchart parentCourseName="{{course.courseTitle}}"></app-flowchart>
+
+</div>

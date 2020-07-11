@@ -34,29 +34,29 @@ html, body {
 .frank-picture-header{
     @extend .frank;
     font-weight: bold;
-    font-size: 115px;
-    line-height: 124px;
+    font-size: 7.5vw;
+    line-height: 8.6vw;
 }
 
 .frank-small-header{
     @extend .frank;
     font-weight: bold;
-    font-size: 64px;
-    line-height: 83px;
+    font-size: 4.44vw;
+    line-height: 5.76vw;
 }
 
 .frank-numbers{
     @extend .frank;
     font-weight: bold;
-    font-size: 96px;
-    line-height: 124px;
+    font-size: 6.67vw;
+    line-height: 8.61vw;
 }
 
 .frank-sources{
     @extend .frank;
     font-weight: 300;
-    font-size: 18px;
-    line-height: 23px;
+    font-size: 1.25vw;
+    line-height: 1.6vw;
 }
 
 .nunito{
@@ -67,6 +67,6 @@ html, body {
 .nunito-body{
     @extend .nunito;
     font-weight: 300;
-    font-size: 24px;
-    line-height: 33px;
+    font-size: 1.67vw;
+    line-height: 2.29vw;
 }

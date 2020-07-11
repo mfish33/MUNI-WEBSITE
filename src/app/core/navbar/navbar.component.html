@@ -45,7 +45,7 @@
                 </div>
                 <ul class="dropdownList">
                     <li *ngFor="let course of courses | async">
-                        <a [routerLink]="['/courses', course[0]]">{{course[1].courseTitle}}</a>
+                        <a [routerLink]="['/courses', course.id]">{{course.courseTitle}}</a>
                     </li>
 
                 </ul>
@@ -121,7 +121,7 @@
             </div>
             <ul class="dropdownList">
                 <li *ngFor="let course of courses | async">
-                    <a [routerLink]="['/courses', course[0]]">{{course[1].courseTitle}}</a>
+                    <a [routerLink]="['/courses', course.id]">{{course.courseTitle}}</a>
                 </li>
             </ul>
         </li>

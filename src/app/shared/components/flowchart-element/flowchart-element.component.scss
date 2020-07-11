@@ -4,9 +4,10 @@
 .flowElm{
     display: flex;
     flex-direction: column;
+    position: relative;
     svg{
-        width: 160px;
-        height:160px;
+        width: 176px;
+        height:176px;
     }
     
 
@@ -14,23 +15,30 @@
         position: relative;
         img{
             position: absolute;
-            z-index: 2;
+            z-index: 1;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width:170px;
         }
     }
     p{
-        display: flex;
-        justify-content: center;
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translate(-50%,0);
         margin: 0;
         color: $bluePrimary;
-        @extend .nunito-body
+        white-space: nowrap;
+        @extend .nunito-body;
     }
     #background{
         fill: $greyPrimary;
     }
     #progress{
         fill: $greenAcescent;
+    }
+    #currentCourse{
+        fill: none;
     }
 }

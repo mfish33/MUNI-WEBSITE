@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as contentful from 'contentful'
-import { Lesson, LessonLink, Course } from '../../shared/models/contentfulTypes'
+import { Lesson, LessonLink, Course, CourseOrder, CourseOrdered } from '../../shared/models/contentfulTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { ProgressTrackerService } from './progress-tracker.service';
 
@@ -27,11 +27,16 @@ export class ContentfulService {
   public async getCourses(): Promise<[string, Course][]> {
     if (Object.keys(this.content).length == 0) {
       try {
-        let res = await this.client.getEntries({ content_type: 'courseOverviewPageTemplate', include: 10 })
-        this.content = res.items.reduce((acc, item) => {
-          acc[item.sys.id] = item.fields
+        let res: contentful.EntryCollection<CourseOrder> = await this.client.getEntries({ content_type: 'courseOrder', include: 10 })
+        // put index of course onto course object
+        // Should only be one course order item at a time
+        let courseOrder = res.items[0]
+        this.content = courseOrder.fields.courses.reduce((acc, course, i) => {
+          course.fields.idx = i
+          acc[course.sys.id] = course.fields
           return acc
         }, {})
+
       } catch (e) {
         console.error(e)
       }
@@ -44,6 +49,16 @@ export class ContentfulService {
       await this.getCourses()
     }
     return Object.values(this.content)
+  }
+
+  public async getCoursesByOrder(): Promise<CourseOrdered[]> {
+    await this.getCourses()
+    return Object.entries(this.content).reduce((acc, val) => {
+      let [id, course] = val
+      let adjCourse = Object.assign(course, { id: id }) as CourseOrdered
+      acc.push(adjCourse)
+      return acc
+    }, [])
   }
 
 

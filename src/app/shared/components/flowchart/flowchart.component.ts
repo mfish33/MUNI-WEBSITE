@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ContentfulService } from 'src/app/core/services/contentful.service';
-import { Course } from '../../models/contentfulTypes';
+import { CourseOrdered } from '../../models/contentfulTypes';
 
 
 @Component({
@@ -11,17 +11,20 @@ import { Course } from '../../models/contentfulTypes';
 export class FlowchartComponent implements OnInit {
 
   public flowChart$: Promise<flowChartElm[]>
+  @Input() parentCourseName: string
 
   constructor(private content: ContentfulService) { }
 
   ngOnInit(): void {
-    this.flowChart$ = this.content.getCoursesNoId().then(courses => courses.map((course: Course) => {
+    this.flowChart$ = this.content.getCoursesByOrder().then(courses => courses.map((course: CourseOrdered) => {
       return {
-        name: course.courseTitle,
-        img: this.content.getAsset(course.flowchartImg)
+        name: course.shortName ? course.shortName : course.courseTitle,
+        img: this.content.getAsset(course.flowchartImg),
+        current: course.courseTitle == this.parentCourseName
       }
     })
     )
+    this.flowChart$.then(console.log)
   }
 
 }
@@ -29,4 +32,5 @@ export class FlowchartComponent implements OnInit {
 interface flowChartElm {
   name: string
   img: string
+  current: boolean
 }

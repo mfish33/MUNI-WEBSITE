@@ -1,10 +1,12 @@
 <div class="flowContainer" *ngIf="flowChart$ | async as flowChart">
-    <app-flowchart-element name="{{flowChart[0].name}}" img="{{flowChart[0].img}}"></app-flowchart-element>
+    <app-flowchart-element [name]="flowChart[0].name" [img]="flowChart[0].img" [current]="flowChart[0].current">
+    </app-flowchart-element>
     <div *ngFor="let item of flowChart | slice:1">
         <svg class="flowLine">
-            <rect x="0" y="75" width="200" height="10px" fill="green" />
+            <rect x="0" y="83" width="200" height="10px" fill="green" />
         </svg>
-        <app-flowchart-element name="{{item.name}}" img="{{item.img}}"></app-flowchart-element>
+        <app-flowchart-element [name]="item.name" [img]="item.img" [current]="item.current">
+        </app-flowchart-element>
     </div>
 
 </div>
