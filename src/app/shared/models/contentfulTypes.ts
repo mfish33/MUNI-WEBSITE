@@ -5,7 +5,6 @@ export interface Course {
     courseTitle: string
     courseDescription: RichTextContent
     lessons: LessonLink[]
-    lessonLinks: Lesson[]
 }
 
 export interface LessonLink {
@@ -24,6 +23,7 @@ export interface Lesson {
         titleText: string
         titleGraphic: Asset
         introduction: RichTextContent
+        introductionInfographic: Asset
         introVideo: string
         introVideoCaption: RichTextContent
         goalsListField: string[]

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import * as contentful from 'contentful'
 import { Lesson, LessonLink, Course } from '../../shared/models/contentfulTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { ProgressTrackerService } from './progress-tracker.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +17,8 @@ export class ContentfulService {
 
   // Local Cache for content. Clears on app reload
   private content: { [key: string]: Course } = {}
-  private assets: object
 
-  constructor() {
+  constructor(private progress: ProgressTrackerService) {
     this.getCourses()
   }
 
@@ -77,6 +78,8 @@ export class ContentfulService {
       if (lessonIndex == -1) {
         throw new Error('Invalid Lesson Id')
       }
+      let course = await this.getCourse(cid)
+      this.progress.hasVisited(course, lid)
       return this.content[cid].lessons[lessonIndex].fields.lesson
     } catch (e) {
       console.error('Lesson Could not be found', e)
@@ -88,10 +91,9 @@ export class ContentfulService {
     return documentToHtmlString(doc)
   }
 
-  public async getAsset(id: string): Promise<contentful.Asset | void> {
-    return this.client.getAsset(id).catch(e => console.error('Error retrieving asset', e))
+  public getAsset(asset: contentful.Asset): string {
+    return `https:${asset.fields.file.url}`
   }
-
 
 
 }

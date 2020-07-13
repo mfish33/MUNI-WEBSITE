@@ -4,52 +4,16 @@
 $groupSpacing:40px;
 
 /* Layout */
-.lessonTitle{
-    position: relative;
-    overflow: hidden;
-    img{
-        width: 100%;
-        transform: scale(1.1);
-    }
-    h2{
-        color:white;
-        font-weight: bold;
-        font-size: 72px;
-        position: absolute;
-        margin: 0;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-}
-
 .introBlock{
     display: grid;
     grid-template-columns: [start] 5%  [text] 60%  [graphic] 30% [spaceRight] 5% [end];
-    background-color:$primary;
+    background-color:$bluePrimary;
     .text{
-        grid-column-start: text;
-        grid-column-end: graphic;
+        grid-column: text;
         color:white;
-
-        h2{
-            font-weight: bold;
-            font-size: 64px;
-            line-height: 83px;
-        }
-
-        div{ 
-            font-weight: 300;
-            font-size: 24px;
-            line-height: 31px;
-            max-width: 1000px;
-        }
     }
-
     .infoGraphic{
-        grid-column-start: graphic;
-        grid-column-end: spaceRight;
-
+        grid-column: graphic;
         img{
            width: 100%;
            max-width: 600px;
@@ -86,16 +50,14 @@ $groupSpacing:40px;
 }
 
 .banner{
-    background-color: $primary;
+    background-color: $bluePrimary;
     display: flex;
     justify-content: center;
     color: white;
     margin-top:$groupSpacing;
     height: 120px;
     h2{
-        font-weight: bold;
-        font-size: 64px;
-        line-height: 83px;
+        @extend .frank-small-header;
         text-align: center;
         margin: 0;
     }
@@ -109,16 +71,10 @@ $groupSpacing:40px;
         display: flex;
     
         .number{
-            font-weight: bold;
-            font-size: 96px;
-            line-height: 124px;
             text-align: center;
             margin: 0;
         }
         .text{
-            font-weight: 300;
-            font-size: 24px;
-            line-height: 31px;
             text-align: center;
             width: 300px;
             margin-right: 0;
@@ -135,17 +91,10 @@ $groupSpacing:40px;
     display: grid;
     grid-template-columns: [start] 5%  [text] 55%  [spaceBetween] 5% [graphic] 30% [spaceRight] 5% [end];
     .contentSide{
-        grid-column-start: text;
-        grid-column-end: spaceBetween;
-        div{
-            font-weight: 300;
-            font-size: 24px;
-            line-height: 31px;
-        }
+        grid-column: text;
     }
     .graphic{
-        grid-column-start: graphic;
-        grid-column-end: spaceRight;
+        grid-column: graphic;
         img{
             width: 100%;
             height: auto;
@@ -161,11 +110,6 @@ $groupSpacing:40px;
     .contentSide{
         grid-column:content;
         grid-row: text;
-        div{
-            font-weight: 300;
-            font-size: 24px;
-            line-height: 31px;
-        }
     }
     .graphic{
         grid-column:content;
@@ -181,13 +125,10 @@ $groupSpacing:40px;
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
-    background-color: $primary;
+    background-color: $bluePrimary;
     color:white;
     height: 120px;
     h2{
-        font-weight: bold;
-        font-size: 64px;
-        line-height: 83px;
         text-align: center;
         margin: 0;
         margin-left: 60px;
@@ -210,27 +151,18 @@ $groupSpacing:40px;
         display: grid;
         grid-template-columns: [start] 5%  [number] 5%  [spaceBetween1] 5% [text] 30% [spaceBetween2] 10% [img] 40% [spaceRight] 5% [end];
         h2{
-            grid-column-start: number;
-            grid-column-end: spaceBetween1;
+            grid-column: number;
             margin: 0;
-            font-weight: bold;
-            font-size: 96px;
-            line-height: 124px;
             text-align: center;
         }
         .text{
-            grid-column-start: text;
-            grid-column-end: spaceBetween2;
-            font-weight: 300;
-            font-size: 24px;
-            line-height: 31px;
+            grid-column: text;
         }
-        iframe{
-            grid-column-start: img;
-            grid-column-end: spaceRight;
+        img{
+            grid-column: img;
             width:100%;
             margin: 20px;
-            height: 330px;
+            height: auto;
         }
     }
 }
@@ -251,11 +183,6 @@ $groupSpacing:40px;
             text-decoration-line: underline;
             margin: 0;
         }
-        .content{
-            font-weight: normal;
-            font-size: 22px;
-            line-height: 23px;
-        }
     }
 }
 
@@ -266,9 +193,6 @@ $groupSpacing:40px;
     .content{
         width: 70%;
         max-width: 1000px;
-        font-weight: normal;
-        font-size: 24px;
-        line-height: 31px;
     }
 }
 
@@ -281,12 +205,6 @@ $groupSpacing:40px;
         font-weight: bold;
         font-size: 24px;
         line-height: 31px;
-    }
-    .content{
-        font-weight: 300;
-        font-size: 18px;
-        line-height: 23px;
-        max-width: 1500px;
     }
 }
 
@@ -301,8 +219,7 @@ $groupSpacing:40px;
         font-size: 64px;
         line-height: 83px;
     }
-    .buttons{
-        
+    .buttons{    
         display: flex;
         justify-content: space-around;
         button{
@@ -310,7 +227,7 @@ $groupSpacing:40px;
             background-color: #f0f0f0;
             border-radius: 4px;
             border-width: thin;
-            border-color: $primary;
+            border-color: $bluePrimary;
             font-weight: bold;
             font-size: 48px;
             line-height: 62px;

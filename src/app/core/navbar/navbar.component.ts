@@ -16,6 +16,12 @@ export class NavbarComponent implements OnInit {
   faBars = faBars
   courses: Promise<[string, Course][]>
 
+  // Template Toggles
+  public hamburgerIsActive: boolean
+  public mobileSignInOptions: boolean
+  public navDrop1: boolean
+  public navDrop2: boolean
+
   constructor(private content: ContentfulService) { }
 
   ngOnInit() {
