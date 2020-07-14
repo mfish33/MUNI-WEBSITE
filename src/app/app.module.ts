@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module'
 import { HomeModule } from './modules/home/home.module';
 import { CourseModule } from './modules/course/course.module';
 import { LessonModule } from './modules/lesson/lesson.module';
-
+import { AuthModule } from './modules/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { LessonModule } from './modules/lesson/lesson.module';
     AppRoutingModule,
     HomeModule,
     LessonModule,
-    CourseModule
+    CourseModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

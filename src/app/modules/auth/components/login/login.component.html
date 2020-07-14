@@ -1,0 +1,13 @@
+<form>
+    <input type="text" placeholder="email" [(ngModel)]="email" name="email">
+    <div class="password">
+        <input type="{{showPassword ? 'text' : 'password'}}" placeholder="password" [(ngModel)]="password"
+            name="password">
+        <input type="checkbox" class="switch" [(ngModel)]="showPassword" name="showPassword">
+    </div>
+    <div>
+        <p>Remember Me</p>
+        <input type="checkbox">
+    </div>
+    <button (onclick)="submit()">Submit</button>
+</form>
