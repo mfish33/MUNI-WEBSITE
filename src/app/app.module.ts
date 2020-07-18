@@ -10,6 +10,8 @@ import { HomeModule } from './modules/home/home.module';
 import { CourseModule } from './modules/course/course.module';
 import { LessonModule } from './modules/lesson/lesson.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { FirebaseModule } from './firebase.module';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AuthModule } from './modules/auth/auth.module';
     HomeModule,
     LessonModule,
     CourseModule,
-    AuthModule
+    AuthModule,
+    FirebaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
