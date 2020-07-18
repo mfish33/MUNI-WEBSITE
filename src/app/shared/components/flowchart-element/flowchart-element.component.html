@@ -1,0 +1,13 @@
+<div class="flowElm">
+    <div class="circle">
+        <svg>
+            <circle id="currentCourse" cx="88" cy="88" r="88" [ngStyle]="{fill: current ? 'green' : 'none'}" />
+            <circle id="background" cx="88" cy="88" r="80" />
+            <circle id="progress" cx="88" cy="88" r="80"
+                [ngStyle]="{'clip-path':'polygon(0% 100%, 100% 100%, 100%'+ clipPercent +'%, 0%'+ clipPercent + '%)'}" />
+        </svg>
+        <img [src]="img" alt="">
+    </div>
+
+    <p>{{name}}</p>
+</div>

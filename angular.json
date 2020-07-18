@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "ripewebsite"
+  "defaultProject": "ripewebsite",
+  "cli": {
+    "analytics": "6a555bcf-e9b8-43f5-b84d-e318dc7ee193"
+  }
 }

@@ -3,8 +3,24 @@ import { Sys, RichTextContent, Asset } from 'contentful'
 export interface Course {
     courseImage: Asset
     courseTitle: string
+    shortName?: string
     courseDescription: RichTextContent
     lessons: LessonLink[]
+    flowchartImg: Asset
+    idx: number
+}
+
+export interface CourseOrdered extends Course {
+    id: string
+}
+
+export interface CourseExt {
+    fields: Course
+    sys: Sys
+}
+
+export interface CourseOrder {
+    courses: CourseExt[]
 }
 
 export interface LessonLink {
