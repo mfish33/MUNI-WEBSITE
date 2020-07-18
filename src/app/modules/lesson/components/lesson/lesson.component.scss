@@ -1,4 +1,4 @@
-@import "./../../../../../styles.scss";
+@import "./src/styles.scss";
 
 /* Vars */
 $groupSpacing:40px;
@@ -174,8 +174,9 @@ $groupSpacing:40px;
     .column{
         display: flex;
         flex-direction: column;
-        width: 30%;
+        width: 35%;
         h2{
+            // TODO: replace with image
             font-weight: 300;
             font-size: 64px;
             line-height: 83px;

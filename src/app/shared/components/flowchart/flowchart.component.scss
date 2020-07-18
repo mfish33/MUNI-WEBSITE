@@ -1,0 +1,17 @@
+@import './src/styles.scss';
+
+.flowContainer{
+    justify-content: center;
+    .flowLine{
+        height: 200px;
+        width: 40px;
+        // Need to show current design and get feedback on margin spacing
+        // margin-left: 10px;
+        // margin-right: 10px;
+    }
+}
+
+
+div{
+    display: flex;
+}

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { ContentfulService } from '../services/contentful.service';
-import { Course } from '../../shared/models/contentfulTypes'
+import { CourseOrdered } from '../../shared/models/contentfulTypes'
 
 
 @Component({
@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   faUser = faUser
   faBars = faBars
-  courses: Promise<[string, Course][]>
+  courses: Promise<CourseOrdered[]>
 
   // Template Toggles
   public hamburgerIsActive: boolean
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   constructor(private content: ContentfulService) { }
 
   ngOnInit() {
-    this.courses = this.content.getCourses()
+    this.courses = this.content.getCoursesByOrder()
   }
 
 }
