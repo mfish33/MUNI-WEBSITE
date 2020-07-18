@@ -18,14 +18,15 @@ export class ProgressTrackerService {
 
   public hasVisited(course: Course, lid: string): void {
     this.cache = null
-    if (this.progress[course.courseTitle]) {
-      if (this.progress[course.courseTitle].lessons.indexOf(lid) != -1) {
+    let name = course.shortName ?? course.courseTitle
+    if (this.progress[name]) {
+      if (this.progress[name].lessons.indexOf(lid) != -1) {
         // Lesson has already been stored
         return
       }
-      this.progress[course.courseTitle].lessons.push(lid)
+      this.progress[name].lessons.push(lid)
     } else {
-      this.progress[course.courseTitle] = {
+      this.progress[name] = {
         lessons: [lid],
         total: course.lessons.length
       }

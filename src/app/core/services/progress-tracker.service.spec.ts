@@ -1,18 +1,26 @@
 import { ProgressTrackerService } from './progress-tracker.service';
 import { Course } from 'src/app/shared/models/contentfulTypes';
 
-const testCourse: Course = {
+const testCourse: any = {
   courseImage: {} as any,
   courseTitle: 'Test Course',
   courseDescription: {} as any,
   lessons: ['', '', '', ''] as any
 }
 
-const testCourse2: Course = {
+const testCourse2: any = {
   courseImage: {} as any,
   courseTitle: 'Test Course2',
   courseDescription: {} as any,
   lessons: ['', '', '', ''] as any
+}
+
+const testCourse3: any = {
+  courseImage: {} as any,
+  courseTitle: 'Test Course3',
+  courseDescription: {} as any,
+  lessons: ['', '', '', ''] as any,
+  shortName: 'shorty'
 }
 
 const lids = ['12345', '67890']
@@ -51,6 +59,15 @@ describe('ProgressTrackerService', () => {
     service.hasVisited(testCourse, lids[1])
     expect(service.progressReport()).toEqual({
       'Test Course': .25
+    })
+  })
+
+  it('should work with short names', () => {
+    service.hasVisited(testCourse, lids[1])
+    service.hasVisited(testCourse3, lids[1])
+    expect(service.progressReport()).toEqual({
+      'Test Course': .25,
+      'shorty': .25
     })
   })
 
