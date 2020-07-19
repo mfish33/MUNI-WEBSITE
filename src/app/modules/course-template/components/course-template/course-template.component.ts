@@ -13,18 +13,17 @@ export class CourseTemplateComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute, public content: ContentfulService, private router: Router) { }
 
   public courseId: string;
-  public course$: Promise<Course>;
+  public course$: Promise<Course>
 
   ngOnInit() {
     this.activeRoute.params.subscribe((params) => {
-      this.course$ = this.content.getCourse(params.cid);
-      this.course$.then(course => {
+      this.courseId = params.cid
+      this.content.getCourse(this.courseId).then(course => {
+        this.course$ = Promise.resolve(course)
         if (!course) {
           this.router.navigateByUrl('');
         }
       });
-      this.course$.then(console.log);
-      this.courseId = params.cid;
     });
   }
 }
