@@ -53,8 +53,8 @@ svg
     stroke-linecap: round;
     stroke-width: 20;
   }
-}
 
-svg:hover #highlighted{
-  clip-path: polygon(0% 0%, 0% 100%, 110% 100%, 110% 0%);
+  &:hover #highlighted{
+    clip-path: polygon(0% 0%, 0% 100%, 110% 100%, 110% 0%);
+  }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RichTextContent } from 'contentful';
 
 @Component({
   selector: 'app-course-bar-item',
