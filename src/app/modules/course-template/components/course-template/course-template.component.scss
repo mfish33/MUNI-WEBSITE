@@ -1,0 +1,30 @@
+@import './src/styles.scss';
+
+:host {
+  box-sizing: border-box;
+}
+
+.flowchart{
+  margin-top:20px;
+}
+
+.introBlock{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  .content{
+    width: 92%;
+    @extend .nunito-body
+  } 
+}
+
+.lesson{
+  margin: 20px 4% 20px 4%;
+  display: flex;
+  flex-flow: row;
+  position: relative;
+  width: 92%;
+  min-height: 300px;
+  min-height: 25%;
+}

@@ -1,0 +1,60 @@
+@import './src/styles.scss';
+
+:host {
+  display: flex;
+  flex-flow: row;
+}
+
+img{
+  height: 100%;
+  width: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.lessonText{
+  h3{
+    @extend .frank-small-header;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  div{
+    @extend .nunito-body;
+  }
+  padding: 0px 0px 0px 5%;
+  width: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+svg
+{
+  cursor: pointer;
+  display: block;
+  fill: $grey;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+
+  #highlighted{
+    fill: $bluePrimary;
+    stroke: #427AA1;
+    clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+    transition: all .5s;
+  }
+  #normal{
+    fill: $grey;
+    stroke: $grey;
+  }
+
+  .tab{
+    stroke-linecap: round;
+    stroke-width: 20;
+  }
+
+  &:hover #highlighted{
+    clip-path: polygon(0% 0%, 0% 100%, 110% 100%, 110% 0%);
+  }
+}
