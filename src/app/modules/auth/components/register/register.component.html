@@ -7,5 +7,8 @@
             name="confirmPassword">
         <input type="checkbox" class="switch" [(ngModel)]="showPassword" name="showPassword">
     </div>
-    <button (onclick)="submit()">Submit</button>
+    <button (click)='submit()'>Submit</button>
+    <div class="error">
+        <p>{{errorText}}</p>
+    </div>
 </form>

@@ -10,10 +10,11 @@ import { AuthService } from 'src/app/core/services/auth.service';
 
 export class RegisterComponent implements OnInit {
 
-  public email
-  public password
-  public confirmPassword
-  public showPassword
+  public email : string
+  public password : string
+  public confirmPassword : string
+  public showPassword : boolean
+  public errorText : string
 
   constructor(private auth: AuthService) { }
 
@@ -21,7 +22,11 @@ export class RegisterComponent implements OnInit {
   }
 
   public submit() {
-
+    if(this.confirmPassword == this.password){
+      this.errorText = ''
+    }else{
+      this.errorText = 'Passwords do not match'
+    }
   }
 
 }
