@@ -6,14 +6,14 @@ import { LessonComponent } from './modules/lesson/components/lesson/lesson.compo
 
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'lessons/:cid/:lid',component:LessonComponent},
-  {path:'courses/:cid',component:CourseTemplateComponent},
-  {path:'**',redirectTo:''}
+  { path: '', component: HomeComponent },
+  { path: 'lessons/:cid/:lid', component: LessonComponent },
+  { path: 'courses/:cid', component: CourseTemplateComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'}),],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

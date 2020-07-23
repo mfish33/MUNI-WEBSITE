@@ -20,7 +20,6 @@ export class FlowchartElementComponent implements OnInit {
   ngOnInit(): void {
     let decimalComplete = this.progress.progressReport()[this.name] || 0
     this.clipPercent = 100 - decimalComplete * 100
-    console.log(typeof this.current)
   }
 
 }
