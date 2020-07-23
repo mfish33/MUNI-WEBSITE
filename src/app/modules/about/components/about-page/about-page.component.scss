@@ -1,0 +1,30 @@
+@import './src/styles.scss';
+
+h2{
+
+}
+.teamListCenter{
+    display: flex;
+    justify-content: center;
+    .teamList{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-items: center;
+        width:80%;
+        .person{
+            display: flex;
+            // normalizing box size for centering
+            // not perfect center but not noticeable
+            width: 500px;
+            margin-bottom: 40px;
+
+
+            .text{
+                margin-left: 20px;
+                display: flex;
+                flex-direction: column;
+                
+            }
+        }
+    }
+}

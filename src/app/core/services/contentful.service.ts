@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as contentful from 'contentful'
-import { Lesson, LessonLink, Course, CourseOrder, CourseOrdered } from '../../shared/models/contentfulTypes'
+import { Lesson, LessonLink, Course, CourseOrder, CourseOrdered, Profile, ProfileList } from '../../shared/models/contentfulTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { ProgressTrackerService } from './progress-tracker.service';
 
@@ -20,39 +20,42 @@ export class ContentfulService {
   // Local Cache for content. Clears on app reload
   private content: { [key: string]: Course } = {}
 
+  private aboutProfiles: Profile[] = []
+
   constructor(private progress: ProgressTrackerService) {
-    this.getCourses()
+    this.ensureCourses()
   }
 
-  public async getCourses(): Promise<[string, Course][]> {
-    if (Object.keys(this.content).length == 0) {
-      try {
-        let res: contentful.EntryCollection<CourseOrder> = await this.client.getEntries({ content_type: 'courseOrder', include: 10 })
-        // put index of course onto course object
-        // Should only be one course order item at a time
-        let courseOrder = res.items[0]
-        this.content = courseOrder.fields.courses.reduce((acc, course, i) => {
-          course.fields.idx = i
-          acc[course.sys.id] = course.fields
-          return acc
-        }, {})
-
-      } catch (e) {
-        console.error(e)
-      }
+  public async ensureCourses(): Promise<void> {
+    if (Object.keys(this.content).length) {
+      return
     }
-    return Object.entries(this.content)
+    try {
+      let res: contentful.EntryCollection<CourseOrder> = await this.client.getEntries({ content_type: 'courseOrder', include: 10 })
+      // put index of course onto course object
+      // Should only be one course order item at a time
+      let courseOrder = res.items[0]
+      this.content = courseOrder.fields.courses.reduce((acc, course, i) => {
+        course.fields.idx = i
+        acc[course.sys.id] = course.fields
+        return acc
+      }, {})
+
+    } catch (e) {
+      console.error(e)
+    }
+
   }
 
   public async getCoursesNoId(): Promise<Course[]> {
     if (Object.keys(this.content).length == 0) {
-      await this.getCourses()
+      await this.ensureCourses()
     }
     return Object.values(this.content)
   }
 
   public async getCoursesByOrder(): Promise<CourseOrdered[]> {
-    await this.getCourses()
+    await this.ensureCourses()
     return Object.entries(this.content).reduce((acc, val) => {
       let [id, course] = val
       let adjCourse = Object.assign(course, { id: id }) as CourseOrdered
@@ -91,12 +94,12 @@ export class ContentfulService {
   }
 
   public async getCourse(id: string): Promise<Course> {
-    await this.getCourses()
+    await this.ensureCourses()
     return this.content[id]
   }
 
   public async getLesson(cid: string, lid: string): Promise<Lesson> {
-    await this.getCourses()
+    await this.ensureCourses()
     try {
       let lessonIndex = this.content[cid].lessons.map(lessonLink => lessonLink.fields.lesson.sys.id).indexOf(lid)
       if (lessonIndex == -1) {
@@ -123,5 +126,23 @@ export class ContentfulService {
     return ''
   }
 
+  private async ensureProfiles(): Promise<void> {
+    if (this.aboutProfiles.length != 0) {
+      return
+    }
+    try {
+      let res: contentful.EntryCollection<ProfileList> = await this.client.getEntries({ content_type: 'personnelOrder', include: 10 })
+      // Should only be one personal list in conetentful
+      this.aboutProfiles = res.items[0].fields.people
+    } catch (e) {
+      console.error(e)
+    }
+
+  }
+
+  public async getProfiles(): Promise<Profile[]> {
+    await this.ensureProfiles()
+    return this.aboutProfiles
+  }
 
 }

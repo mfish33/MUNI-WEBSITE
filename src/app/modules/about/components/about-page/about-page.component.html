@@ -1,0 +1,14 @@
+<h2>The Team</h2>
+<div class="teamListCenter">
+    <div class="teamList" *ngIf="personal$ | async as personal;">
+        <div class="person" *ngFor="let person of personal">
+            <img [src]="content.getAsset(person.fields.pictureOfPerson)" alt="">
+
+            <div class="text">
+                <h3>{{person.fields.nameOfPerson}}</h3>
+                <p>{{person.fields.positionTitle}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -9,6 +9,8 @@ import { SharedModule } from './shared/shared.module'
 import { HomeModule } from './modules/home/home.module';
 import { CourseModule } from './modules/course/course.module';
 import { LessonModule } from './modules/lesson/lesson.module';
+import { AboutModule } from './modules/about/about.module';
+
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { LessonModule } from './modules/lesson/lesson.module';
     AppRoutingModule,
     HomeModule,
     LessonModule,
-    CourseModule
+    CourseModule,
+    AboutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
