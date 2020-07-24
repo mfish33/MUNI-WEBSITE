@@ -10,17 +10,24 @@ import { AuthService } from 'src/app/core/services/auth.service';
 
 export class LoginComponent implements OnInit {
 
-  public email
-  public password
-  public showPassword
+  public email : string
+  public password : string
+  public showPassword : boolean
+  public errorText : string
 
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  public submit() {
-
+  public async submit() {
+    this.errorText = ''
+    var ret = await this.auth.signInEmail(this.email, this.password)
+    if(typeof ret == 'string'){
+      this.errorText = ret
+    }else{
+      this.errorText = 'You have been logged in'
+    }
   }
 
 }
