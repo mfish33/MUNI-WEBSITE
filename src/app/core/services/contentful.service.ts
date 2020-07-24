@@ -116,7 +116,11 @@ export class ContentfulService {
   }
 
   public getAsset(asset: contentful.Asset): string {
-    return `https:${asset.fields.file.url}`
+    let url = asset?.fields?.file?.url
+    if (url) {
+      return `https:${asset.fields.file.url}`
+    }
+    return ''
   }
 
 

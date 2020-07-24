@@ -24,7 +24,6 @@ export class FlowchartComponent implements OnInit {
       }
     })
     )
-    this.flowChart$.then(console.log)
   }
 
 }

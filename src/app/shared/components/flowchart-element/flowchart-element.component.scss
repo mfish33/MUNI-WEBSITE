@@ -1,4 +1,4 @@
-@import '../../../../styles.scss';
+@import './src/styles.scss';
 
 
 .flowElm{
@@ -33,7 +33,7 @@
         @extend .nunito-body;
     }
     #background{
-        fill: $greyPrimary;
+        fill: $grey;
     }
     #progress{
         fill: $greenAcescent;
