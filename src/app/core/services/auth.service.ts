@@ -26,4 +26,22 @@ export class AuthService {
     })
   }
 
+  async registerEmail(email: string, password: string): Promise<UserCredential | string>{
+    var userCred = this.afAuth.createUserWithEmailAndPassword(email, password).catch(error => {
+      if(error.code == 'auth/email-already-in-use'){
+        return 'This email is already in use'
+      }else if(error.code == 'auth/invalid-email'){
+        return 'This email is not a valid email'
+      }else if(error.code == 'auth/operation-not-allowed'){
+        console.log("Invalid sign up option used : email")
+        return 'This is not a valid way to register, please contact the website admin'
+      }else if(error.code == 'auth/weak-password'){
+        return 'Please choose a stronger password'
+      }
+      console.error(error)
+    })
+    console.log("user registered, :" + email)
+    return userCred
+  }
+
 }

@@ -21,9 +21,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public submit() {
+  public async submit() {
     if(this.confirmPassword == this.password){
       this.errorText = ''
+      var ret = await this.auth.registerEmail(this.email, this.password)
+      if(typeof ret == 'string'){
+        this.errorText = ret
+      }else{
+        this.errorText = 'Registration complete, please log in at the login page'
+      }
     }else{
       this.errorText = 'Passwords do not match'
     }
