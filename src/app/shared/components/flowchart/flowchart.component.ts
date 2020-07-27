@@ -20,7 +20,8 @@ export class FlowchartComponent implements OnInit {
       return {
         name: course.shortName ? course.shortName : course.courseTitle,
         img: this.content.getAsset(course.flowchartImg),
-        current: course.courseTitle == this.parentCourseName
+        current: course.courseTitle == this.parentCourseName,
+        id: course.id
       }
     })
     )
@@ -32,4 +33,5 @@ interface flowChartElm {
   name: string
   img: string
   current: boolean
+  id: string
 }
