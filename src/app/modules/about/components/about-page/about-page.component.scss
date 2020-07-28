@@ -1,7 +1,30 @@
 @import './src/styles.scss';
 
-h2{
+.topSection{
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+    img{
+        width: 25%;
+    }
+    .textSide{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+        width: 40%;
+        h2{
+            margin: 0;
+        }
+        p{
+            @extend .roboto-body;
+        }
+    }
+}
 
+
+h2{
+    @extend .roboto-header;
+    margin-left: 2vw;
 }
 .teamListCenter{
     display: flex;
@@ -15,14 +38,25 @@ h2{
             display: flex;
             // normalizing box size for centering
             // not perfect center but not noticeable
-            width: 500px;
+            width: 32vw;
             margin-bottom: 40px;
-
+            img{
+                height: 7vw;
+            }
 
             .text{
                 margin-left: 20px;
                 display: flex;
                 flex-direction: column;
+                h3{
+                    @extend .roboto-small-header;
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                }
+                p{
+                    @extend .roboto-large-body;
+                    margin: 0;
+                }
                 
             }
         }
