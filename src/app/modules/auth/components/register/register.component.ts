@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['../auth.component.scss']
 })
 
 export class RegisterComponent implements OnInit {
@@ -24,12 +24,8 @@ export class RegisterComponent implements OnInit {
   public async submit() {
     if(this.confirmPassword == this.password){
       this.errorText = ''
-      var ret = await this.auth.registerEmail(this.email, this.password)
-      if(typeof ret == 'string'){
-        this.errorText = ret
-      }else{
-        this.errorText = 'Registration complete, please log in at the login page'
-      }
+      var ret = await this.auth.registerEmail(this.email, this.password).catch( error => this.errorText = this.auth.errorCode(error))
+      if(this.errorText == ''){ this.errorText = 'Registration complete, please log in at the login page'}
     }else{
       this.errorText = 'Passwords do not match'
     }

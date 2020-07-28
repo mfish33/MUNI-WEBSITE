@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['../auth.component.scss']
 })
 
 export class LoginComponent implements OnInit {
@@ -22,12 +22,8 @@ export class LoginComponent implements OnInit {
 
   public async submit() {
     this.errorText = ''
-    var ret = await this.auth.signInEmail(this.email, this.password)
-    if(typeof ret == 'string'){
-      this.errorText = ret
-    }else{
-      this.errorText = 'You have been logged in'
-    }
+    var ret = await this.auth.signInEmail(this.email, this.password).catch( error => this.errorText = this.auth.errorCode(error))
+    if(this.errorText == ''){ this.errorText = 'You have been logged in'}
   }
 
 }
