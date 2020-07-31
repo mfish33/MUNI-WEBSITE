@@ -11,11 +11,18 @@ export class AuthService {
     return this.afAuth.authState
   }
 
+  public userEmail: string
+
   constructor(private afAuth: AngularFireAuth) { }
+
 
   signOut() {
     this.afAuth.signOut()
   } 
+
+  async getEmail(){
+    return this.userEmail
+  }
 
   async signInEmail(email: string, password: string): Promise<UserCredential> {
     return this.afAuth.signInWithEmailAndPassword(email, password).catch(error => {

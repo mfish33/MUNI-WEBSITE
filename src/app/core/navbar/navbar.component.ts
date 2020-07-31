@@ -3,7 +3,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { ContentfulService } from '../services/contentful.service';
 import { CourseOrdered } from '../../shared/models/contentfulTypes'
-
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-core-navbar',
@@ -16,16 +16,24 @@ export class NavbarComponent implements OnInit {
   faBars = faBars
   courses: Promise<CourseOrdered[]>
 
+  public userEmail : string
+
   // Template Toggles
   public hamburgerIsActive: boolean
   public mobileSignInOptions: boolean
   public navDrop1: boolean
   public navDrop2: boolean
 
-  constructor(private content: ContentfulService) { }
+  constructor(private content: ContentfulService, public auth: AuthService) { }
+
+
 
   ngOnInit() {
-    this.courses = this.content.getCoursesByOrder()
+    this.courses = this.content.getCoursesByOrder();
+    this.subToUser()
   }
-
+  subToUser(){
+    this.auth.user$.subscribe(x =>{this.userEmail = (x==null ? null : x.email)})
+    }
 }
+ 
