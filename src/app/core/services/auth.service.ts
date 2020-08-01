@@ -7,22 +7,19 @@ import { UserCredential } from '@firebase/auth-types';
 })
 export class AuthService {
 
-  get user$() {
-    return this.afAuth.authState
-  }
-
-  public userEmail: string
+  private actionCodeSettings = {url : 'https://ripe-website-40a9a.web.app'}
 
   constructor(private afAuth: AngularFireAuth) { }
 
+
+  get user$() {
+    return this.afAuth.authState
+  }
 
   signOut() {
     this.afAuth.signOut()
   } 
 
-  async getEmail(){
-    return this.userEmail
-  }
 
   async signInEmail(email: string, password: string): Promise<UserCredential> {
     return this.afAuth.signInWithEmailAndPassword(email, password).catch(error => {
@@ -31,9 +28,13 @@ export class AuthService {
   }
 
   async registerEmail(email: string, password: string): Promise<UserCredential>{
-    return this.afAuth.createUserWithEmailAndPassword(email, password).catch(error => {
-      throw(error)
-    })
+    try{
+    await this.afAuth.createUserWithEmailAndPassword(email, password)
+    .then((user: UserCredential) => {user.user.sendEmailVerification(this.actionCodeSettings)})
+    }catch(err){
+      throw(err)
+    }
+    return null;
   }
 
   errorCode(error){
