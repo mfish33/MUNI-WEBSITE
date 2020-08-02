@@ -6,9 +6,13 @@ $groupSpacing:40px;
 /* Layout */
 .introBlock{
     display: grid;
-    grid-template-columns: [start] 5%  [text] 60%  [graphic] 30% [spaceRight] 5% [end];
+    grid-template-columns: [start] 5%  [text] 50%  7% [graphic] 30% [spaceRight] 8% [end];
     background-color:$bluePrimary;
     .text{
+        h2{
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
         grid-column: text;
         color:white;
     }
@@ -175,14 +179,9 @@ $groupSpacing:40px;
         display: flex;
         flex-direction: column;
         width: 35%;
-        h2{
-            // TODO: replace with image
-            font-weight: 300;
-            font-size: 64px;
-            line-height: 83px;
-            text-align: center;
-            text-decoration-line: underline;
-            margin: 0;
+        img{
+           height: 6vw;
+           width: 16vw;
         }
     }
 }

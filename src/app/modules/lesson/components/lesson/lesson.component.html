@@ -66,11 +66,15 @@
 
   <div class="dosDonts">
     <div class="column">
-      <h2>Do</h2>
+      <div class="horizontalAlign">
+        <img src="assets/dos.png" alt="Do">
+      </div>
       <div class="nunito-body" [innerHTML]="content.convertRichText(lesson.fields.dos)"></div>
     </div>
     <div class="column">
-      <h2>Don't</h2>
+      <div class="horizontalAlign">
+        <img src="assets/donts.png" alt="Don't">
+      </div>
       <div class="nunito-body" [innerHTML]="content.convertRichText(lesson.fields.donts)"></div>
     </div>
   </div>
