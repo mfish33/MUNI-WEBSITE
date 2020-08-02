@@ -3,11 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './modules/home/components/home/home.component';
 import { CourseTemplateComponent } from './modules/course-template/components/course-template/course-template.component';
 import { LessonComponent } from './modules/lesson/components/lesson/lesson.component';
+import { LoginComponent } from './modules/auth/components/login/login.component';
+import { RegisterComponent } from './modules/auth/components/register/register.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'lessons/:cid/:lid', component: LessonComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'courses/:cid', component: CourseTemplateComponent },
   { path: '**', redirectTo: '' }
 ];

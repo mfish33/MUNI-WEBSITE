@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "ripe-website-40a9a"
+    "default": "ripe-website-ac3c0"
+  },
+  "targets": {
+    "ripe-website-40a9a": {
+      "hosting": {
+        "ripewebsite": [
+          "ripe-website-40a9a"
+        ]
+      }
+    }
   }
 }

@@ -8,8 +8,9 @@ import { CoreModule } from './core/core.module'
 import { SharedModule } from './shared/shared.module'
 import { HomeModule } from './modules/home/home.module';
 import { LessonModule } from './modules/lesson/lesson.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { FirebaseModule } from './firebase.module';
 import { CourseTemplateModule } from './modules/course-template/course-template.module';
-
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { CourseTemplateModule } from './modules/course-template/course-template.
     AppRoutingModule,
     HomeModule,
     LessonModule,
+    AuthModule,
+    FirebaseModule,
     CourseTemplateModule
   ],
   providers: [],
