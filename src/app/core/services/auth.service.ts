@@ -8,46 +8,47 @@ import { auth } from 'firebase';
 })
 export class AuthService {
 
-  private actionCodeSettings = {url : 'https://ripe-website-40a9a.web.app'}
+  private actionCodeSettings = { url: 'https://ripe-website-40a9a.web.app' }
   private googleProvider = new auth.GoogleAuthProvider()
 
   constructor(private afAuth: AngularFireAuth) { }
-
 
   get user$() {
     return this.afAuth.authState
   }
 
-  async signInGoogle(){
-    return this.afAuth.signInWithPopup(this.googleProvider)
-    .catch(error => {throw(error)})
+  async signInGoogle() {
+    try {
+      return this.afAuth.signInWithPopup(this.googleProvider)
+    } catch (e) {
+      throw e
+    }
   }
-
 
   signOut() {
     this.afAuth.signOut()
-  } 
+  }
 
 
   async signInEmail(email: string, password: string): Promise<UserCredential> {
     return this.afAuth.signInWithEmailAndPassword(email, password).catch(error => {
-      throw(error)
+      throw (error)
     })
   }
 
-  async registerEmail(email: string, password: string): Promise<UserCredential>{
-    try{
-    await this.afAuth.createUserWithEmailAndPassword(email, password)
-    .then((user: UserCredential) => {user.user.sendEmailVerification(this.actionCodeSettings)})
-    }catch(err){
-      throw(err)
+  async registerEmail(email: string, password: string): Promise<UserCredential> {
+    try {
+      let attempt = await this.afAuth.createUserWithEmailAndPassword(email, password)
+      attempt?.user.sendEmailVerification(this.actionCodeSettings)
+    } catch (err) {
+      throw (err)
     }
     return null;
   }
 
-  errorCode(error){
-    switch(error.code){
-      case 'auth/email-already-in-use' :
+  errorCode(error) {
+    switch (error.code) {
+      case 'auth/email-already-in-use':
         return 'This email is already in use'
       case 'auth/invalid-email':
         return 'This email is not a valid email'
@@ -63,5 +64,5 @@ export class AuthService {
         return 'Your account has been disabled'
     }
     return 'something went wrong'
-    }
+  }
 }

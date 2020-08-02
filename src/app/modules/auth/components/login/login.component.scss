@@ -1,0 +1,35 @@
+@import '../sharedStyles.scss';
+@import './src/styles.scss';
+
+.verticalCenter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%,-70%);
+    .horizontal{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 15%;
+            .showPassword{
+                display: flex;
+                justify-content: center;
+                p{
+                    margin: 0;
+                }
+                display: flex;
+            }
+            app-google-sign-in{
+                display: flex;
+                justify-content: center;
+            }
+        }
+        
+    }
+}
+
+

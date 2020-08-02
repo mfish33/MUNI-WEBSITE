@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   faBars = faBars
   courses: Promise<CourseOrdered[]>
 
-  public userEmail : string
+  public userEmail: string
 
   // Template Toggles
   public hamburgerIsActive: boolean
@@ -27,13 +27,12 @@ export class NavbarComponent implements OnInit {
   constructor(private content: ContentfulService, public auth: AuthService) { }
 
 
-
   ngOnInit() {
     this.courses = this.content.getCoursesByOrder();
     this.subToUser()
   }
-  subToUser(){
-    this.auth.user$.subscribe(x =>{this.userEmail = (x==null ? null : x.email)})
-    }
+
+  subToUser() {
+    this.auth.user$.subscribe(user => this.userEmail = user?.email)
+  }
 }
- 

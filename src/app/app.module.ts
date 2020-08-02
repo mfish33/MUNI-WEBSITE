@@ -12,7 +12,6 @@ import { AuthModule } from './modules/auth/auth.module';
 import { FirebaseModule } from './firebase.module';
 import { CourseTemplateModule } from './modules/course-template/course-template.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,

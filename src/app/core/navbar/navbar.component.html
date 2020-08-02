@@ -86,14 +86,17 @@
                     <fa-icon [icon]="faUser"></fa-icon>
                 </div>
             </div>
+
             <!--verticalAlign-->
-            <div class="signInOptions verticalAlign hideMobile" *ngIf="userEmail==null">
-                <a [routerLink]="['/login']">Log In</a>
-                <a [routerLink]="['/register']">Register</a>
-            </div>
-            <div class="signInOptions verticalAlign hideMobile" *ngIf="userEmail!=null">
-                <p> {{userEmail}}</p>
-                <button (click)='auth.signOut()'>Sign Out</button>
+            <div class="signInOptions verticalAlign hideMobile">
+                <div *ngIf="userEmail; else elseBlock">
+                    <p> {{userEmail}}</p>
+                    <button (click)='auth.signOut()'>Sign Out</button>
+                </div>
+                <ng-template #elseBlock>
+                    <a [routerLink]="['/login']">Log In</a>
+                    <a [routerLink]="['/register']">Register</a>.
+                </ng-template>
             </div>
 
 
