@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { UserCredential } from '@firebase/auth-types';
+import { auth } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { UserCredential } from '@firebase/auth-types';
 export class AuthService {
 
   private actionCodeSettings = {url : 'https://ripe-website-40a9a.web.app'}
+  private googleProvider = new auth.GoogleAuthProvider()
 
   constructor(private afAuth: AngularFireAuth) { }
 
@@ -15,6 +17,12 @@ export class AuthService {
   get user$() {
     return this.afAuth.authState
   }
+
+  async signInGoogle(){
+    return this.afAuth.signInWithPopup(this.googleProvider)
+    .catch(error => {throw(error)})
+  }
+
 
   signOut() {
     this.afAuth.signOut()

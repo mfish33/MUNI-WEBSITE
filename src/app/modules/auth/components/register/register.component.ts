@@ -33,5 +33,10 @@ export class RegisterComponent implements OnInit {
       this.errorText = 'Passwords do not match'
     }
   }
+  public async submitGoogle(){
+    this.errorText = ''
+    var ret = await this.auth.signInGoogle().catch( error => this.errorText = this.auth.errorCode(error))
+    if(this.errorText == ''){ this.errorText = 'You have been logged in'}
+  }
 
 }

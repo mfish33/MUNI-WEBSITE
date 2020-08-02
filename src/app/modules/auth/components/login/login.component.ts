@@ -26,4 +26,9 @@ export class LoginComponent implements OnInit {
     if(this.errorText == ''){ this.errorText = 'You have been logged in'}
   }
 
+  public async submitGoogle(){
+    this.errorText = ''
+    var ret = await this.auth.signInGoogle().catch( error => this.errorText = this.auth.errorCode(error))
+    if(this.errorText == ''){ this.errorText = 'You have been logged in'}
+  }
 }

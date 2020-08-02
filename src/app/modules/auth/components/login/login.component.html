@@ -10,6 +10,7 @@
         <input type="checkbox">
     </div>
     <button (click)="submit()">Submit</button>
+    <button (click)='submitGoogle()'>Sign In With Google</button>
     <div class="error" *ngIf="errorText">
         <p>{{errorText}}</p>
     </div>
