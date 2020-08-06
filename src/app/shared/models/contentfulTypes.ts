@@ -8,6 +8,8 @@ export interface Course {
     lessons: LessonLink[]
     flowchartImg: Asset
     idx: number
+    idx: number;
+    isActive: boolean;
 }
 
 export interface CourseOrdered extends Course {

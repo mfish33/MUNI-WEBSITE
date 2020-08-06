@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   constructor(private content: ContentfulService) { }
 
   ngOnInit() {
-    this.courses = this.content.getCoursesByOrder()
+    this.courses = this.content.getActiveCourses()
   }
 
 }
