@@ -1,11 +1,10 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-import {FooterComponent} from './footer/footer.component'
-import {NavbarComponent} from './navbar/navbar.component'
-import {ContentfulService} from './services/contentful.service'
+import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ContentfulService } from './services/contentful.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SharedModule } from '../shared/shared.module'
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   providers: [ContentfulService],

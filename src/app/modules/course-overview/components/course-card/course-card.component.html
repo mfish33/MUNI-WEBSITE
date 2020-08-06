@@ -1,0 +1,21 @@
+<mat-card class="activeCourseCard" *ngIf="course.isActive; else inactiveCourseCard"> 
+  <img [src]="content.getAsset(course.previewImage)" />
+  <div class="title"> {{course.courseTitle}} </div>
+  <div class="description" [innerHTML]="content.convertRichText(course.previewDescription)"></div>
+  <div class="buttonWrapper">
+    <button [routerLink]="['/courses', course.id]" mat-flat-button>Start Course</button>    
+  </div>
+</mat-card>
+
+<ng-template #inactiveCourseCard>
+  <mat-card class="inactiveCourseCard"> 
+    <img src="../../../../../assets/inactiveCourseCardImage.png" alt=""/>
+    <div class="title"> {{course.courseTitle}} </div>
+    <div class="description">
+      This course is currently unavailable. We are working hard to make courses important to you!
+    </div>
+    <div class="buttonWrapper">
+      <button mat-flat-button [disabled]="true"><mat-icon>lock</mat-icon></button>    
+    </div>
+  </mat-card>
+</ng-template>
