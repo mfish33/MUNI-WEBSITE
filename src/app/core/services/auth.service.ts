@@ -30,13 +30,13 @@ export class AuthService {
   }
 
 
-  async signInEmail(email: string, password: string): Promise<UserCredential> {
+  public async signInEmail(email: string, password: string): Promise<UserCredential> {
     return this.afAuth.signInWithEmailAndPassword(email, password).catch(error => {
       throw (error)
     })
   }
 
-  async registerEmail(email: string, password: string): Promise<void> {
+  public async registerEmail(email: string, password: string): Promise<void> {
     try {
       let attempt = await this.afAuth.createUserWithEmailAndPassword(email, password)
       attempt?.user.sendEmailVerification(this.actionCodeSettings)
