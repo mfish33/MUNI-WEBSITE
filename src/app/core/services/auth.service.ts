@@ -19,13 +19,13 @@ export class AuthService {
 
   async signInGoogle() {
     try {
-      return this.afAuth.signInWithPopup(this.googleProvider)
+      return await this.afAuth.signInWithPopup(this.googleProvider)
     } catch (e) {
       throw e
     }
   }
 
-  signOut() {
+  public signOut() {
     this.afAuth.signOut()
   }
 
@@ -36,7 +36,7 @@ export class AuthService {
     })
   }
 
-  async registerEmail(email: string, password: string): Promise<UserCredential> {
+  async registerEmail(email: string, password: string): Promise<void> {
     try {
       let attempt = await this.afAuth.createUserWithEmailAndPassword(email, password)
       attempt?.user.sendEmailVerification(this.actionCodeSettings)
@@ -46,7 +46,7 @@ export class AuthService {
     return null;
   }
 
-  errorCode(error) {
+  public errorCode(error) {
     switch (error.code) {
       case 'auth/email-already-in-use':
         return 'This email is already in use'
