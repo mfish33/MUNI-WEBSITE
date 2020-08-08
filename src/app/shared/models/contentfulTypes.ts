@@ -45,6 +45,8 @@ export interface Lesson {
         goalsListField: string[]
         whatDoINeedToKnow: RichTextContent
         whatDoINeedToKnowInfographic: Asset
+        wdintkText2?: RichTextContent
+        wdintkImg2?: Asset
         whereDoIStart: string[]
         whereDoIStartMedia: Asset[]
         tipsTricksTitle: string
@@ -52,10 +54,6 @@ export interface Lesson {
         donts: RichTextContent
         summary: RichTextContent
         sources: RichTextContent
-        spreadsheetSettings: {
-            url: string | string[]
-            range: string[]
-        }
         pageSettings?: {
             whatDoINeedToKnowAlt: boolean
         }

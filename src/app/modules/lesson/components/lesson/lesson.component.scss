@@ -4,6 +4,12 @@
 $groupSpacing:40px;
 
 /* Layout */
+
+.content{
+    max-width: 1500px;
+    margin: auto;
+}
+
 .introBlock{
     display: grid;
     grid-template-columns: [start] 5%  [text] 50%  7% [graphic] 30% [spaceRight] 8% [end];
@@ -110,7 +116,7 @@ $groupSpacing:40px;
     margin-top: $groupSpacing;
     display: grid;
     grid-template-columns: [start] 10%  [content] auto 10% [end];
-    grid-template-rows: [graphic] auto [text] auto;
+    grid-template-rows: [graphic] auto [text] auto [graphic2] auto [text2] auto;
     .contentSide{
         grid-column:content;
         grid-row: text;
@@ -122,6 +128,14 @@ $groupSpacing:40px;
             width: 100%;
             height: auto;
         }
+    }
+    .graphic2{
+        @extend .graphic;
+        grid-row:graphic2;
+    }
+    .content2{
+        grid-column: content;
+        grid-row: text2;
     }
 }
 
@@ -137,13 +151,47 @@ $groupSpacing:40px;
         margin: 0;
         margin-left: 60px;
     }
+    .disabled{
+        cursor: not-allowed;
+        &:hover{
+            .popUp{
+               opacity: 1;
+            }
+        }
+    }
+    .enabled{
+        cursor: pointer;
+        &:hover{
+            .popUp{
+                opacity: 0;
+             }
+        }
+    
+    }
     a{
         font-weight: 300;
         font-size: 36px;
         line-height: 46px;
-        text-decoration-line: underline;
         margin-right: 60px;
+        color: white;
+        position: relative;
+        cursor: pointer;
+        
+        .popUp{
+            opacity: 0;
+            background-color: $grey;
+            border-radius: 2vw;
+            position: absolute;
+            top: 27%;
+            transition: all .4s;
+            p{
+                @extend .frank-sources;
+                color: black;
+                margin: 8px 8px 8px 8px;
+            }
+        }
     }
+  
 }
 
 .WDSI{
@@ -159,8 +207,12 @@ $groupSpacing:40px;
             margin: 0;
             text-align: center;
         }
-        .text{
+        .testWithNum{
             grid-column: text;
+        }
+        .testWithoutNum{
+            grid-column-start: number;
+            grid-column-end: spaceBetween2;
         }
         img{
             grid-column: img;
