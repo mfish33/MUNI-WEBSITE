@@ -9,11 +9,16 @@
 
 <ng-template #inactiveCourseCard>
   <mat-card class="inactiveCourseCard"> 
-    <img src="../../../../../assets/inactiveCourseCardImage.png" alt=""/>
+    <img [src]="course.previewImage ? content.getAsset(course.previewImage) : 'assets/inactiveCourseCardImage.png'" alt=""/>
     <div class="title"> {{course.courseTitle}} </div>
-    <div class="description">
-      This course is currently unavailable. We are working hard to make courses important to you!
-    </div>
+    
+    <div *ngIf="course.previewDescription; else defaultInactiveDescription" class="description" [innerHTML]="content.convertRichText(course.previewDescription)"></div>
+    <ng-template #defaultInactiveDescription>
+      <div class="description">
+        This course is currently unavailable. We are working hard to make courses important to you!
+      </div>
+    </ng-template>
+
     <div class="buttonWrapper">
       <button mat-flat-button [disabled]="true"><mat-icon>lock</mat-icon></button>    
     </div>

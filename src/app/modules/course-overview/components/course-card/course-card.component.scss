@@ -87,6 +87,10 @@ mat-card {
   background-color: #E5E5E5;
   color: #7F7F7F;
 
+  img {
+    filter: grayscale(100%);
+  }
+
   button {
     background-color: #7F7F7F;
     color: white;

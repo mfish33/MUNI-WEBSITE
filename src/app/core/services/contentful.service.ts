@@ -63,15 +63,7 @@ export class ContentfulService {
 
 
   public async getActiveCourses(): Promise<CourseOrdered[]> {
-    await this.getCourses();
-    return Object.entries(this.content).reduce((acc, val) => {
-      const [id, course] = val;
-      if (course.isActive) {
-        const adjCourse = Object.assign(course, { id }) as CourseOrdered;
-        acc.push(adjCourse);
-      }
-      return acc;
-    }, []);
+    return (await this.getCoursesByOrder()).filter(c => c.isActive);
   }
 
   public getLessonLinks(courseId: string): LessonLink[] {
