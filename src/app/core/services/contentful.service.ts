@@ -62,6 +62,10 @@ export class ContentfulService {
   }
 
 
+  public async getActiveCourses(): Promise<CourseOrdered[]> {
+    return (await this.getCoursesByOrder()).filter(c => c.isActive);
+  }
+
   public getLessonLinks(courseId: string): LessonLink[] {
     try {
       return this.content[courseId].lessons

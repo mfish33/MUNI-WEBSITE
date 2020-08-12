@@ -1,0 +1,16 @@
+<div class="content" *ngIf="courses | async as CourseOrdered; else invalidCourseBlock">
+  
+  <h1>Courses</h1>
+  <div class="courseCardsWrapper">
+    <div class="courseCards" *ngFor="let course of courses | async">
+      <app-course-card [course]="course">
+      </app-course-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #invalidCourseBlock>
+  <div class="content">
+    <h2>Could not load course. The given course ID is most likely invalid.</h2>
+  </div>
+</ng-template>

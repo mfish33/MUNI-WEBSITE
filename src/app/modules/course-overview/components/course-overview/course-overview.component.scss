@@ -1,0 +1,35 @@
+
+@import './src/styles.scss';
+
+:host {
+  box-sizing: border-box;
+}
+
+h1 {
+  @extend .frank;
+  font-size: 72pt;
+  line-height: 1.4;
+  font-weight: bold;
+  text-align: center;
+  color: gray;
+}
+
+.courseCardsWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .courseCards {
+    min-width: 200px;
+    max-width: 400px;
+    width: 33%;
+
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+}
