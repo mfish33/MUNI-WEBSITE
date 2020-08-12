@@ -87,17 +87,25 @@
                 </div>
             </div>
 
+            <!--verticalAlign-->
             <div class="signInOptions verticalAlign hideMobile">
-                <a href="">Log In</a>
-                <a href="">Register</a>
-
+                <div *ngIf="userEmail; else elseBlock">
+                    <p> {{userEmail}}</p>
+                    <button (click)='auth.signOut()'>Sign Out</button>
+                </div>
+                <ng-template #elseBlock>
+                    <a [routerLink]="['/login']">Log In</a>
+                    <a [routerLink]="['/register']">Register</a>.
+                </ng-template>
             </div>
+
+
 
             <div class="mobileSignInOptions hideDesktop"
                 [ngClass]="mobileSignInOptions ? 'mobileSignInOptionsShow' : ''">
                 <ul class="mobileSignInOptionsClippy">
                     <li class="mobileSignInOptionsSignIn">
-                        <a href="#">Sign In</a>
+                        <a [routerLink]="['/login']">Sign In</a>
                     </li>
                     <li>
                         <a href="#">Register</a>
