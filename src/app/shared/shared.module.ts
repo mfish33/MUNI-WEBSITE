@@ -8,7 +8,11 @@ import { FlowchartComponent } from './components/flowchart/flowchart.component';
 import { FlowchartElementComponent } from './components/flowchart-element/flowchart-element.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, HttpClientModule],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    HttpClientModule,
+    ],
   declarations: [SafePipe, ParallaxTitleComponent, FlowchartComponent, FlowchartElementComponent],
   exports: [
     CommonModule,
