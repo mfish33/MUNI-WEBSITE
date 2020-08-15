@@ -31,9 +31,15 @@ export class AuthService {
 
 
   public async signInEmail(email: string, password: string): Promise<UserCredential> {
-    return this.afAuth.signInWithEmailAndPassword(email, password).catch(error => {
+   
+    let userCred = await this.afAuth.signInWithEmailAndPassword(email, password).catch(error => {
       throw (error)
     })
+    if(!userCred.user.emailVerified){
+      this.afAuth.signOut()
+      throw {code: 'email-not-verified', message: 'The email has not been verified'}
+    }
+    return userCred
   }
 
   public async registerEmail(email: string, password: string): Promise<void> {
@@ -43,6 +49,7 @@ export class AuthService {
     } catch (err) {
       throw (err)
     }
+    this.afAuth.signOut()
     return null;
   }
 
@@ -62,6 +69,8 @@ export class AuthService {
         return 'This email isn\'t registered'
       case 'auth/user-disabled':
         return 'Your account has been disabled'
+      case 'email-not-verified':
+        return 'Verify your account before logging in'
     }
     return 'something went wrong'
   }
