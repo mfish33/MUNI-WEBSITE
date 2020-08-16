@@ -11,6 +11,7 @@ import { LessonModule } from './modules/lesson/lesson.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { FirebaseModule } from './firebase.module';
 import { CourseTemplateModule } from './modules/course-template/course-template.module';
+import { CourseOverviewModule } from './modules/course-overview/course-overview.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { CourseTemplateModule } from './modules/course-template/course-template.
     LessonModule,
     AuthModule,
     FirebaseModule,
-    CourseTemplateModule
+    CourseTemplateModule,
+    CourseTemplateModule,
+    CourseOverviewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

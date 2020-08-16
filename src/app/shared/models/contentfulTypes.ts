@@ -2,12 +2,15 @@ import { Sys, RichTextContent, Asset } from 'contentful'
 
 export interface Course {
     courseImage: Asset
+    previewImage: Asset;
     courseTitle: string
     shortName?: string
     courseDescription: RichTextContent
+    previewDescription: RichTextContent;
     lessons: LessonLink[]
     flowchartImg: Asset
-    idx: number
+    idx: number;
+    isActive: boolean;
 }
 
 export interface CourseOrdered extends Course {

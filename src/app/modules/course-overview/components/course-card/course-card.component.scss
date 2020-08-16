@@ -1,0 +1,98 @@
+@import './src/styles.scss';
+
+:host {
+  box-sizing: border-box;
+}
+
+mat-card {
+  padding: 0;
+  border-radius: 8px;
+  height: 100%;
+  position: relative;
+  display: grid;
+
+  img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 0px;
+    padding-left: 0px;
+    width: 100%;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+  }
+
+  .title {
+    @extend .frank;
+    font-size: 24pt;
+    line-height: 1.4;
+    letter-spacing: 0px;
+    text-align: left;
+  
+    margin-top: 40px;
+    margin-bottom: 10px;
+  
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .description {
+    @extend .nunito-body;
+    font-size: 15pt;
+    font-weight: 300;
+    line-height: 1.5;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .buttonWrapper {
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    box-sizing: border-box;
+  
+    button {
+      @extend .nunito;
+      box-sizing: border-box;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      font-size: 20pt;
+      margin-top: 10px;
+      margin-bottom: 40px;
+    
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.activeCourseCard {
+  background-color: $bluePrimary;
+  color: white;
+
+  button {
+    background-color: #40AC4B;
+    color: white;
+
+    &:hover {
+      background-color: darken(#40AC4B, 10%);
+      transition: background-color 0.5s ease;
+    }
+  }
+}
+
+.inactiveCourseCard {
+  background-color: #E5E5E5;
+  color: #7F7F7F;
+
+  img {
+    filter: grayscale(100%);
+  }
+
+  button {
+    background-color: #7F7F7F;
+    color: white;
+  }
+}

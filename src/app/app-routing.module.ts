@@ -5,10 +5,12 @@ import { CourseTemplateComponent } from './modules/course-template/components/co
 import { LessonComponent } from './modules/lesson/components/lesson/lesson.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
+import { CourseOverviewComponent } from './modules/course-overview/components/course-overview/course-overview.component'
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'courses', component: CourseOverviewComponent },
   { path: 'lessons/:cid/:lid', component: LessonComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
