@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public authSub: Subscription;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.authSub = this.auth.user$.subscribe(user => this.errorText = user?.email ? 'You are logged in' : '')
@@ -34,13 +35,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.errorText = 'Passwords do not match'
       return
     }
-
     try {
       await this.auth.registerEmail(this.email, this.password)
     } catch (e) {
       this.errorText = this.auth.errorCode(e)
     }
-
+    this.router.navigate(["/login"])
   }
 
 }
