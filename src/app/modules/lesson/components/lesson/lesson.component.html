@@ -1,3 +1,5 @@
+<div class="background"></div>
+
 <div class="content" *ngIf="lesson$ | async as lesson;">
 
   <app-parallax-title imgUrl="{{content.getAsset(lesson.fields.titleGraphic)}}" title="{{lesson.fields.titleText}}">
