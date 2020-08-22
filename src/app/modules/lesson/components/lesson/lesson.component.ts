@@ -54,7 +54,7 @@ export class LessonComponent implements OnInit, OnDestroy {
     if (!this.isAuthenticated) {
       return
     }
-    window.open('https://google.com')
+    window.open('https://docs.google.com/spreadsheets/d/15djg2Hxzp1BfpWw3OUiHDFuemVTRdjDZqNVd9GslWK0/edit#gid=213958007')
   }
 
 }
