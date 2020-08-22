@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit() {
-    this.courses = this.content.getCoursesByOrder();
+    this.courses = this.content.getActiveCourses()
     this.subToUser()
   }
 

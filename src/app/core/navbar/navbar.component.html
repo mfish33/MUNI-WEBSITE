@@ -40,7 +40,7 @@
         <ul class="mainNavList">
             <li class="dropdownContainer">
                 <div class="navDropLabel">
-                    <a href="#Courses">Courses</a>
+                    <a [routerLink]="['courses']">Courses</a>
                     <div class="arrow-down"></div>
                 </div>
                 <ul class="dropdownList">
@@ -124,7 +124,7 @@
     <ul class="mainNavList">
         <li (click)="navDrop1=!navDrop1" [ngClass]="navDrop1 ? 'mobileHover' : ''" class="dropdownContainer">
             <div class="navDropLabel">
-                <a href="#Courses">Courses</a>
+                <a href="courses">Courses</a>
                 <div class="arrow-down"></div>
             </div>
             <ul class="dropdownList">
