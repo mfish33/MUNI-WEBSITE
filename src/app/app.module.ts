@@ -7,11 +7,11 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module'
 import { SharedModule } from './shared/shared.module'
 import { HomeModule } from './modules/home/home.module';
-import { CourseModule } from './modules/course/course.module';
 import { LessonModule } from './modules/lesson/lesson.module';
 import { AboutModule } from './modules/about/about.module';
-
-
+import { AuthModule } from './modules/auth/auth.module';
+import { FirebaseModule } from './firebase.module';
+import { CourseTemplateModule } from './modules/course-template/course-template.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,10 @@ import { AboutModule } from './modules/about/about.module';
     AppRoutingModule,
     HomeModule,
     LessonModule,
-    CourseModule,
-    AboutModule
+    AboutModule,
+    AuthModule,
+    FirebaseModule,
+    CourseTemplateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

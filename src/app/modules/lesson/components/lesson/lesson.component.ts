@@ -28,18 +28,14 @@ export class LessonComponent implements OnInit {
     this.activeRoute.params.subscribe((params) => {
       this.courseId = params.cid
       this.lessonId = params.lid
-      console.log(params.cid, params.lid)
-      this.lesson$ = this.content.getLesson(this.courseId, this.lessonId)
-      this.lesson$.then(lesson => {
+      this.content.getLesson(this.courseId, this.lessonId).then(lesson => {
         if (!lesson) {
           this.router.navigateByUrl('')
         }
+        this.lesson$ = Promise.resolve(lesson)
         this.pageSettings = lesson.fields.pageSettings || defaultPageSettings;
-        console.log(this.pageSettings.whatDoINeedToKnowAlt)
         this.nextLesson = this.content.getNextLesson(this.courseId, this.lessonId)
-        console.log(this.nextLesson)
       })
-      this.lesson$.then(console.log)
     })
 
   }

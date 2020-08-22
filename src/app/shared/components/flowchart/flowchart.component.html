@@ -1,11 +1,14 @@
 <div class="flowContainer" *ngIf="flowChart$ | async as flowChart">
-    <app-flowchart-element [name]="flowChart[0].name" [img]="flowChart[0].img" [current]="flowChart[0].current">
+    <app-flowchart-element [routerLink]="['/courses', flowChart[0].id]" [name]="flowChart[0].name"
+        [img]="flowChart[0].img" [current]="flowChart[0].current"
+        [ngStyle]="{'cursor':flowChart[0].current ? 'normal' : 'pointer'}">
     </app-flowchart-element>
     <div *ngFor="let item of flowChart | slice:1">
         <svg class="flowLine">
-            <rect x="0" y="83" width="200" height="10px" fill="green" />
+            <rect id="rect" x="0" fill="green" />
         </svg>
-        <app-flowchart-element [name]="item.name" [img]="item.img" [current]="item.current">
+        <app-flowchart-element [routerLink]="['/courses', item.id]" [name]="item.name" [img]="item.img"
+            [current]="item.current" [ngStyle]="{'cursor':item.current ? 'normal' : 'pointer'}">
         </app-flowchart-element>
     </div>
 

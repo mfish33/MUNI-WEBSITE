@@ -80,7 +80,7 @@ svg {
     position: absolute;
     top: 100%;
     width: 100%;
-    background-color:$greyPrimary;
+    background-color:$lightBlueGreyPrimary;
     opacity: 0;
     padding:0;
     transition: all 0.4s ease;
@@ -142,7 +142,7 @@ svg {
   .navContainer {
     display: grid;
     grid-template-columns: [logo] 25%  [mainNav] 50% [signIn] 25% [end];
-    background-color:$greyPrimary;
+    background-color:$lightBlueGreyPrimary;
   }
 
 

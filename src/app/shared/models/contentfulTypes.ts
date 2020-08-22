@@ -32,7 +32,7 @@ export interface LessonLink {
     fields: {
         lessonTitle: string
         lessonDescription: RichTextContent
-        LessonPreviewPicture: Asset
+        lessonPreviewImg: Asset
         lesson: Lesson
     }
 }

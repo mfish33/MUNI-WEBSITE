@@ -3,13 +3,18 @@
 .flowContainer{
     justify-content: center;
     .flowLine{
-        height: 200px;
-        width: 40px;
-        // Need to show current design and get feedback on margin spacing
-        // margin-left: 10px;
-        // margin-right: 10px;
+        height: 10.5vw;
+        width: 2vw;
+        #rect{
+            width: 10.5vw;
+            height:.5vw;
+             // Could in the future bind y to flowElm to allow for easier changes in the future
+             y:4.32vw; 
+        }
     }
 }
+
+
 
 
 div{
