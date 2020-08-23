@@ -1,19 +1,23 @@
 @import './src/styles.scss';
 
 .topSection{
-    margin-top: 120px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    background-color: #EBF2FA;
     img{
-        width: 25%;
+        width: 50%;
     }
     .textSide{
+        margin-top:20px;
         display: flex;
         flex-direction: column;
-        margin-left: 10%;
+        margin-left: 8%;
+        margin-right: 8%;
         width: 40%;
         h2{
+            @extend .roboto-header;
             margin: 0;
+            text-align: center;
         }
         p{
             @extend .roboto-body;
@@ -22,43 +26,116 @@
 }
 
 
-h2{
-    @extend .roboto-header;
-    margin-left: 2vw;
+
+.teamSection{
+    color: $bluePrimary;
 }
-.teamListCenter{
+.headerAlign{
     display: flex;
     justify-content: center;
+    h2{
+        @extend .roboto-header;
+        margin-left: 2vw;
+        border-bottom: 2px solid currentColor;
+    }
+}
+.teamListCenter{
+    // REALLY HACKEY WANT TO FIND A BETTER SOLUTION LATER
+    margin-left: 9%;
     .teamList{
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto auto;
         justify-items: center;
-        width:80%;
+        width:90%;
         .person{
             display: flex;
             // normalizing box size for centering
             // not perfect center but not noticeable
-            width: 32vw;
+            width: 30vw;
             margin-bottom: 40px;
             img{
                 height: 7vw;
             }
-
-            .text{
-                margin-left: 20px;
-                display: flex;
-                flex-direction: column;
-                h3{
-                    @extend .roboto-small-header;
-                    margin-top: 0;
-                    margin-bottom: 10px;
+            .textContainer{
+                height: 7vw;
+                .text{
+                    margin-left: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    h3{
+                        @extend .roboto-small-header;
+                        margin-top: 0;
+                        margin-bottom: 10px;
+                        img{
+                            height: 1vw;
+                            padding-left: 10px;
+                        }
+                    }
+                    p{
+                        @extend .roboto-large-body;
+                        margin: 0;
+                    }
+                    
                 }
-                p{
-                    @extend .roboto-large-body;
-                    margin: 0;
-                }
-                
             }
+        }
+    }
+}
+
+
+.feedbackForm{
+    display: flex;
+    justify-content: space-between;
+    background-color: #EBF2FA;
+    form{
+        width: 50%; 
+        display: flex;
+        justify-content: center;
+        .alignCenter{
+            width: 400px;
+            .formItem{
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-bottom: 10px;
+                span{
+                    @extend .roboto-large-body;
+                    text-align: center;
+                    margin-bottom: 2px;
+                    color: $bluePrimary;
+                }
+                mat-form-field{
+                    background-color: white;
+                    border-radius: 10px;
+                    padding-bottom: 5px;
+                    .body{
+                        min-height: 200px;
+                    }
+                }
+            }
+
+        }
+
+    }
+    .textSide{
+        margin-top:20px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 8%;
+        margin-right: 8%;
+        width: 40%;
+        color: $bluePrimary;
+        .headerAlign{
+            display: flex;
+            justify-content: center;
+            h2{
+                @extend .roboto-header;
+                margin: 0;
+                border-bottom: 2px solid currentColor;
+            }
+        }
+        p{
+            @extend .roboto-body;
         }
     }
 }

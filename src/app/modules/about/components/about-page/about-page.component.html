@@ -1,9 +1,8 @@
-<div class="topSection">
-    <img src="./assets/aboutUs.png" alt="">
+<div class="topSection">   
     <div class="textSide">
-        <h2>About us</h2>
+        <h2>About Us:</h2>
         <div>
-            <p>At RIPE, our mission is to provide practical financial literacy to help you achieve your life goals. We
+            <p>At MUNI, our mission is to provide practical financial literacy to help you achieve your life goals. We
                 provide you with free detailed courses on topics ranging from food expenses to managing your taxes. In
                 addition, our free Life Planning Calculator allows you to establish a budget, organize debt, plan out
                 life
@@ -14,22 +13,83 @@
                 their life on track toward a bright future. </p>
         </div>
     </div>
+    <img src="./assets/about-us.png" alt="">
 </div>
 
-
-<h2>The Team</h2>
-<div class="teamListCenter">
-    <div class="teamList" *ngIf="personal$ | async as personal;">
-        <div class="person" *ngFor="let person of personal">
-            <img [src]="content.getAsset(person.fields.pictureOfPerson)" alt="">
-            <div class="verticalAlign">
-                <div class="text">
-                    <h3>{{person.fields.nameOfPerson}}</h3>
-                    <p>{{person.fields.positionTitle}}</p>
+<div class="teamSection">
+    <div class="headerAlign">
+        <h2>The Team</h2>
+    </div>
+    <div class="teamListCenter">
+        <div class="teamList" *ngIf="personal$ | async as personal;">
+            <div class="person" *ngFor="let person of personal">
+                <img [src]="content.getAsset(person.fields.pictureOfPerson)" alt="">
+                <div class="verticalAlign textContainer">
+                    <div class="text">
+                        <h3>{{person.fields.nameOfPerson}}<a href="https://www.linkedin.com/in/max-fisher-a7a673178/" target="_blank"><img src="assets/linked-in.png" alt="linked-in logo"></a> </h3>
+                        <p>{{person.fields.positionTitle}}</p>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
+<div class="feedbackForm">   
+    <div class="textSide">
+        <div class="headerAlign">
+            <h2>Contact Us:</h2>
         </div>
 
+        <div>
+            <p>We are always striving to improve MUNI</p>
+        </div>
     </div>
+    
+    <form [formGroup]="feedback" class="example-form">
+        <div class="alignCenter">
+            <div class="formItem">
+                <span>Name:</span>
+                <mat-form-field appearance="fill">
+                    <input matInput formControlName="name">
+                </mat-form-field>
+            </div>
+            
+            <div class="formItem">
+                <span>Email:</span>
+                <mat-form-field appearance="fill">
+                        <input matInput formControlName="email">
+                </mat-form-field> 
+            </div>
+
+            <div class="formItem">
+                <span>Reason:</span>
+                <mat-form-field appearance="fill">
+                    <select matNativeControl required>
+                        <option value="content">Course Feedback</option>
+                        <option value="dev">Bug Report</option>
+                        <option value="bug">Other</option>
+                    </select>
+                  </mat-form-field>
+                <!-- <mat-form-field appearance="fill">
+                    <select>
+                        <mat-option value="content">Course Feedback</mat-option>
+                        <mat-option value="dev">Bug Report</mat-option>
+                        <mat-option value="bug">Other</mat-option>
+                    </select>
+                </mat-form-field> -->
+            </div>
+
+            <div class="formItem">
+                <span>Body:</span>
+                <mat-form-field appearance="fill">
+                        <textarea matInput formControlName="body" class="body"></textarea>
+                </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="warn"  class= "delete">X</button>
+        </div>
+          
+        
+    </form>
 </div>
