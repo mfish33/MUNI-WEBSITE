@@ -51,43 +51,41 @@
             <div class="formItem">
                 <span>Name:</span>
                 <mat-form-field appearance="fill">
-                    <input matInput formControlName="name">
+                    <input matInput formControlName="name" required>
+                    <mat-error>Required *</mat-error>
                 </mat-form-field>
             </div>
             
             <div class="formItem">
                 <span>Email:</span>
                 <mat-form-field appearance="fill">
-                        <input matInput formControlName="email">
+                        <input matInput formControlName="email" required ngModel email>
+                        <mat-error>{{getEmailErrors()}}</mat-error>
                 </mat-form-field> 
             </div>
 
             <div class="formItem">
                 <span>Reason:</span>
                 <mat-form-field appearance="fill">
-                    <select matNativeControl required>
+                    <select matNativeControl required formControlName="reason">
+                        <option value="" disabled selected>Select</option>
                         <option value="content">Course Feedback</option>
                         <option value="dev">Bug Report</option>
                         <option value="bug">Other</option>
                     </select>
                   </mat-form-field>
-                <!-- <mat-form-field appearance="fill">
-                    <select>
-                        <mat-option value="content">Course Feedback</mat-option>
-                        <mat-option value="dev">Bug Report</mat-option>
-                        <mat-option value="bug">Other</mat-option>
-                    </select>
-                </mat-form-field> -->
             </div>
 
             <div class="formItem">
                 <span>Body:</span>
                 <mat-form-field appearance="fill">
-                        <textarea matInput formControlName="body" class="body"></textarea>
+                        <textarea matInput formControlName="body" class="body" required></textarea>
+                        <mat-error>Required *</mat-error>
                 </mat-form-field>
             </div>
 
-            <button mat-raised-button color="warn"  class= "delete">X</button>
+            <button mat-button *ngIf="!thankYou" (click) = "submitFeedback()">Submit</button>
+            <p *ngIf="thankYou">Thank You!</p>
         </div>
           
         

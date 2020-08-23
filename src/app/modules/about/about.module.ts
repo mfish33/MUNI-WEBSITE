@@ -4,6 +4,7 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     SharedModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class AboutModule { }

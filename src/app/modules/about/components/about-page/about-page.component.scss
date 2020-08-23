@@ -92,7 +92,7 @@
         display: flex;
         justify-content: center;
         .alignCenter{
-            width: 400px;
+            width: 25vw;
             .formItem{
             display: flex;
             flex-direction: column;
@@ -108,10 +108,20 @@
                     background-color: white;
                     border-radius: 10px;
                     padding-bottom: 5px;
+                    mat-error{
+                    
+                        color:red;
+                    }
                     .body{
                         min-height: 200px;
                     }
-                }
+                }  
+            }
+            button{
+                background-color: #cfe3fa;
+                width: inherit;
+                margin-top: 10px;
+                margin-bottom: 20px;
             }
 
         }
