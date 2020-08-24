@@ -6,6 +6,8 @@ import { LessonComponent } from './modules/lesson/components/lesson/lesson.compo
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { CourseOverviewComponent } from './modules/course-overview/components/course-overview/course-overview.component'
+import { LoginComponent } from './modules/auth/components/login/login.component';
+import { RegisterComponent } from './modules/auth/components/register/register.component';
 
 
 const routes: Routes = [

@@ -13,6 +13,7 @@ import { FirebaseModule } from './firebase.module';
 import { CourseTemplateModule } from './modules/course-template/course-template.module';
 import { CourseOverviewModule } from './modules/course-overview/course-overview.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,10 @@ import { CourseOverviewModule } from './modules/course-overview/course-overview.
     FirebaseModule,
     CourseTemplateModule,
     CourseTemplateModule,
-    CourseOverviewModule
+    CourseOverviewModule,
+    AuthModule,
+    FirebaseModule,
+    CourseTemplateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

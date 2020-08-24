@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Subscription } from 'rxjs';
 
@@ -9,8 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./register.component.scss']
 })
 
-export class RegisterComponent implements OnInit {
 
+export class RegisterComponent implements OnInit, OnDestroy {
   public email: string
   public password: string
   public confirmPassword: string
