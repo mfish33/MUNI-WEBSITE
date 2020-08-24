@@ -12,28 +12,28 @@
         </div>
     </div>
     
-
-
     <nav class="mainNav hideMobile">
         <ul class="mainNavList">
             <li class="dropdownContainer">
                 <div class="navDropLabel" [routerLink]="['courses']">
-                    <a>Courses</a>
-                    <div class="arrow-down"></div>
+                    <div class="centerElements">
+                      <a>Courses</a>
+                      <div class="arrow-down"></div>
+                    </div>
                 </div>
                 <ul class="dropdownList">
                     <li *ngFor="let course of courses | async">
                         <a [routerLink]="['/courses', course.id]">{{course.courseTitle}}</a>
                     </li>
-
                 </ul>
-
             </li>
 
             <li class="dropdownContainer">
                 <div class="navDropLabel">
+                  <div class="centerElements">
                     <a href="#Tools">Tools</a>
                     <div class="arrow-down"></div>
+                  </div>
                 </div>
                 <ul class="dropdownList">
                     <li>
@@ -48,8 +48,6 @@
                 </ul>
 
             </li>
-
-
 
             <li><a href="#About">About</a></li>
         </ul>
@@ -130,8 +128,6 @@
             </ul>
 
         </li>
-
-
 
         <li><a href="#About">About</a></li>
     </ul>
