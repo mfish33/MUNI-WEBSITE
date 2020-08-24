@@ -12,10 +12,10 @@ $hamburger-layer-color:white;
 }
 
 
-svg {
-    width: 2rem;
-    padding-left: 10%;
-    padding-right: 10%;
+img {
+    height: 50px;
+    width: auto;
+    margin-left: 50px;
   }
 
 .mainNavList {
@@ -102,20 +102,6 @@ svg {
 }
 
 
-// .changingText:hover:before{
-//     content: "Retirement Investment Planing & Education";
-// }
-
-// .changingText:hover ~ .logoSection{
-//     grid-column-end: end;
-// }
-
-// .changingText:hover ~ .mainNavList{
-//     visibility: hidden;
-//     opacity: 0;
-// }
-
-
 .icon{
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-font-smoothing: subpixel-antialiased;
@@ -178,8 +164,8 @@ svg {
 
 .mobileNav{
   position: absolute;
-  top: 60px;
-  height: calc(100% - 60px);
+  top: 80px;
+  height: calc(100% - 80px);
   width: 0;
   background-color: $mobileHamburger;
   transition: 0.5s;

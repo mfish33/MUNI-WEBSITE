@@ -25,9 +25,11 @@ export class AuthService {
     }
   }
 
+
   public signOut() {
     this.afAuth.signOut()
   }
+
 
 
   public async signInEmail(email: string, password: string): Promise<UserCredential> {
