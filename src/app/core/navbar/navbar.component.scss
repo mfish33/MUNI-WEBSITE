@@ -141,7 +141,7 @@ svg {
 
   .navContainer {
     display: grid;
-    grid-template-columns: [logo] 25%  [mainNav] 50% [signIn] 25% [end];
+    grid-template-columns: [logo] 20%  [mainNav] 60% [signIn] 20% [end];
     background-color:$lightBlueGreyPrimary;
   }
 

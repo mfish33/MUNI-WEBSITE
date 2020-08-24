@@ -59,7 +59,7 @@
             <div class="formItem">
                 <span>Email:</span>
                 <mat-form-field appearance="fill">
-                        <input matInput formControlName="email" required ngModel email>
+                        <input matInput formControlName="email" required email>
                         <mat-error>{{getEmailErrors()}}</mat-error>
                 </mat-form-field> 
             </div>
@@ -73,7 +73,8 @@
                         <option value="dev">Bug Report</option>
                         <option value="bug">Other</option>
                     </select>
-                  </mat-form-field>
+                    <mat-error>Required *</mat-error>
+                </mat-form-field>
             </div>
 
             <div class="formItem">
@@ -84,7 +85,7 @@
                 </mat-form-field>
             </div>
 
-            <button mat-button *ngIf="!thankYou" (click) = "submitFeedback()">Submit</button>
+            <button mat-button *ngIf="!thankYou" (click) = "submitFeedback()" id="test">Submit</button>
             <p *ngIf="thankYou">Thank You!</p>
         </div>
           

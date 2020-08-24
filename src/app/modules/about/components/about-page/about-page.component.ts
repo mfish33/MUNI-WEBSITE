@@ -1,8 +1,9 @@
-import { Component, OnInit, isDevMode } from '@angular/core';
+import { Component, OnInit, isDevMode, AfterViewInit } from '@angular/core';
 import { ContentfulService } from 'src/app/core/services/contentful.service';
 import { Profile } from 'src/app/shared/models/contentfulTypes';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
 
 
 
@@ -11,15 +12,20 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './about-page.component.html',
   styleUrls: ['./about-page.component.scss']
 })
-export class AboutPageComponent implements OnInit {
+export class AboutPageComponent implements OnInit,AfterViewInit {
 
   personal$: Promise<Profile[]>
   feedback:FormGroup
   thankYou = false
+  private fragment: string;
 
-  constructor(public content: ContentfulService,private fb: FormBuilder,private http:HttpClient) { }
+  constructor(public content: ContentfulService,private fb: FormBuilder,private http:HttpClient,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.fragment.subscribe(fragment => {
+      console.log(fragment)
+      this.fragment = fragment;
+    });
     this.feedback = this.fb.group({
       name:'',
       email:'',
@@ -31,9 +37,19 @@ export class AboutPageComponent implements OnInit {
     this.personal$ = this.content.getProfiles()
   }
 
-  submitFeedback() {
+  async ngAfterViewInit(): Promise<void> {
+    if(this.fragment == 'test') {
+      await this.personal$
+      // timeout is to allow content to render
+      setTimeout(() => {
+        window.scrollTo(0,document.body.scrollHeight);  
+      },10)
+      
+    }
+  }
+
+  public submitFeedback() {
     if(!this.feedback.valid) {
-      console.log('invalid')
       return
     }
     this.thankYou = true
@@ -45,8 +61,8 @@ export class AboutPageComponent implements OnInit {
       }
     })
   }
-  
-  getEmailErrors() {
+
+  public getEmailErrors() {
     let errors = this.feedback.get('email').errors
     if(errors) {
       if(errors.email) {
