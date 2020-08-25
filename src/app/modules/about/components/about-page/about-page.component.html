@@ -26,7 +26,7 @@
                 <img [src]="content.getAsset(person.fields.pictureOfPerson)" alt="">
                 <div class="verticalAlign textContainer">
                     <div class="text">
-                        <h3>{{person.fields.nameOfPerson}}<a href="https://www.linkedin.com/in/max-fisher-a7a673178/" target="_blank"><img src="assets/linked-in.png" alt="linked-in logo"></a> </h3>
+                        <h3>{{person.fields.nameOfPerson}}<a href="{{person.fields.linkedInUrl}}" target="_blank"><img src="assets/linked-in.png" alt="linked-in logo"></a> </h3>
                         <p>{{person.fields.positionTitle}}</p>
                     </div>
                 </div>

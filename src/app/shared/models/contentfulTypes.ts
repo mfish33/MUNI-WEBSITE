@@ -83,6 +83,7 @@ export interface Profile {
         nameOfPerson: string
         pictureOfPerson: Asset
         positionTitle: string
+        linkedInUrl:string
     }
 
 }

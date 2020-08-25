@@ -23,8 +23,8 @@ export class AboutPageComponent implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     this.route.fragment.subscribe(fragment => {
-      console.log(fragment)
       this.fragment = fragment;
+      this.ngAfterViewInit() 
     });
     this.feedback = this.fb.group({
       name:'',
@@ -38,7 +38,7 @@ export class AboutPageComponent implements OnInit,AfterViewInit {
   }
 
   async ngAfterViewInit(): Promise<void> {
-    if(this.fragment == 'test') {
+    if(this.fragment == 'feedback') {
       await this.personal$
       // timeout is to allow content to render
       setTimeout(() => {
