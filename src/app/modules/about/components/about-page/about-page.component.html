@@ -1,6 +1,6 @@
 <div class="topSection">   
     <div class="textSide">
-        <h2>About Us:</h2>
+        <h2>About Us</h2>
         <div>
             <p>At MUNI, our mission is to provide practical financial literacy to help you achieve your life goals. We
                 provide you with free detailed courses on topics ranging from food expenses to managing your taxes. In
@@ -26,7 +26,7 @@
                 <img [src]="content.getAsset(person.fields.pictureOfPerson)" alt="">
                 <div class="verticalAlign textContainer">
                     <div class="text">
-                        <h3>{{person.fields.nameOfPerson}}<a href="{{person.fields.linkedInUrl}}" target="_blank"><img src="assets/linked-in.png" alt="linked-in logo"></a> </h3>
+                        <h3>{{person.fields.nameOfPerson}}<a *ngIf="person.fields.linkedInUrl" href="{{person.fields.linkedInUrl}}" target="_blank"><img src="assets/linked-in.png" alt="linked-in logo"></a> </h3>
                         <p>{{person.fields.positionTitle}}</p>
                     </div>
                 </div>
@@ -38,11 +38,11 @@
 <div class="feedbackForm">   
     <div class="textSide">
         <div class="headerAlign">
-            <h2>Contact Us:</h2>
+            <h2>Contact Us</h2>
         </div>
 
         <div>
-            <p>We are always striving to improve MUNI</p>
+            <p>Here at Muni, we are constantly striving to improve the services that we provide. Your voice is important so please let us know what we can do better. Thank you.</p>
         </div>
     </div>
     
@@ -85,8 +85,8 @@
                 </mat-form-field>
             </div>
 
-            <button mat-button *ngIf="!thankYou" (click) = "submitFeedback()" id="test">Submit</button>
-            <p *ngIf="thankYou">Thank You!</p>
+            <button mat-button *ngIf="!thankYou" (click) = "submitFeedback()" id="test"><span>Submit</span></button>
+            <p *ngIf="thankYou">Thank you for your feedback!</p>
         </div>
           
         

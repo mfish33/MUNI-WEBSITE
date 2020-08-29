@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     background-color: #EBF2FA;
+    color: $bluePrimary;
     img{
         width: 50%;
     }
@@ -13,7 +14,7 @@
         flex-direction: column;
         margin-left: 8%;
         margin-right: 8%;
-        width: 40%;
+        width: 30%;
         h2{
             @extend .roboto-header;
             margin: 0;
@@ -26,27 +27,29 @@
 }
 
 
-
-.teamSection{
-    color: $bluePrimary;
-}
 .headerAlign{
     display: flex;
     justify-content: center;
     h2{
         @extend .roboto-header;
         margin-left: 2vw;
+    }
+}
+
+
+.teamSection{
+    color: $bluePrimary;
+    h2{
         border-bottom: 2px solid currentColor;
     }
 }
 .teamListCenter{
-    // REALLY HACKEY WANT TO FIND A BETTER SOLUTION LATER
-    margin-left: 9%;
+    margin-left: 10%;
     .teamList{
         display: grid;
         grid-template-columns: auto auto auto;
         justify-items: center;
-        width:90%;
+        overflow: hidden;
         .person{
             display: flex;
             // normalizing box size for centering
@@ -88,7 +91,7 @@
     justify-content: space-between;
     background-color: #EBF2FA;
     form{
-        width: 50%; 
+        width: 55%; 
         display: flex;
         justify-content: center;
         .alignCenter{
@@ -118,10 +121,21 @@
                 }  
             }
             button{
-                background-color: #cfe3fa;
+                span{
+                    @extend .roboto-large-body;
+                }
+                
+                background-color:$bluePrimary;
                 width: inherit;
                 margin-top: 10px;
                 margin-bottom: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                color: white;
+            }
+            p{
+                @extend .roboto-body;
+                color: $bluePrimary;
             }
 
         }
@@ -133,7 +147,7 @@
         flex-direction: column;
         margin-left: 8%;
         margin-right: 8%;
-        width: 40%;
+        width: 30%;
         color: $bluePrimary;
         .headerAlign{
             display: flex;
@@ -141,7 +155,6 @@
             h2{
                 @extend .roboto-header;
                 margin: 0;
-                border-bottom: 2px solid currentColor;
             }
         }
         p{
