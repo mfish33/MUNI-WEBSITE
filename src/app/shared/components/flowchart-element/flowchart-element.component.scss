@@ -1,14 +1,13 @@
 @import './src/styles.scss';
-
-$elementSize:9.2vw;
+@import '../shared-scss/flowchart.scss';
 
 .flowElm{
     display: flex;
     flex-direction: column;
     position: relative;
     svg{
-        width:$elementSize;
-        height:$elementSize;
+        @include element_size('width',1);
+        @include element_size('height',1);
     }
     
 
@@ -20,7 +19,7 @@ $elementSize:9.2vw;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width:$elementSize;
+            @include element_size('width',1);
         }
     }
     p{
@@ -35,23 +34,23 @@ $elementSize:9.2vw;
     }
 
     .circleCenter{
-        cx:$elementSize / 2;
-        cy:$elementSize / 2;
+        @include element_size('cy',.5);
+        @include element_size('cx',.5);
     }
 
     #background{
         @extend .circleCenter;
         fill: $grey;
-        r:$elementSize /176 * 80;
+        @include element_size('r',80 / 176);
     }
     #progress{
         @extend .circleCenter;
         fill: $greenAcescent;
-        r:$elementSize /176 * 80;
+        @include element_size('r',80 / 176);
     }
     #currentCourse{
         @extend .circleCenter;
         fill: none;
-        r:$elementSize / 2;
+        @include element_size('r',.5);
     }
 }
