@@ -1,0 +1,94 @@
+<div class="topSection">   
+    <div class="textSide">
+        <h2>About Us</h2>
+        <div>
+            <p>At MUNI, our mission is to provide practical financial literacy to help you achieve your life goals. We
+                provide you with free detailed courses on topics ranging from food expenses to managing your taxes. In
+                addition, our free Life Planning Calculator allows you to establish a budget, organize debt, plan out
+                life
+                events, and achieve retirement at whatever age you desire. </p>
+            <p>This website was created by people from all walks of life, who care deeply about financial freedom. We
+                drew
+                inspiration from our different backgrounds and ambitions to create a program that anyone can use to get
+                their life on track toward a bright future. </p>
+        </div>
+    </div>
+    <img src="./assets/about-us.png" alt="">
+</div>
+
+<div class="teamSection">
+    <div class="headerAlign">
+        <h2>The Team</h2>
+    </div>
+    <div class="teamListCenter">
+        <div class="teamList" *ngIf="personal$ | async as personal;">
+            <div class="person" *ngFor="let person of personal">
+                <img [src]="content.getAsset(person.fields.pictureOfPerson)" alt="">
+                <div class="verticalAlign textContainer">
+                    <div class="text">
+                        <h3>{{person.fields.nameOfPerson}}<a *ngIf="person.fields.linkedInUrl" href="{{person.fields.linkedInUrl}}" target="_blank"><img src="assets/linked-in.png" alt="linked-in logo"></a> </h3>
+                        <p>{{person.fields.positionTitle}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="feedbackForm">   
+    <div class="textSide">
+        <div class="headerAlign">
+            <h2>Contact Us</h2>
+        </div>
+
+        <div>
+            <p>Here at Muni, we are constantly striving to improve the services that we provide. Your voice is important so please let us know what we can do better.<br><br> Thank You!</p>
+        </div>
+    </div>
+    
+    <form [formGroup]="feedback" class="example-form">
+        <div class="alignCenter">
+            <div class="formItem">
+                <span>Name:</span>
+                <mat-form-field appearance="fill">
+                    <input matInput formControlName="name" required>
+                    <mat-error>Required *</mat-error>
+                </mat-form-field>
+            </div>
+            
+            <div class="formItem">
+                <span>Email:</span>
+                <mat-form-field appearance="fill">
+                        <input matInput formControlName="email" required email>
+                        <mat-error>{{getEmailErrors()}}</mat-error>
+                </mat-form-field> 
+            </div>
+
+            <div class="formItem">
+                <span>Reason:</span>
+                <mat-form-field appearance="fill">
+                    <select matNativeControl required formControlName="reason">
+                        <option value="" disabled selected>Select</option>
+                        <option value="content">Course Feedback</option>
+                        <option value="dev">Bug Report</option>
+                        <option value="bug">Other</option>
+                    </select>
+                    <mat-error>Required *</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="formItem">
+                <span>Body:</span>
+                <mat-form-field appearance="fill">
+                        <textarea matInput formControlName="body" class="body" required></textarea>
+                        <mat-error>Required *</mat-error>
+                </mat-form-field>
+            </div>
+
+            <button mat-button *ngIf="!thankYou" (click) = "submitFeedback()" id="test"><span>Submit</span></button>
+            <p *ngIf="thankYou">Thank you for your feedback!</p>
+        </div>
+          
+        
+    </form>
+</div>

@@ -1,5 +1,9 @@
 import { Sys, RichTextContent, Asset } from 'contentful'
 
+// Might be using types incorrectly because you might not have to make fields/sys manually
+// Need to investigate further. Some types missing sys/fields because of the type they are 
+// designated as in the contentful service
+
 export interface Course {
     courseImage: Asset
     previewImage: Asset;
@@ -65,4 +69,19 @@ export interface Lesson {
 
 export const defaultPageSettings: Lesson['fields']['pageSettings'] = {
     whatDoINeedToKnowAlt: false
+}
+
+export interface ProfileList {
+    people: Profile[]
+}
+
+export interface Profile {
+    sys: Sys
+    fields: {
+        nameOfPerson: string
+        pictureOfPerson: Asset
+        positionTitle: string
+        linkedInUrl:string
+    }
+
 }
