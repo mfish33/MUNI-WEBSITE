@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import Utils from 'src/app/shared/classes/utils';
+import Utils from 'src/app/shared/classes/Utils';
 import { RouterHistoryService } from 'src/app/core/services/router-history.service';
 import { Router } from '@angular/router';
 import AuthShared from '../../classes/AuthShared';

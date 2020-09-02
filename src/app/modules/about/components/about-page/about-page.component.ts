@@ -4,7 +4,7 @@ import { Profile } from 'src/app/shared/models/contentfulTypes';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
-import Utils from 'src/app/shared/classes/utils';
+import Utils from 'src/app/shared/classes/Utils';
 
 
 
