@@ -4,11 +4,18 @@
 $groupSpacing:40px;
 
 /* Layout */
+
+
+
 .introBlock{
     display: grid;
-    grid-template-columns: [start] 5%  [text] 60%  [graphic] 30% [spaceRight] 5% [end];
+    grid-template-columns: [start] 5%  [text] 50%  7% [graphic] 30% [spaceRight] 8% [end];
     background-color:$bluePrimary;
     .text{
+        h2{
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
         grid-column: text;
         color:white;
     }
@@ -106,7 +113,7 @@ $groupSpacing:40px;
     margin-top: $groupSpacing;
     display: grid;
     grid-template-columns: [start] 10%  [content] auto 10% [end];
-    grid-template-rows: [graphic] auto [text] auto;
+    grid-template-rows: [graphic] auto [text] auto [graphic2] auto [text2] auto;
     .contentSide{
         grid-column:content;
         grid-row: text;
@@ -118,6 +125,14 @@ $groupSpacing:40px;
             width: 100%;
             height: auto;
         }
+    }
+    .graphic2{
+        @extend .graphic;
+        grid-row:graphic2;
+    }
+    .content2{
+        grid-column: content;
+        grid-row: text2;
     }
 }
 
@@ -133,13 +148,47 @@ $groupSpacing:40px;
         margin: 0;
         margin-left: 60px;
     }
+    .disabled{
+        cursor: not-allowed;
+        &:hover{
+            .popUp{
+               opacity: 1;
+            }
+        }
+    }
+    .enabled{
+        cursor: pointer;
+        &:hover{
+            .popUp{
+                opacity: 0;
+             }
+        }
+    
+    }
     a{
         font-weight: 300;
         font-size: 36px;
         line-height: 46px;
-        text-decoration-line: underline;
         margin-right: 60px;
+        color: white;
+        position: relative;
+        cursor: pointer;
+        
+        .popUp{
+            opacity: 0;
+            background-color: $grey;
+            border-radius: 2vw;
+            position: absolute;
+            top: 27%;
+            transition: all .4s;
+            p{
+                @extend .frank-sources;
+                color: black;
+                margin: 8px 8px 8px 8px;
+            }
+        }
     }
+  
 }
 
 .WDSI{
@@ -155,8 +204,12 @@ $groupSpacing:40px;
             margin: 0;
             text-align: center;
         }
-        .text{
+        .testWithNum{
             grid-column: text;
+        }
+        .testWithoutNum{
+            grid-column-start: number;
+            grid-column-end: spaceBetween2;
         }
         img{
             grid-column: img;
@@ -175,14 +228,9 @@ $groupSpacing:40px;
         display: flex;
         flex-direction: column;
         width: 35%;
-        h2{
-            // TODO: replace with image
-            font-weight: 300;
-            font-size: 64px;
-            line-height: 83px;
-            text-align: center;
-            text-decoration-line: underline;
-            margin: 0;
+        img{
+           height: 6vw;
+           width: 16vw;
         }
     }
 }

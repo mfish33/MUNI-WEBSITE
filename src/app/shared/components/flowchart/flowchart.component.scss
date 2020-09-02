@@ -1,15 +1,16 @@
 @import './src/styles.scss';
+@import '../shared-scss/flowchart.scss';
 
 .flowContainer{
     justify-content: center;
     .flowLine{
-        height: 10.5vw;
-        width: 2vw;
+        height: 100%;
+        width: 40px;
         #rect{
-            width: 10.5vw;
-            height:.5vw;
+            width: 100%;
+            height:6%;
              // Could in the future bind y to flowElm to allow for easier changes in the future
-             y:4.32vw; 
+             @include element_size('y',.5);
         }
     }
 }

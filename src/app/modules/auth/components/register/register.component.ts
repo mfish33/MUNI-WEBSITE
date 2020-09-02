@@ -9,8 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./register.component.scss']
 })
 
-export class RegisterComponent implements OnInit, OnDestroy {
 
+export class RegisterComponent implements OnInit, OnDestroy {
   public email: string
   public password: string
   public confirmPassword: string

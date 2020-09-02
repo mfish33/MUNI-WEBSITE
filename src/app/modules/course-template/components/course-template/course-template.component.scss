@@ -28,3 +28,38 @@
   min-height: 300px;
   min-height: 25%;
 }
+
+.nextButtons{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  h2{
+      text-align: center;
+      font-weight: 300;
+      font-size: 64px;
+      line-height: 83px;
+  }
+  .buttons{    
+      display: flex;
+      justify-content: space-around;
+      button{
+          max-width: 400px;
+          background-color: #f0f0f0;
+          border-radius: 4px;
+          border-width: thin;
+          border-color: $bluePrimary;
+          font-weight: bold;
+          font-size: 48px;
+          line-height: 62px;
+          transition: ease-out 0.4s;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          padding-left: 20px;
+          padding-right: 20px;
+      }
+      button:hover{
+          box-shadow: inset 400px 0 0 0 #2c7bd0ab;
+      }
+  }
+}

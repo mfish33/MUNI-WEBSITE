@@ -16,6 +16,21 @@ html, body {
     font-style: normal;
 }
 
+.content{
+    max-width: 1500px;
+    margin: auto;
+    background-color: white;
+    padding-bottom: 40px;
+}
+
+.background{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    background-color: $blueAcescent;
+}
+
 /* Utils */
 
 .verticalAlign{
@@ -23,6 +38,11 @@ html, body {
     justify-content: center;
     flex-direction: column;
     height: 100%;
+}
+
+.horizontalAlign{
+    display: flex;
+    justify-content: center;
 }
 
 /* FONTS */
@@ -68,7 +88,7 @@ html, body {
 .nunito-body{
     @extend .nunito;
     font-weight: 300;
-    font-size: 1.67vw;
+    font-size: 1.4vw;
     line-height: 2.29vw;
 }
 

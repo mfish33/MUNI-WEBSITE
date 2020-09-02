@@ -1,3 +1,5 @@
+<div class="background"></div>
+
 <div class="content" *ngIf="lesson$ | async as lesson;">
 
   <app-parallax-title imgUrl="{{content.getAsset(lesson.fields.titleGraphic)}}" title="{{lesson.fields.titleText}}">
@@ -45,17 +47,30 @@
     <div class="graphic">
       <img class="verticalAlign" [src]="content.getAsset(lesson.fields.whatDoINeedToKnowInfographic)" alt="">
     </div>
+    <div class="graphic2" *ngIf="lesson.fields.wdintkImg2?.fields?.file">
+      <img [src]="content.getAsset(lesson.fields.wdintkImg2)" alt="">
+    </div>
+    <div *ngIf="lesson.fields.wdintkText2" class="content2">
+      <div [innerHTML]="content.convertRichText(lesson.fields.wdintkText2)" class="nunito-body"></div>
+    </div>
   </div>
 
   <div class="WDISBanner">
     <h2 class="verticalAlign frank-small-header">Where do I start?</h2>
-    <a class="verticalAlign">Click here to get the template</a>
+    <a target="_blank" (click)="goToSpreadSheet()" class="verticalAlign disabled"
+      [ngClass]="isAuthenticated ? 'enabled' : 'disabled'"><u>Click here to get the template</u>
+      <div class="popUp">
+        <p>Sign in to use the Life Planner tool</p>
+      </div>
+    </a>
+
   </div>
 
   <div class="WDSI">
     <div class="listItem" *ngFor="let item of lesson.fields.whereDoIStart;let i = index;">
-      <h2 class="number frank-numbers">{{i+1}}</h2>
-      <p class="text nunito-body">{{item}}</p>
+      <h2 *ngIf="lesson.fields.whereDoIStart.length > 1" class="number frank-numbers">{{i+1}}</h2>
+      <p [ngClass]="lesson.fields.whereDoIStart.length > 1 ? 'testWithNum' : 'testWithoutNum'" class="nunito-body">
+        {{item}}</p>
       <img [src]="content.getAsset(lesson.fields.whereDoIStartMedia[i])" alt="">
     </div>
   </div>
@@ -66,11 +81,15 @@
 
   <div class="dosDonts">
     <div class="column">
-      <h2>Do</h2>
+      <div class="horizontalAlign">
+        <img src="assets/dos.png" alt="Do">
+      </div>
       <div class="nunito-body" [innerHTML]="content.convertRichText(lesson.fields.dos)"></div>
     </div>
     <div class="column">
-      <h2>Don't</h2>
+      <div class="horizontalAlign">
+        <img src="assets/donts.png" alt="Don't">
+      </div>
       <div class="nunito-body" [innerHTML]="content.convertRichText(lesson.fields.donts)"></div>
     </div>
   </div>
