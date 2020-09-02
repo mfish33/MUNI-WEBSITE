@@ -1,8 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Subscription } from 'rxjs';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms'
-import Utils from 'src/app/shared/classes/utils';
+import Utils from 'src/app/shared/classes/Utils';
 import {RouterHistoryService} from 'src/app/core/services/router-history.service'
 import AuthShared from '../../classes/AuthShared';
 import { Router } from '@angular/router';
