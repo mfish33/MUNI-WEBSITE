@@ -91,3 +91,33 @@ html, body {
     font-size: 1.4vw;
     line-height: 2.29vw;
 }
+
+.roboto{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.roboto-header {
+    @extend .roboto;
+    font-size: 3.3vw;
+    line-height: 3.9vw;
+}
+
+.roboto-small-header {
+    @extend .roboto;
+    font-size: 1.9vw;
+    line-height: 2.1vw;
+}
+
+.roboto-large-body{
+    @extend .roboto;
+    font-size: 1.4vw;
+    line-height: 1.65vw;
+}
+
+.roboto-body{
+    @extend .roboto;
+    font-size: 1.25vw;
+    line-height: 1.7vw;
+}

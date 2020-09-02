@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +9,7 @@ import { CoreModule } from './core/core.module'
 import { SharedModule } from './shared/shared.module'
 import { HomeModule } from './modules/home/home.module';
 import { LessonModule } from './modules/lesson/lesson.module';
+import { AboutModule } from './modules/about/about.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { FirebaseModule } from './firebase.module';
 import { CourseTemplateModule } from './modules/course-template/course-template.module';
@@ -25,6 +27,7 @@ import { CourseOverviewModule } from './modules/course-overview/course-overview.
     AppRoutingModule,
     HomeModule,
     LessonModule,
+    AboutModule,
     AuthModule,
     FirebaseModule,
     CourseTemplateModule,
@@ -32,7 +35,8 @@ import { CourseOverviewModule } from './modules/course-overview/course-overview.
     CourseOverviewModule,
     AuthModule,
     FirebaseModule,
-    CourseTemplateModule
+    CourseTemplateModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
