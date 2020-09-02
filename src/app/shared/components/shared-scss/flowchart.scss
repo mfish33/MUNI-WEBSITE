@@ -1,0 +1,15 @@
+@mixin element_size($prop,$scale) {
+    #{$prop}: 180px * $scale;
+    @media only screen and (max-width: 1350px) {
+        #{$prop}: 150px * $scale;
+      }
+    @media only screen and (max-width: 1200px) {
+      #{$prop}: 130px * $scale;
+    }
+    @media only screen and (max-width: 1050px) {
+        #{$prop}: 110px * $scale;
+    }
+    @media only screen and (max-width: 800px) {
+    #{$prop}: 90px * $scale;
+    }
+}
