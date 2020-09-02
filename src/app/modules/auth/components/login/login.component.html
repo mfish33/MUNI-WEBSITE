@@ -1,23 +1,36 @@
-<div class="verticalCenter">
-    <div class="horizontal">
-        <form>
-            <input type="text" placeholder="email" [(ngModel)]="email" name="email">
-            <input type="{{showPassword ? 'text' : 'password'}}" placeholder="password" [(ngModel)]="password"
-                name="password">
-            <div class="showPassword">
-                <p>Show Password:</p>
-                <input type="checkbox" class="switch" [(ngModel)]="showPassword" name="showPassword">
+<div class="background">
+    <img #background src="assets/login-page.png" [ngClass]="backgroundRatio < windowRatio ? 'width' : 'height'"/>
+</div>
+
+<div class="foreground">
+    <mat-card>
+        <h2 class="roboto-auth-header"><b>Login</b> </h2>
+        <form [formGroup]="loginForm">
+            <div class="formItem">
+                <span>Email:</span>
+                <mat-form-field appearance="fill">
+                        <input matInput formControlName="email" required email>
+                        <mat-error>{{getEmailErrors()}}</mat-error>
+                </mat-form-field> 
             </div>
 
-            <!-- <div>
-                <p>Remember Me</p>
-                <input type="checkbox">
-            </div> -->
-            <button (click)="submit()">Submit</button>
-            <app-google-sign-in></app-google-sign-in>
-            <div class="error" *ngIf="errorText">
-                <p>{{errorText}}</p>
+
+            <div class="formItem">
+                <span>Password:</span>
+                <mat-form-field appearance="fill">
+                    <input type="password" matInput formControlName="password" required>
+                    <mat-error>Required *</mat-error>
+                </mat-form-field>
             </div>
+
+            <button (click)="submit()"><span>Login</span></button>
+
         </form>
-    </div>
+        <p class="errorText">{{errorText}}</p>
+        <p class="signInOptionsLabel">Make an account with:</p>
+        <div class="signInOptions">
+            <app-google-sign-in></app-google-sign-in>
+            <app-facebook-sign-in></app-facebook-sign-in>
+        </div>
+    </mat-card>
 </div>

@@ -4,6 +4,7 @@ $greenPrimary:#679436;
 $greenAcescent:#A5BE00;
 $lightBlueGreyPrimary:#cbdcee;
 $grey: #dcdcdc;
+$lightBlueCard:#EBF2FA;
 
 $mobileHamburger:#464853;
 
@@ -83,11 +84,11 @@ html, body {
 .nunito{
     font-family: Nunito Sans;
     font-style: normal;
+    font-weight: normal;
 }
 
 .nunito-body{
     @extend .nunito;
-    font-weight: 300;
     font-size: 1.4vw;
     line-height: 2.29vw;
 }

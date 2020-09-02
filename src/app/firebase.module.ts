@@ -24,7 +24,7 @@ export class FirebaseModule {
     constructor(@Optional() @SkipSelf() parentModule: FirebaseModule) {
         if (parentModule) {
             throw new Error(
-                'CoreModule is already loaded. Import it in the AppModule only'
+                'FirebaseModule is already loaded. Import it in the AppModule only'
             );
         }
     }

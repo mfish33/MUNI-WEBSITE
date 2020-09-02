@@ -28,7 +28,6 @@ import { CourseOverviewModule } from './modules/course-overview/course-overview.
     HomeModule,
     LessonModule,
     AuthModule,
-    FirebaseModule,
     CourseTemplateModule,
     AboutModule,
     CourseTemplateModule,

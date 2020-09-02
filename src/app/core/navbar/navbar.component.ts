@@ -4,6 +4,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { ContentfulService } from '../services/contentful.service';
 import { CourseOrdered } from '../../shared/models/contentfulTypes'
 import { AuthService } from 'src/app/core/services/auth.service';
+import * as firebase from 'firebase'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-core-navbar',
@@ -16,7 +18,7 @@ export class NavbarComponent implements OnInit {
   faBars = faBars
   courses: Promise<CourseOrdered[]>
 
-  public userEmail: string
+  public $user: Observable<firebase.User>
 
   // Template Toggles
   public hamburgerIsActive: boolean
@@ -29,10 +31,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.courses = this.content.getActiveCourses();
-    this.subToUser()
-  }
-
-  subToUser() {
-    this.auth.user$.subscribe(user => this.userEmail = user?.email)
+    this.$user = this.auth.user$
   }
 }
