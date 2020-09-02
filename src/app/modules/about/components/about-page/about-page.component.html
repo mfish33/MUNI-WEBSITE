@@ -85,7 +85,7 @@
                 </mat-form-field>
             </div>
 
-            <button mat-button *ngIf="!thankYou" (click) = "submitFeedback()" id="test"><span>Submit</span></button>
+            <button *ngIf="!thankYou" (click) = "submitFeedback()"><span>Submit</span></button>
             <p *ngIf="thankYou">Thank you for your feedback!</p>
         </div>
           

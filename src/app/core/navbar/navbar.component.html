@@ -48,32 +48,40 @@
                 </ul>
 
             </li>
-
+            
             <li><a [routerLink]="['/about']">About</a></li>
             <li><a [routerLink]="['/about']" fragment="feedback">Feedback</a></li>
-
         </ul>
     </nav>
 
     <div class="signInWidget">
         <div style="display: flex;">
 
-
-            <div class="verticalAlign" (click)="mobileSignInOptions=!mobileSignInOptions">
-                <div class="icon">
-                    <fa-icon [icon]="faUser"></fa-icon>
+            <div *ngIf="$user | async as user; else defaultIcon">
+                <div class="verticalAlign" (click)="mobileSignInOptions=!mobileSignInOptions">
+                    <img *ngIf="user.photoURL" [src]="user.photoURL" class="icon">
+                    <div *ngIf="!user.photoURL" class="icon">
+                        <fa-icon [icon]="faUser" class="signedInIcon"></fa-icon>
+                    </div>
                 </div>
             </div>
+            <ng-template #defaultIcon>
+                <div class="verticalAlign" (click)="mobileSignInOptions=!mobileSignInOptions">
+                    <div class="icon">
+                        <fa-icon [icon]="faUser" class="signedOutIcon"></fa-icon>
+                    </div>
+                </div>
+            </ng-template>
 
             <!--verticalAlign-->
             <div class="signInOptions verticalAlign hideMobile">
-                <div *ngIf="userEmail; else elseBlock">
-                    <p> {{userEmail}}</p>
+                <div *ngIf="$user | async as user; else loginButtons">
+                    <p> {{user.displayName}}</p>
                     <button (click)='auth.signOut()'>Sign Out</button>
                 </div>
-                <ng-template #elseBlock>
+                <ng-template #loginButtons>
                     <a [routerLink]="['/login']">Log In</a>
-                    <a [routerLink]="['/register']">Register</a>.
+                    <a [routerLink]="['/register']">Register</a>
                 </ng-template>
             </div>
 

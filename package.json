@@ -28,12 +28,13 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "contentful": "^7.14.4",
+    "firebase": "^7.13.1",
     "hamburgers": "^1.1.3",
     "rxjs": "~6.5.5",
+    "simple-crypto-js": "^3.0.0",
     "simple-parallax-js": "^5.5.1",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "firebase": "^7.13.1"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.9",
@@ -61,5 +62,8 @@
     "inquirer": "^6.2.2",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "open": "^7.0.3"
+  },
+  "browser": {
+      "crypto": false
   }
 }

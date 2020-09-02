@@ -7,14 +7,15 @@ import { AboutPageComponent } from './modules/about/components/about-page/about-
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { CourseOverviewComponent } from './modules/course-overview/components/course-overview/course-overview.component'
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'courses', component: CourseOverviewComponent },
   { path: 'lessons/:cid/:lid', component: LessonComponent },
   { path: 'about', component: AboutPageComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'courses/:cid', component: CourseTemplateComponent },
   { path: '**', redirectTo: '' }
 ];

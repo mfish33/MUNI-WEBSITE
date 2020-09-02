@@ -132,8 +132,28 @@ img {
     padding: 0;
 }
 
+.signedInIcon{
+  color:$bluePrimary
+}
+.signedOutIcon{
+  color: white;
+}
+
 .signInOptions{
     padding-left: 10px;
+    p{
+      margin: 0;
+    }
+    button{
+      color:white;
+      background-color:$bluePrimary;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      border-radius: 4px;
+    }
 }
 
   .navContainer {

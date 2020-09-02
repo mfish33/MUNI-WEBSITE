@@ -1,35 +1,125 @@
-@import '../sharedStyles.scss';
 @import './src/styles.scss';
 
-.verticalCenter{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    transform: translate(-50%,-70%);
-    .horizontal{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        form{
-            display: flex;
-            flex-direction: column;
-            width: 15%;
-            .showPassword{
-                display: flex;
-                justify-content: center;
-                p{
-                    margin: 0;
-                }
-                display: flex;
-            }
-            app-google-sign-in{
-                display: flex;
-                justify-content: center;
-            }
-        }
-        
+/* Fonts */
+.roboto-auth-header{
+@extend .roboto;
+font-size: 36px;
+line-height: 49px;
+border-bottom: 2px solid currentColor;
+color: $bluePrimary;
+}
+
+.roboto-auth-label{
+@extend .roboto;
+font-size: 18px;
+line-height: 33px;
+color: $bluePrimary;
+}
+
+.roboto-auth-button{
+@extend .roboto;
+font-size: 22px;
+line-height: 35px;
+color: white;
+}
+  
+/* Layout */
+
+.background {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1;
+    .stretch {
+        //width:100%;
+        //height: auto;
+        height:100%;    
+        width: auto;
+    }
+    .width{
+        width:100%;
+        height: auto;
+    }
+    .height{
+        height:100%;    
+        width: auto;
     }
 }
+
+.foreground{
+    h2{
+        // Hackey since H2 is full width??
+        width: 27%;
+    }
+    mat-card{
+        border-radius: 10px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 17%;
+        min-width: 350px;
+        background-color: $lightBlueCard;
+        .formItem{
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            span{
+                @extend .roboto-auth-label;
+                margin-bottom: 2px;
+            }
+            mat-form-field{
+                background-color: white;
+                border-radius: 10px;
+                padding-bottom: 5px;
+                mat-error{
+                
+                    color:red;
+                }
+                .body{
+                    min-height: 200px;
+                }
+            }  
+        }
+        button{
+            span{
+                @extend .roboto-auth-button;
+            }
+            background-color:$bluePrimary;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            cursor: pointer;
+            outline: none;
+            border: none;
+            border-radius: 4px;
+        }
+        .errorText{
+            color: red;
+        }
+        .signInOptionsLabel{
+            @extend .roboto-auth-label;
+            text-align: center;
+        }
+        .signInOptions{
+            display: flex;
+            justify-content: space-evenly;
+            & > * {
+                width: 25%;
+            }
+        }
+    }
+}
+
+
+
 
 

@@ -6,9 +6,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module'
 import { AuthService } from './services/auth.service';
 import { ProgressTrackerService } from './services/progress-tracker.service';
+import { RouterHistoryService } from './services/router-history.service';
 
 @NgModule({
-  providers: [ContentfulService, AuthService, ProgressTrackerService],
+  providers: [ContentfulService, AuthService, ProgressTrackerService,RouterHistoryService],
   imports: [SharedModule, FontAwesomeModule],
   declarations: [FooterComponent, NavbarComponent],
   exports: [FooterComponent, NavbarComponent]

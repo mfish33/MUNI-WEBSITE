@@ -4,6 +4,7 @@ import { Profile } from 'src/app/shared/models/contentfulTypes';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
+import Utils from 'src/app/shared/classes/utils';
 
 
 
@@ -63,12 +64,6 @@ export class AboutPageComponent implements OnInit,AfterViewInit {
   }
 
   public getEmailErrors() {
-    let errors = this.feedback.get('email').errors
-    if(errors) {
-      if(errors.email) {
-        return 'Please enter a valid email'
-      }
-      return 'Required *'
-    }
+    return Utils.getEmailErrors(this.feedback)
   }
 }
