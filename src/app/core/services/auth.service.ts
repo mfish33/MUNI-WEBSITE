@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { UserCredential } from '@firebase/auth-types';
 import { AngularFirestore } from '@angular/fire/firestore'
@@ -10,6 +10,8 @@ import SimpleCrypto from "simple-crypto-js"
 import { RouterHistoryService } from './router-history.service';
 import { Router } from '@angular/router';
 import AuthShared from 'src/app/modules/auth/classes/AuthShared';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class AuthService {
   private googleProvider = new firebase.auth.GoogleAuthProvider()
   private facebookProvider = new firebase.auth.FacebookAuthProvider()
 
-  constructor(private afAuth: AngularFireAuth, private afs:AngularFirestore,private history:RouterHistoryService, private router:Router) {
+  constructor(private afAuth: AngularFireAuth, private afs:AngularFirestore,private history:RouterHistoryService, private router:Router, private http:HttpClient) {
     // TODO: Implement getting birthdays with google and facebook accounts 
     // this.googleProvider.addScope('https://www.googleapis.com/auth/user.birthday.read')
     // this.facebookProvider.addScope('user_birthday');
@@ -129,7 +131,17 @@ export class AuthService {
         return 'Your account has been disabled'
       default:
         return 'something went wrong'
-    }
-    
+    } 
   }
+
+  public submitFeedback(feedback:{
+    name:string
+    reason:string
+    email:string
+    body:string 
+  }): Observable<Object> {
+    const url = isDevMode() ? 'http://localhost:8080/ripe-website-40a9a/us-central1/sendFeedback' : 'https://us-central1-ripe-website-40a9a.cloudfunctions.net/sendFeedback'
+    return this.http.post(url,feedback,{responseType:'text'})
+  }
+
 }

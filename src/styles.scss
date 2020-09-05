@@ -122,3 +122,9 @@ html, body {
     font-size: 1.25vw;
     line-height: 1.7vw;
 }
+
+.roboto-small-body{
+    @extend .roboto;
+    font-size: 1.0vw;
+    line-height: 1.4vw;
+}

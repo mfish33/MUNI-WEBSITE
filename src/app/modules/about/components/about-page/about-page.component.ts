@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import Utils from 'src/app/shared/classes/Utils';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 
 
@@ -20,7 +21,7 @@ export class AboutPageComponent implements OnInit,AfterViewInit {
   thankYou = false
   private fragment: string;
 
-  constructor(public content: ContentfulService,private fb: FormBuilder,private http:HttpClient,private route: ActivatedRoute) { }
+  constructor(public content: ContentfulService,private fb: FormBuilder,private http:HttpClient,private route: ActivatedRoute, private auth:AuthService) { }
 
   ngOnInit(): void {
     this.route.fragment.subscribe(fragment => {
@@ -54,8 +55,7 @@ export class AboutPageComponent implements OnInit,AfterViewInit {
       return
     }
     this.thankYou = true
-    const url = isDevMode() ? 'http://localhost:8080/ripe-website-40a9a/us-central1/sendFeedback' : 'https://us-central1-ripe-website-40a9a.cloudfunctions.net/sendFeedback'
-    this.http.post(url,this.feedback.value)
+    this.auth.submitFeedback(this.feedback.value)
     .subscribe((res:any) => {
       if(res?.status !== 200) {
         console.error('Error submitting feedback')

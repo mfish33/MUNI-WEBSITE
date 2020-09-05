@@ -1,6 +1,10 @@
 <div class="background"></div>
 
+
+
 <div class="content" *ngIf="lesson$ | async as lesson;">
+
+  <app-quick-feedback [location]="lesson.fields.titleText + ' lesson'"></app-quick-feedback>
 
   <app-parallax-title imgUrl="{{content.getAsset(lesson.fields.titleGraphic)}}" title="{{lesson.fields.titleText}}">
   </app-parallax-title>
