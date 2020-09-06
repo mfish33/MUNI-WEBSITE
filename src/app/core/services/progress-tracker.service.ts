@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Course } from 'src/app/shared/models/contentfulTypes';
-
+import { AuthService } from './auth.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +10,50 @@ import { Course } from 'src/app/shared/models/contentfulTypes';
 export class ProgressTrackerService {
 
   private readonly localStorageKey = 'courseProgress'
-  private progress: progress
-  private cache: report = null
+  public progress: progress
+  private uid: string | null = null
+  public progressReport = new BehaviorSubject<report>({})
 
-  constructor() {
+  constructor(private auth:AuthService, private afs:AngularFirestore) {
     let storedData = localStorage.getItem(this.localStorageKey)
     this.progress = storedData ? JSON.parse(storedData) : {}
+    this.auth.user$.subscribe((user) => this.handleUserChange(user))
+  }
+
+  private async handleUserChange(user:firebase.User) {
+    if(!user) {
+      this.uid = null
+      return
+    }
+    this.uid = user.uid
+    let userInfo = await this.afs.collection('users').doc(user.uid).get().toPromise()
+    if(!userInfo.exists || !userInfo.get('progress')) {
+      this.afs.collection('users').doc(user.uid).set({
+        progress:this.progress
+      }, {merge:true})
+      return
+    }
+    let userProgress:progress = userInfo.get('progress')
+
+    // merge progress if different
+    Object.keys(userProgress)
+    .filter(key => this.progress[key])
+    .forEach(key => {
+      if(this.progress[key].lessons.length > userProgress[key].lessons.length) {
+        userProgress[key].lessons = this.progress[key].lessons
+      }
+    })
+    this.progress = Object.assign(this.progress,userProgress)
+
+    // Incase there is changes update the user progress
+    this.afs.collection('users').doc(user.uid).set({
+      progress:this.progress
+    },{merge:true})
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.progress))
+    this.generateProgressReport()
   }
 
   public hasVisited(course: Course, lid: string): void {
-    this.cache = null
     let name = course.shortName ?? course.courseTitle
     if (this.progress[name]) {
       if (this.progress[name].lessons.indexOf(lid) != -1) {
@@ -25,6 +61,7 @@ export class ProgressTrackerService {
         return
       }
       this.progress[name].lessons.push(lid)
+      this.progress[name].total = course.lessons.length
     } else {
       this.progress[name] = {
         lessons: [lid],
@@ -32,20 +69,26 @@ export class ProgressTrackerService {
       }
     }
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.progress))
+    this.syncUser()
+    this.generateProgressReport()
   }
 
-  public progressReport(): report {
-    if (this.cache) {
-      return this.cache
+  private syncUser() {
+    if(!this.uid) {
+      return
     }
+    this.afs.collection('users').doc(this.uid).set({
+      progress:this.progress
+    },{merge:true})
+  }
+
+  public generateProgressReport(): void {
     let report = {}
     for (let courseName in this.progress) {
       report[courseName] = this.progress[courseName].lessons.length / this.progress[courseName].total
     }
-    return report
+    this.progressReport.next(report)
   }
-
-
 }
 
 interface progress {

@@ -10,28 +10,21 @@ import { CourseOrdered } from '../../models/contentfulTypes';
 })
 export class FlowchartComponent implements OnInit {
 
-  public flowChart$: Promise<flowChartElm[]>
+  public flowChart$: Promise<CourseOrdered[]>
   @Input() parentCourseName: string
 
-  constructor(private content: ContentfulService) { }
+  constructor(public content: ContentfulService) { }
 
   ngOnInit(): void {
-    this.flowChart$ = this.content.getCoursesByOrder().then(courses => courses.map((course: CourseOrdered) => {
-      return {
-        name: course.shortName ? course.shortName : course.courseTitle,
-        img: this.content.getAsset(course.flowchartImg),
-        current: course.courseTitle == this.parentCourseName,
-        id: course.id
-      }
-    })
-    )
+    this.flowChart$ = this.content.getCoursesByOrder()
   }
 
-}
+  public isCurrent(course:CourseOrdered): boolean {
+    return course.courseTitle == this.parentCourseName
+  }
 
-interface flowChartElm {
-  name: string
-  img: string
-  current: boolean
-  id: string
+  public getName(course:CourseOrdered): string {
+    return course.shortName || course.courseTitle
+  }
+
 }

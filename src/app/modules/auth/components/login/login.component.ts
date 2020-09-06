@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if(isNaN(this.backgroundRatio)) {
       // Sometimes view does not fully init. Re-check after timeout.
       setTimeout(() => {
-        this.backgroundRatio = this.backgroundImage.nativeElement.naturalWidth /this.backgroundImage.nativeElement.naturalHeight
+        this.ngAfterViewInit()
       }, 50);
     }
     this.windowRatio = window.innerWidth / window.innerHeight

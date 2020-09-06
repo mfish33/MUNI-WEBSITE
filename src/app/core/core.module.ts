@@ -9,7 +9,7 @@ import { ProgressTrackerService } from './services/progress-tracker.service';
 import { RouterHistoryService } from './services/router-history.service';
 
 @NgModule({
-  providers: [ContentfulService, AuthService, ProgressTrackerService,RouterHistoryService],
+  providers: [ContentfulService, AuthService, ProgressTrackerService, RouterHistoryService],
   imports: [SharedModule, FontAwesomeModule],
   declarations: [FooterComponent, NavbarComponent],
   exports: [FooterComponent, NavbarComponent]

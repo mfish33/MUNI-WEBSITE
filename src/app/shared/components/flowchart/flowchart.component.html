@@ -1,14 +1,25 @@
 <div class="flowContainer" *ngIf="flowChart$ | async as flowChart">
-    <app-flowchart-element [routerLink]="['/courses', flowChart[0].id]" [name]="flowChart[0].name"
-        [img]="flowChart[0].img" [current]="flowChart[0].current"
-        [ngStyle]="{'cursor':flowChart[0].current ? 'normal' : 'pointer'}">
+
+    <app-flowchart-element *ngIf="flowChart[0].isActive" [routerLink]="['/courses', flowChart[0].id]" [name]="getName(flowChart[0])"
+        [img]="content.getAsset(flowChart[0].flowchartImg)" [current]="isCurrent(flowChart[0])"
+        [ngStyle]="{'cursor':isCurrent(flowChart[0]) ? 'normal' : 'pointer'}">
     </app-flowchart-element>
+
+    <app-flowchart-element *ngIf="!flowChart[0].isActive" [name]="getName(flowChart[0])"
+        [img]="content.getAsset(flowChart[0].flowchartImg)" [current]="isCurrent(flowChart[0])">
+    </app-flowchart-element>
+
     <div *ngFor="let item of flowChart | slice:1">
         <svg class="flowLine">
             <rect id="rect" x="0" fill="green" />
         </svg>
-        <app-flowchart-element [routerLink]="['/courses', item.id]" [name]="item.name" [img]="item.img"
-            [current]="item.current" [ngStyle]="{'cursor':item.current ? 'normal' : 'pointer'}">
+
+        <app-flowchart-element *ngIf="!item.isActive" [name]="getName(item)" [img]="content.getAsset(item.flowchartImg)"
+            [current]="isCurrent(item)">
+        </app-flowchart-element>
+
+        <app-flowchart-element *ngIf="item.isActive" [routerLink]="['/courses', item.id]" [name]="getName(item)" [img]="content.getAsset(item.flowchartImg)"
+            [current]="isCurrent(item)" [ngStyle]="{'cursor':isCurrent(item) ? 'normal' : 'pointer'}">
         </app-flowchart-element>
     </div>
 

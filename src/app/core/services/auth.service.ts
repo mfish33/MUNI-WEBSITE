@@ -40,7 +40,6 @@ export class AuthService {
 
   async signInFacebook() {
     let attempt = await this.afAuth.signInWithPopup(this.facebookProvider)
-    console.log(attempt)
     return attempt
   }
 
@@ -75,7 +74,7 @@ export class AuthService {
     this.afs.collection('users').doc(attempt.user.uid).set({
       name:name,
       age:age
-    })
+    }, {merge:true})
     const key = SimpleCrypto.generateRandom()
     const crypto = new SimpleCrypto(key)
     const history = this.history.getHistory()
