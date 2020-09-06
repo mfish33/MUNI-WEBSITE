@@ -1,0 +1,36 @@
+<div class="circle" *ngIf="!thankYou" [ngClass]="showForm ? 'selected' : ''" (click) = "showForm = !showForm" [@fadeIn]>
+        <div class="verticalAlign">
+            <p>?</p>
+        </div>
+</div>
+
+<div class="popup" *ngIf="showForm && !thankYou" [@enterAnimation]>
+    <mat-card>
+        <form [formGroup]="quickFeedBack">
+            <div class="formItem">
+                <span>Feedback:</span>
+                <mat-form-field appearance="fill">
+                        <textarea matInput formControlName="body" class="body" required></textarea>
+                        <mat-error>Required *</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="formItem" *ngIf="!($user | async)">
+                <span>Email:</span>
+                <mat-form-field appearance="fill">
+                        <input matInput formControlName="email" placeholder="Optional">
+                </mat-form-field> 
+            </div>
+
+            <button (click) = "submitFeedback()" type="button"><span>Submit</span></button>
+        </form>
+    </mat-card>
+</div>
+
+<div class="confirmation" *ngIf="thankYou" [@fadeIn]>
+    <mat-card>
+        <div class="wrapper">
+            <p>Thank You!</p>
+            <div class="xbutton" (click)="thankYou = false"><p>X</p></div>
+        </div>
+    </mat-card>
+</div>

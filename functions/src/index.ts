@@ -47,7 +47,7 @@ export const sendFeedback = functions.https.onRequest(async (req,res) => {
         text: body
     };
 
+    res.sendStatus(200)
     await mailTransport.sendMail(mailOptions)
 
-    res.sendStatus(200)
 })

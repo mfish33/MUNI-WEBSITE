@@ -1,0 +1,153 @@
+@import "./src/styles.scss";
+$feedbackPrimary:#CB8FE8;
+$feedbackAcescent:#AC57EE;
+
+// Constant size font overrides
+.roboto-large-body{
+    @extend .roboto;
+    font-size: 26px;
+    line-height: 32px;
+}
+
+.roboto-body{
+    @extend .roboto;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.roboto-small-body{
+    @extend .roboto;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.circle{
+    position: fixed;
+    right: 60px;
+    bottom: 60px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: $feedbackPrimary;
+    z-index: 100;
+    transition: background-color .4s, right .1s, bottom .1s;
+    cursor: pointer;
+    &:hover{
+        background-color: $feedbackAcescent;
+        // movement on hover instead of just on click
+        // right: 62px;
+        // bottom: 62px;
+    }
+    p{
+        @extend .roboto;
+        font-size: 72px;
+        color: white;
+        margin: auto;
+        -webkit-user-select: none; /* Safari */        
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+    }
+}
+.selected{
+    background-color: $feedbackAcescent;
+    right: 62px;
+    bottom: 62px;
+}
+
+.popup{
+    position: fixed;
+    right: 150px;
+    bottom: 150px;
+    width: 350px;
+    border-radius: 10px;
+    background-color: $feedbackPrimary;
+    z-index: 100;
+    .formItem{
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+            span{
+                @extend .roboto-large-body;
+                //text-align: center;
+                margin-bottom: 2px;
+                color: white;
+            }
+            mat-form-field{
+                background-color: white;
+                border-radius: 10px;
+                padding-bottom: 5px;
+                mat-error{ 
+                    color:red;
+                }
+                .body{
+                    min-height: 150px;
+                }
+            }  
+        }
+        button{
+        span{
+            @extend .roboto-body;
+        }
+
+        background-color:$feedbackAcescent;
+        width: inherit;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: white;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        width: 100%;
+    }
+}
+
+.confirmation{
+    position: fixed;
+    right: 200px;
+    bottom: 60px;
+    border-radius: 10px;
+    background-color: $feedbackPrimary;
+    z-index: 100;
+    mat-card{
+        padding: 0;
+        .wrapper{
+            display: flex;
+            p{
+                @extend .roboto-body;
+                color: white;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-left: 5px;
+            }
+            .xbutton{
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background-color: $grey;
+                margin-left: 10px;
+                margin-top: 5px;
+                margin-right: 5px;
+                cursor: pointer;
+                &:hover{
+                    background-color: rgb(148, 147, 147);
+                }
+                p{
+                    @extend .roboto-small-body;
+                    color:black;
+                    margin: 0;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    
+
+    
+}
