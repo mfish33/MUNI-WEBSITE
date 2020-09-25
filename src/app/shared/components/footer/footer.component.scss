@@ -1,0 +1,40 @@
+@import "./src/styles.scss";
+
+footer{
+    width: 100%;
+    height: $footer;
+    background-color: black;
+    color:white;
+    .wrapper{
+        width: 100%;
+        position: relative;
+        p{
+            @extend .roboto;
+            font-size:12px;
+            position: absolute;
+            left: 20px;
+            top: -2px;
+        }
+        .right{
+            position: absolute;
+            right: 40px;
+            top:8px;
+            display: flex;
+            img{
+                height: 30px;
+                width: auto;
+            }
+            .socials{
+                display: flex;
+                img{
+                    margin-left: 15px;
+                    filter: brightness(0.7);
+                    transition: .3s ease all;
+                }
+                img:hover{
+                    filter:brightness(1);
+                }
+            }
+        }
+    }
+}

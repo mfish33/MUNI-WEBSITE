@@ -1,0 +1,23 @@
+@import './src/styles.scss';
+
+mat-card{
+    background-color:#3a77a3b6;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+    color:white;
+    text-align: center;
+    border-radius: 3vw;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+    h2 {
+        @extend .roboto-large-header;
+        margin:0;
+        margin-bottom: 4vw;
+    }
+    p{
+        @extend .roboto-small-header;
+    }
+}

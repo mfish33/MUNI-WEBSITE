@@ -1,5 +1,4 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { FooterComponent } from './footer/footer.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { ContentfulService } from './services/contentful.service'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -11,8 +10,8 @@ import { RouterHistoryService } from './services/router-history.service';
 @NgModule({
   providers: [ContentfulService, AuthService, ProgressTrackerService, RouterHistoryService],
   imports: [SharedModule, FontAwesomeModule],
-  declarations: [FooterComponent, NavbarComponent],
-  exports: [FooterComponent, NavbarComponent]
+  declarations: [NavbarComponent],
+  exports: [NavbarComponent]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

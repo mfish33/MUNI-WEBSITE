@@ -14,6 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { FirebaseModule } from './firebase.module';
 import { CourseTemplateModule } from './modules/course-template/course-template.module';
 import { CourseOverviewModule } from './modules/course-overview/course-overview.module';
+import { ComingSoonModule } from './modules/coming-soon/coming-soon.module';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CourseOverviewModule } from './modules/course-overview/course-overview.
     AuthModule,
     FirebaseModule,
     CourseTemplateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ComingSoonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

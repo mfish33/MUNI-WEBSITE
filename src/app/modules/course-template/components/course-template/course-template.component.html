@@ -1,38 +1,39 @@
 <div class="background"></div>
 
-<div class="content" *ngIf="course$ | async as course; else invalidCourseBlock">
-
-  <app-quick-feedback [location] = "course.courseTitle + ' course'"></app-quick-feedback>
-
-  <app-parallax-title imgUrl="{{content.getAsset(course.courseImage)}}" title="{{course.courseTitle}}">
-  </app-parallax-title>
-
-  <div class="flowchart">
-    <app-flowchart parentCourseName="{{course.courseTitle}}"></app-flowchart>
+<div *ngIf="course$ | async as course; else invalidCourseBlock">
+  <div class="content">
+      <app-quick-feedback [location] = "course.courseTitle + ' course'"></app-quick-feedback>
+    
+      <app-parallax-title imgUrl="{{content.getAsset(course.courseImage)}}" title="{{course.courseTitle}}">
+      </app-parallax-title>
+    
+      <div class="flowchart">
+        <app-flowchart parentCourseName="{{course.courseTitle}}"></app-flowchart>
+      </div>
+    
+      <div class="introBlock">
+        <div class="content" [innerHTML]="content.convertRichText(course.courseDescription)"></div>
+      </div>
+    
+      <div [routerLink]="['/lessons', courseId, lesson.fields.lesson.sys.id]" class="lesson"
+        *ngFor="let lesson of course.lessons">
+        <app-course-bar-item imgUrl="{{content.getAsset(lesson.fields.lessonPreviewImg)}}"
+          title="{{lesson.fields.lessonTitle}}" description="{{content.convertRichText(lesson.fields.lessonDescription)}}">
+        </app-course-bar-item>
+      </div>
+    
+      <div class="nextButtons">
+        <h2 *ngIf="!nextCourse">Congrats You Have Finished All the Courses!</h2>
+        <div class="buttons">
+          <button [routerLink]="['/courses']">Course Overview</button>
+          <button *ngIf="nextCourse"
+            [routerLink]="['/courses',nextCourse.id]">{{nextCourse.courseTitle}}</button>
+        </div>
+      </div>
   </div>
-
-  <div class="introBlock">
-    <div class="content" [innerHTML]="content.convertRichText(course.courseDescription)"></div>
-  </div>
-
-  <div [routerLink]="['/lessons', courseId, lesson.fields.lesson.sys.id]" class="lesson"
-    *ngFor="let lesson of course.lessons">
-    <app-course-bar-item imgUrl="{{content.getAsset(lesson.fields.lessonPreviewImg)}}"
-      title="{{lesson.fields.lessonTitle}}" description="{{content.convertRichText(lesson.fields.lessonDescription)}}">
-    </app-course-bar-item>
-  </div>
-
-  <div class="nextButtons">
-    <h2 *ngIf="!nextCourse">Congrats You Have Finished All the Courses!</h2>
-    <div class="buttons">
-      <button [routerLink]="['/courses']">Course Overview</button>
-      <button *ngIf="nextCourse"
-        [routerLink]="['/courses',nextCourse.id]">{{nextCourse.courseTitle}}</button>
-    </div>
-
-  </div>
-
+  <app-shared-footer></app-shared-footer>
 </div>
+
 
 <ng-template #invalidCourseBlock>
   <div class="content">

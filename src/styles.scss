@@ -8,6 +8,9 @@ $lightBlueCard:#EBF2FA;
 
 $mobileHamburger:#464853;
 
+$header:80px;
+$footer:45px;
+
 body{
     margin: 0;
 }
@@ -97,6 +100,12 @@ html, body {
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: normal;
+}
+
+.roboto-large-header {
+    @extend .roboto;
+    font-size: 7.5vw;
+    line-height: 3.9vw;
 }
 
 .roboto-header {

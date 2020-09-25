@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms'
 import Utils from 'src/app/shared/classes/Utils';
@@ -12,13 +12,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
 
   public loginForm:FormGroup
   public errorText:string
-  public backgroundRatio:number
-  public windowRatio:number
-  @ViewChild('background') backgroundImage: ElementRef
 
   constructor(private auth: AuthService,private fb:FormBuilder, private history:RouterHistoryService, private router:Router) { }
 
@@ -29,22 +26,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     },{
       validators:Validators.required
     })
-  }
-
-  ngAfterViewInit() {
-    this.backgroundRatio = this.backgroundImage.nativeElement.naturalWidth /this.backgroundImage.nativeElement.naturalHeight
-    if(isNaN(this.backgroundRatio)) {
-      // Sometimes view does not fully init. Re-check after timeout.
-      setTimeout(() => {
-        this.ngAfterViewInit()
-      }, 50);
-    }
-    this.windowRatio = window.innerWidth / window.innerHeight
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.windowRatio = window.innerWidth / window.innerHeight
   }
 
   public async submit() {

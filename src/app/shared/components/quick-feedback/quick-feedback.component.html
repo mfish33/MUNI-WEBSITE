@@ -6,6 +6,7 @@
 
 <div class="popup" *ngIf="showForm && !thankYou" [@enterAnimation]>
     <mat-card>
+        <div class="xbutton cardButton" (click)="showForm = !showForm"><p>X</p></div>
         <form [formGroup]="quickFeedBack">
             <div class="formItem">
                 <span>Feedback:</span>
