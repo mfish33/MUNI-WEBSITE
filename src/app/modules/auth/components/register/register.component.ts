@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Utils from 'src/app/shared/classes/Utils';
@@ -16,12 +16,10 @@ import { Subscription } from 'rxjs';
 
 
 export class RegisterComponent implements OnInit,OnDestroy {
+
   public registerForm:FormGroup;
   public errorText:string
   private authSub:Subscription
-  public backgroundRatio:number
-  public windowRatio:number
-  @ViewChild('background') backgroundImage: ElementRef
 
   constructor(private auth: AuthService, private fb:FormBuilder, private history:RouterHistoryService, private router:Router) { }
 
@@ -42,22 +40,6 @@ export class RegisterComponent implements OnInit,OnDestroy {
         this.router.navigateByUrl(redirectRoute)
       }
     })
-  }
-
-  ngAfterViewInit() {
-    this.backgroundRatio = this.backgroundImage.nativeElement.naturalWidth / this.backgroundImage.nativeElement.naturalHeight
-    if(isNaN(this.backgroundRatio)) {
-      // Sometimes view does not fully init. Re-check after timeout.
-      setTimeout(() => {
-        this.ngAfterViewInit()
-      }, 50);
-    }
-    this.windowRatio = window.innerWidth / window.innerHeight
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.windowRatio = window.innerWidth / window.innerHeight
   }
 
   ngOnDestroy() {

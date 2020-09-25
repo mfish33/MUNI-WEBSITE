@@ -9,6 +9,8 @@ import { FlowchartElementComponent } from './components/flowchart-element/flowch
 import { QuickFeedbackComponent } from './components/quick-feedback/quick-feedback.component';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { BackgroundImageComponent } from './components/background-image/background-image.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
     ],
-  declarations: [SafePipe, ParallaxTitleComponent, FlowchartComponent, FlowchartElementComponent,QuickFeedbackComponent],
+  declarations: [SafePipe, ParallaxTitleComponent, FlowchartComponent, FlowchartElementComponent,QuickFeedbackComponent, BackgroundImageComponent,FooterComponent],
   exports: [
     CommonModule,
     RouterModule,
@@ -27,7 +29,9 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
     SafePipe,
     ParallaxTitleComponent,
     FlowchartComponent,
-    QuickFeedbackComponent
+    QuickFeedbackComponent,
+    BackgroundImageComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

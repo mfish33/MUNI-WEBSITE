@@ -1,13 +1,12 @@
+@import "./src/styles.scss";
+
 .nav{
     position: fixed;
     z-index: 2;
     width: 100%;
     top: 0px;
+    height: $header;
 }
 .main{
-    margin-top: 80px; //HEADER SIZE
-}
-
-app-core-navbar{
-    height: 3vw;
+    margin-top: $header;
 }

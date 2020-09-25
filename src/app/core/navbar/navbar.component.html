@@ -29,21 +29,18 @@
             </li>
 
             <li class="dropdownContainer">
-                <div class="navDropLabel">
+                <div class="navDropLabel" [routerLink] = "['tools']">
                   <div class="centerElements">
-                    <a href="#Tools">Tools</a>
+                    <a>Tools</a>
                     <div class="arrow-down"></div>
                   </div>
                 </div>
                 <ul class="dropdownList">
                     <li>
-                        <a href="">Spreadsheet</a>
+                        <a [routerLink]="['tools','spreadsheet']">Spreadsheet</a>
                     </li>
                     <li>
-                        <a href="">Calculator</a>
-                    </li>
-                    <li>
-                        <a href="">All Tools</a>
+                        <a [routerLink]="['tools','calculator']">Calculator</a>
                     </li>
                 </ul>
 

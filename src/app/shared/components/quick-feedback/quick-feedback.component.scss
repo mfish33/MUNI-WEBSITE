@@ -1,6 +1,6 @@
 @import "./src/styles.scss";
-$feedbackPrimary:#CB8FE8;
-$feedbackAcescent:#AC57EE;
+$feedbackPrimary:#8CC94A;
+$feedbackAcescent:#679436;
 
 // Constant size font overrides
 .roboto-large-body{
@@ -24,7 +24,7 @@ $feedbackAcescent:#AC57EE;
 .circle{
     position: fixed;
     right: 60px;
-    bottom: 60px;
+    bottom: 70px;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -52,7 +52,7 @@ $feedbackAcescent:#AC57EE;
 .selected{
     background-color: $feedbackAcescent;
     right: 62px;
-    bottom: 62px;
+    bottom: 72px;
 }
 
 .popup{
@@ -63,6 +63,14 @@ $feedbackAcescent:#AC57EE;
     border-radius: 10px;
     background-color: $feedbackPrimary;
     z-index: 100;
+    mat-card{
+        position: relative;
+        .cardButton{
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+    }
     .formItem{
         display: flex;
         flex-direction: column;
@@ -126,28 +134,26 @@ $feedbackAcescent:#AC57EE;
                 margin-bottom: 10px;
                 margin-left: 5px;
             }
-            .xbutton{
-                width: 25px;
-                height: 25px;
-                border-radius: 50%;
-                background-color: $grey;
-                margin-left: 10px;
-                margin-top: 5px;
-                margin-right: 5px;
-                cursor: pointer;
-                &:hover{
-                    background-color: rgb(148, 147, 147);
-                }
-                p{
-                    @extend .roboto-small-body;
-                    color:black;
-                    margin: 0;
-                    text-align: center;
-                }
-            }
         }
     }
-    
+}
 
-    
+.xbutton{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: $grey;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    &:hover{
+        background-color: rgb(148, 147, 147);
+    }
+    p{
+        @extend .roboto-small-body;
+        color:black;
+        margin: 0;
+        text-align: center;
+    }
 }
