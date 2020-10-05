@@ -11,135 +11,122 @@ $hamburger-layer-color:white;
   }
 }
 
+.navContainer {
+  display: grid;
+  grid-template-columns: [logo] 20%  [mainNav] 60% [signIn] 20% [end];
+  background-color:$lightBlueGreyPrimary;
+}
+  
 
-img {
+.logoSection {
+  grid-column-start: logo;
+  grid-column-end: mainNav;
+  display: flex;
+  img {
     height: 50px;
     width: auto;
     margin-left: 50px;
     outline: none;
     cursor: pointer;
   }
+}
 
-.mainNavList {
+.mainNav{
+  grid-column-start: mainNav;
+  grid-column-end: signIn;
+  .mainNavList {
     list-style-type: none;
     margin: 0;
     padding: 0;
     height: 5rem;
     display: flex;
     justify-content: space-around;
-  }
-  
-  li {
-    display: inline-block;
-    vertical-align: center;
-    font-size: 1.5rem;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
-    cursor: pointer;
-  }
-  
-  li a {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-  }
-  
-  li:hover {
-    background-color: $blueAcescent;
-  }
-
-  span{
-    font-size: 3rem;
-  }
-
-
-.arrow-down {
-    width: 0; 
-    height: 0; 
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid white;
-    margin-top: 10px;
-    margin-left: 10px;
-    transition: all 0.4s ease;
-  }
-
-  li:hover .arrow-down{
-    transform: rotateZ(180deg);
-  }
-
-.navDropLabel{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    outline: none;
-
-    .centerElements{
-      margin: auto;
+    li {
+      display: inline-block;
+      vertical-align: center;
+      font-size: 1.5rem;
+      width: 80%;
       display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 100%;
+      cursor: pointer;
+
+      a {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+      }
+      
+      &:hover {
+        background-color: $blueAcescent;
+      }
     }
-}
-.dropdownContainer{
-    position: relative;
+    .dropdownContainer{
+      position: relative;
+      
+      &:hover .dropdownList{
+        opacity: 1;
+        visibility: visible;
+      }
+      &:hover .arrow-down{
+        transform: rotateZ(180deg);
+      }
+
+      .navDropLabel{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        outline: none;
+    
+        .centerElements{
+          margin: auto;
+          display: flex;
+          .arrow-down {
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+            margin-top: 10px;
+            margin-left: 10px;
+            transition: all 0.4s ease;
+          }
+        }
+      }
+
+      .dropdownList{
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        background-color:$lightBlueGreyPrimary;
+        opacity: 0;
+        padding:0;
+        transition: all 0.4s ease;
+        visibility: hidden;
+        z-index: 3;
+        li{
+          padding-left: 0;
+          padding-right: 0;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
-.dropdownList{
-    position: absolute;
-    top: 100%;
+  
+.signInWidget{
+    grid-column-start: signIn;
+    grid-column-end: end;
     width: 100%;
-    background-color:$lightBlueGreyPrimary;
-    opacity: 0;
-    padding:0;
-    transition: all 0.4s ease;
-    visibility: hidden;
-    z-index: 3;
-}
-
-.dropdownList li{
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100%;
-}
-
-.dropdownContainer:hover .dropdownList{
-    opacity: 1;
-    visibility: visible;
-}
-
-
-.icon{
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-font-smoothing: subpixel-antialiased;
-    box-sizing: border-box;
-    margin: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-    text-indent: 0 !important;
-    width: 45px;
-    height: 45px;
-    background: #c4c6c9;
-    text-align: center;
-    font-size: 30px;
-    border-radius: 50px;
-    display: inline-block;
-    padding: 0;
-}
-
-.signedInIcon{
-  color:$bluePrimary
-}
-.signedOutIcon{
-  color: white;
-}
-
-.signInOptions{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  .signInOptions{
     padding-left: 10px;
     p{
       margin: 0;
@@ -154,36 +141,29 @@ img {
       border: none;
       border-radius: 4px;
     }
-}
-
-  .navContainer {
-    display: grid;
-    grid-template-columns: [logo] 20%  [mainNav] 60% [signIn] 20% [end];
-    background-color:$lightBlueGreyPrimary;
   }
-
-
-  .mainNav{
-    grid-column-start: mainNav;
-    grid-column-end: signIn;
-}
-
-  .logoSection {
-    grid-column-start: logo;
-    grid-column-end: mainNav;
-    display: flex;
-
+    
+  .icon{
+    width: 45px;
+    height: 45px;
+    background: #c4c6c9;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 50px;
+    .signedInIcon{
+      color:$bluePrimary
+    }
+    .signedOutIcon{
+      color: white;
+    }
   }
-  
-  .signInWidget{
-    grid-column-start: signIn;
-    grid-column-end: end;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
 }
 
+
+
+
+
+/* Mobile Nav */
 .hideDesktop{
   display: none;
 }
@@ -191,6 +171,9 @@ img {
 .hamburger{
   padding-left: 20px;
   padding-right: 20px;
+  .hamburgerTurn{
+    transform: rotateZ(90deg);
+  }
 }
 
 .mobileNav{
@@ -200,23 +183,17 @@ img {
   width: 0;
   background-color: $mobileHamburger;
   transition: 0.5s;
+  li{
+    height: auto;
+    width: 100%;
+    padding-top: 20px;
+  }
+  
 }
 
 .slideMobileNav{
   width: 65%;
 }
-
-.hamburgerTurn{
-  transform: rotateZ(90deg);
-}
-
-
-.mobileNav li{
-  height: auto;
-  width: 100%;
-  padding-top: 20px;
-}
-
 
 
 @media only screen and (max-width: 800px) {
