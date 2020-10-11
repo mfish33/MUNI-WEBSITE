@@ -64,6 +64,6 @@
     "open": "^7.0.3"
   },
   "browser": {
-      "crypto": false
+    "crypto": false
   }
 }
