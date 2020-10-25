@@ -15,7 +15,7 @@
         <div class="content" [innerHTML]="content.convertRichText(course.courseDescription)"></div>
       </div>
     
-      <div [routerLink]="['/lessons', courseId, lesson.fields.lesson.sys.id]" class="lesson"
+      <div [routerLink]="['/lessons', courseId, lesson.fields.lesson.fields.titleURLNormalized]" class="lesson"
         *ngFor="let lesson of course.lessons">
         <app-course-bar-item imgUrl="{{content.getAsset(lesson.fields.lessonPreviewImg)}}"
           title="{{lesson.fields.lessonTitle}}" description="{{content.convertRichText(lesson.fields.lessonDescription)}}">

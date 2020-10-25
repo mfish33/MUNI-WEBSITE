@@ -44,6 +44,7 @@ export interface Lesson {
     sys: Sys
     fields: {
         titleText: string
+        titleURLNormalized:string
         titleGraphic: Asset
         introduction: RichTextContent
         introductionInfographic: Asset
