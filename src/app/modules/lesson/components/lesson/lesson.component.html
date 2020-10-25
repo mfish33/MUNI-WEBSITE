@@ -113,7 +113,7 @@
     <div class="buttons">
       <button [routerLink]="['/courses',courseId]">Course Home</button>
       <button *ngIf="nextLesson"
-        [routerLink]="['/lessons',courseId,nextLesson.sys.id]">{{nextLesson.fields.titleText}}</button>
+        [routerLink]="['/lessons',courseId,nextLesson.fields.titleURLNormalized]">{{nextLesson.fields.titleText}}</button>
     </div>
 
   </div>
