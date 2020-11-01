@@ -16,9 +16,23 @@ const mailTransport = nodemailer.createTransport({
   },
 });
 
-export const delOldUnverifiedAccs = functions.pubsub
-  .schedule("* * * * *")
-  .onRun(async (context) => {
+console.log(process.env.FIREBASE_CONFIG);
+// export const delOldUnverifiedAccs = functions.pubsub
+//   .schedule("* * * * *")
+//   .onRun(async (context) => {
+//     console.log('deleting old unverified users')
+//     let unverifiedUsers = await getUnverifiedUsers();
+//     let pool = new PromisePool(
+//       () => deleteUnverifiedUser(unverifiedUsers),
+//       MAX_CONCURRENT
+//     );
+//     await pool.start();
+//     console.log(`Cleaned old unverified users`);
+//   });
+
+export const delOldUnverifiedAccs = functions.https.onRequest(
+  async (context) => {
+    console.log("deleting old unverified users");
     let unverifiedUsers = await getUnverifiedUsers();
     let pool = new PromisePool(
       () => deleteUnverifiedUser(unverifiedUsers),
@@ -26,16 +40,46 @@ export const delOldUnverifiedAccs = functions.pubsub
     );
     await pool.start();
     console.log(`Cleaned old unverified users`);
+  }
+);
+
+async function getUnverifiedUsers(
+  users:admin.auth.UserRecord[] = [],
+  nextPageToken:string = ''
+): Promise<admin.auth.UserRecord[]> {
+  let result = await admin.auth().listUsers(1000, nextPageToken);
+
+  let filteredUsers = result.users
+    .filter(user => user.providerData.length == 1)
+    .filter(user => user.providerData[0].providerId == "password")
+    .filter(user => user.emailVerified == false)
+    .filter(
+      (user) =>
+        Date.parse(user.metadata.lastSignInTime) <
+        Date.now() - 7 * 24 * 60 * 60 * 1000
+    );
+
+    users = users.concat(filteredUsers)
+
+    if (result.pageToken) {
+      return getUnverifiedUsers(users, result.pageToken);
+    }
+    return users;
+}
+
+async function deleteUnverifiedUser(inactiveUsers: admin.auth.UserRecord[]) {
+  inactiveUsers.forEach(user => {
+    console.log(user.email);
+    console.log(user.metadata.creationTime);
+    console.log(user.emailVerified);
+    user.providerData.forEach(pData =>
+      console.log(pData.providerId)
+    );
+    console.log();
   });
+  return null;
+}
 
-  async function getUnverifiedUsers(users = [], nextPageToken = ''): Promise<admin.auth.UserRecord[]>{
-      let result = await admin.auth().listUsers(1000, nextPageToken);
-      return result.users
-  }
-
-  async function deleteUnverifiedUser(inactiveUsers : admin.auth.UserRecord[]){
-
-  }
 export const sendFeedback = functions.https.onRequest(async (req, res) => {
   if (config.prod) {
     res.set(
