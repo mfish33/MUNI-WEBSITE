@@ -17,21 +17,9 @@ const mailTransport = nodemailer.createTransport({
 });
 
 console.log(process.env.FIREBASE_CONFIG);
-// export const delOldUnverifiedAccs = functions.pubsub
-//   .schedule("* * * * *")
-//   .onRun(async (context) => {
-//     console.log('deleting old unverified users')
-//     let unverifiedUsers = await getUnverifiedUsers();
-//     let pool = new PromisePool(
-//       () => deleteUnverifiedUser(unverifiedUsers),
-//       MAX_CONCURRENT
-//     );
-//     await pool.start();
-//     console.log(`Cleaned old unverified users`);
-//   });
-
-export const delOldUnverifiedAccs = functions.https.onRequest(
-  async (context) => {
+export const delOldUnverifiedAccs = functions.pubsub
+  .schedule("* * * * *")
+  .onRun(async (context) => {
     console.log("deleting old unverified users");
     let unverifiedUsers = await getUnverifiedUsers();
     let pool = new PromisePool(
@@ -40,44 +28,57 @@ export const delOldUnverifiedAccs = functions.https.onRequest(
     );
     await pool.start();
     console.log(`Cleaned old unverified users`);
-  }
-);
+  });
 
 async function getUnverifiedUsers(
-  users:admin.auth.UserRecord[] = [],
-  nextPageToken:string = ''
+  users: admin.auth.UserRecord[] = [],
+  nextPageToken: string | undefined = undefined
 ): Promise<admin.auth.UserRecord[]> {
   let result = await admin.auth().listUsers(1000, nextPageToken);
 
   let filteredUsers = result.users
-    .filter(user => user.providerData.length == 1)
-    .filter(user => user.providerData[0].providerId == "password")
-    .filter(user => user.emailVerified == false)
+    .filter((user) => user.providerData.length == 1)
+    .filter((user) => user.providerData[0].providerId == "password")
+    .filter((user) => user.emailVerified == false)
     .filter(
       (user) =>
         Date.parse(user.metadata.lastSignInTime) <
         Date.now() - 7 * 24 * 60 * 60 * 1000
     );
 
-    users = users.concat(filteredUsers)
+  users = users.concat(filteredUsers);
 
-    if (result.pageToken) {
-      return getUnverifiedUsers(users, result.pageToken);
-    }
-    return users;
+  if (result.pageToken) {
+    return getUnverifiedUsers(users, result.pageToken);
+  }
+  return users;
 }
 
-async function deleteUnverifiedUser(inactiveUsers: admin.auth.UserRecord[]) {
-  inactiveUsers.forEach(user => {
-    console.log(user.email);
-    console.log(user.metadata.creationTime);
-    console.log(user.emailVerified);
-    user.providerData.forEach(pData =>
-      console.log(pData.providerId)
-    );
-    console.log();
-  });
-  return null;
+async function deleteUnverifiedUser(unverifiedUsers: admin.auth.UserRecord[]) {
+  const userToDelete = unverifiedUsers.pop();
+  if (userToDelete) {
+    // Delete the inactive user.
+    return admin
+      .auth()
+      .deleteUser(userToDelete.uid)
+      .then(() => {
+        return console.log(
+          "Deleted user account",
+          userToDelete.email,
+          "for not verifying their email within a week"
+        );
+      })
+      .catch((error) => {
+        return console.error(
+          "Deletion of inactive user account",
+          userToDelete.uid,
+          "failed:",
+          error
+        );
+      });
+  } else {
+    return null;
+  }
 }
 
 export const sendFeedback = functions.https.onRequest(async (req, res) => {
