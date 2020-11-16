@@ -18,7 +18,7 @@ const mailTransport = nodemailer.createTransport({
 
 console.log(process.env.FIREBASE_CONFIG);
 export const delOldUnverifiedAccs = functions.pubsub
-  .schedule("* * * * *")
+  .schedule("0 0 * * 0") //run at 00:00 every sunday
   .onRun(async (context) => {
     console.log("deleting old unverified users");
     let unverifiedUsers = await getUnverifiedUsers();
