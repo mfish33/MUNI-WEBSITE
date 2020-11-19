@@ -4,7 +4,7 @@
         </div>
 </div>
 
-<div class="popup" *ngIf="showForm && !thankYou" [@enterAnimation]>
+<div class="popup" *ngIf="showForm && !thankYou && !isMobile" [@enterAnimation-desktop]>
     <mat-card>
         <div class="xbutton cardButton" (click)="showForm = !showForm"><p>X</p></div>
         <form [formGroup]="quickFeedBack">
@@ -18,7 +18,7 @@
             <div class="formItem" *ngIf="!($user | async)">
                 <span>Email:</span>
                 <mat-form-field appearance="fill">
-                        <input matInput formControlName="email" placeholder="Optional">
+                        <input matInput formControlName="email" placeholder="Optional" class="email">
                 </mat-form-field> 
             </div>
 
@@ -26,6 +26,31 @@
         </form>
     </mat-card>
 </div>
+
+<div class="popup" *ngIf="showForm && !thankYou && isMobile" [@enterAnimation-mobile] (swipedown)="showForm = !showForm">
+    <mat-card>
+        <div class="xbutton cardButton" (tap)="showForm = !showForm"><p>X</p></div>
+        <form [formGroup]="quickFeedBack">
+            <div class="formItem">
+                <span>Feedback:</span>
+                <mat-form-field appearance="fill">
+                        <textarea matInput formControlName="body" class="body" required></textarea>
+                        <mat-error>Required *</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="formItem" *ngIf="!($user | async)">
+                <span>Email:</span>
+                <mat-form-field appearance="fill">
+                        <input matInput formControlName="email" placeholder="Optional" class="email">
+                </mat-form-field> 
+            </div>
+
+            <button (click) = "submitFeedback()" type="button"><span>Submit</span></button>
+        </form>
+    </mat-card>
+</div>
+
+
 
 <div class="confirmation" *ngIf="thankYou" [@fadeIn]>
     <mat-card>
