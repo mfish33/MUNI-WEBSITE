@@ -16,12 +16,9 @@ const mailTransport = nodemailer.createTransport({
   },
 });
 
-export const delOldUnverifiedAccs = functions.https.onRequest(
-  /*functions.pubsub
+export const delOldUnverifiedAccs = functions.pubsub
   .schedule("0 0 * * 0") //run at 00:00 every sunday
-  .onRun*/ async (
-    context
-  ) => {
+  .onRun(async (context) => {
     let unverifiedUsers = await getUnverifiedUsers();
     let pool = new PromisePool(
       () => deleteUnverifiedUser(unverifiedUsers),
