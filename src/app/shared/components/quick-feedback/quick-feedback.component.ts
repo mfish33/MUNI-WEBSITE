@@ -9,7 +9,7 @@ import { take } from 'rxjs/operators';
   selector: 'app-quick-feedback',
   animations: [
     trigger(
-      'enterAnimation', [
+      'enterAnimation-desktop', [
         transition(':enter', [
           style({
             transform: 'translate(10%,10%)', 
@@ -28,6 +28,26 @@ import { take } from 'rxjs/operators';
           animate('200ms', style({
             transform: 'translate(10%,10%)', 
             opacity: 0
+          }))
+        ])
+      ]
+    ),
+    trigger(
+      'enterAnimation-mobile', [
+        transition(':enter', [
+          style({
+            transform: 'translate(0%,100%)', 
+          }),
+          animate('300ms', style({
+            transform: 'translate(0,0)', 
+          }))
+        ]),
+        transition(':leave', [
+          style({
+            transform: 'translate(0,0)',
+            }),
+          animate('300ms', style({
+            transform: 'translate(0%,100%)', 
           }))
         ])
       ]
@@ -61,6 +81,7 @@ export class QuickFeedbackComponent implements OnInit {
   public quickFeedBack:FormGroup
   public showForm = false
   public thankYou = false
+  public isMobile:boolean = false
   public $user:Observable<firebase.User>
   @Input('location') reportingLocation:string
 
@@ -72,6 +93,9 @@ export class QuickFeedbackComponent implements OnInit {
       body:''
     })
     this.$user = this.auth.user$
+    if(window.outerWidth < 800) {
+      this.isMobile = true
+    }
   }
 
   submitFeedback() {
