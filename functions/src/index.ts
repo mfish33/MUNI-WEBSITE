@@ -16,37 +16,38 @@ const mailTransport = nodemailer.createTransport({
   },
 });
 
-console.log(process.env.FIREBASE_CONFIG);
-export const delOldUnverifiedAccs = functions.pubsub
+export const delOldUnverifiedAccs = functions.https.onRequest(
+  /*functions.pubsub
   .schedule("0 0 * * 0") //run at 00:00 every sunday
-  .onRun(async (context) => {
-    console.log("deleting old unverified users");
+  .onRun*/ async (
+    context
+  ) => {
     let unverifiedUsers = await getUnverifiedUsers();
     let pool = new PromisePool(
       () => deleteUnverifiedUser(unverifiedUsers),
       MAX_CONCURRENT
     );
     await pool.start();
-    console.log(`Cleaned old unverified users`);
-  });
+  }
+);
 
 async function getUnverifiedUsers(
   users: admin.auth.UserRecord[] = [],
   nextPageToken: string | undefined = undefined
 ): Promise<admin.auth.UserRecord[]> {
+  let weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+
   let result = await admin.auth().listUsers(1000, nextPageToken);
 
-  let filteredUsers = result.users
-    .filter((user) => user.providerData.length == 1)
-    .filter((user) => user.providerData[0].providerId == "password")
-    .filter((user) => user.emailVerified == false)
-    .filter(
-      (user) =>
-        Date.parse(user.metadata.lastSignInTime) <
-        Date.now() - 7 * 24 * 60 * 60 * 1000
-    );
+  let filteredUsers = result.users.filter(
+    (user) =>
+      user.providerData.length == 1 &&
+      user.providerData[0].providerId == "password" &&
+      user.emailVerified == false &&
+      Date.parse(user.metadata.lastSignInTime) < Date.now() - weekInMilliseconds
+  );
 
-  users = users.concat(filteredUsers);
+  users = [...users, ...filteredUsers];
 
   if (result.pageToken) {
     return getUnverifiedUsers(users, result.pageToken);
@@ -54,31 +55,31 @@ async function getUnverifiedUsers(
   return users;
 }
 
-async function deleteUnverifiedUser(unverifiedUsers: admin.auth.UserRecord[]) {
+function deleteUnverifiedUser(
+  unverifiedUsers: admin.auth.UserRecord[]
+): Promise<unknown> | void {
   const userToDelete = unverifiedUsers.pop();
   if (userToDelete) {
-    // Delete the inactive user.
-    return admin
-      .auth()
-      .deleteUser(userToDelete.uid)
-      .then(() => {
-        return console.log(
+    // Creates a new async function, calls it, and returns the result
+    return (async () => {
+      try {
+        await admin.auth().deleteUser(userToDelete.uid);
+        console.log(
           "Deleted user account",
           userToDelete.email,
           "for not verifying their email within a week"
         );
-      })
-      .catch((error) => {
-        return console.error(
+      } catch (e) {
+        console.error(
           "Deletion of inactive user account",
           userToDelete.uid,
           "failed:",
-          error
+          e
         );
-      });
-  } else {
-    return null;
+      }
+    })();
   }
+  // Stop promise pool
 }
 
 export const sendFeedback = functions.https.onRequest(async (req, res) => {
