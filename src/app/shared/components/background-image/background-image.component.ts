@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, HostListener } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-background-image',
@@ -7,26 +8,32 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, HostLis
 })
 export class BackgroundImageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private sanitizer:DomSanitizer
+  ) { }
 
   public backgroundRatio:number
   public windowRatio:number
   @ViewChild('background') backgroundImage: ElementRef
   @Input() src: string
+  public imgSrc:SafeUrl
 
   async ngOnInit(): Promise<void> {
-    while(!this.resize()) {
-      await new Promise(resolve => setTimeout(resolve,50))
-    }
+    const imgRes = await fetch(this.src)
+    const imgBlob = await imgRes.blob()
+    const imgUrl = URL.createObjectURL(imgBlob)
+    this.imgSrc = this.sanitizer.bypassSecurityTrustUrl(imgUrl)
+    const imgDims = await this.getPngDimensions(imgBlob)
+    this.backgroundRatio = imgDims.width / imgDims.height
+    this.windowRatio = window.innerWidth / window.innerHeight
   }
 
-  resize(): boolean {
-    this.backgroundRatio = this.backgroundImage?.nativeElement?.naturalWidth / this.backgroundImage?.nativeElement?.naturalHeight
-    if(isNaN(this.backgroundRatio)) {
-      return false
+  async getPngDimensions(pngBlob:Blob): Promise<{width:number, height:number}> {
+    let dv = new DataView(await pngBlob.slice(16, 24).arrayBuffer()) 
+    return{
+      width: dv.getInt32(0),
+      height: dv.getInt32(4)
     }
-    this.windowRatio = window.innerWidth / window.innerHeight
-    return true
   }
 
   @HostListener('window:resize', ['$event'])
