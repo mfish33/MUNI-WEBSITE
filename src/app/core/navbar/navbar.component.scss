@@ -1,299 +1,349 @@
 @import "./src/styles.scss";
-$hamburger-layer-color:white;
+$hamburger-layer-color:$bluePrimary;
+$hamburger-hover-opacity :1;
+
 @import '~hamburgers/_sass/hamburgers/hamburgers.scss';
 
+// Shared mobile and desktop nav
 :host{
   font-family: 'Muli';
   color: $bluePrimary;
   a{
-    // IDK WHY I NEED THIS FOR LINKS TO BE WHITE
     color: $bluePrimary
   }
 }
 
-.navContainer {
-  display: grid;
-  grid-template-columns: [logo] 20%  [mainNav] 60% [signIn] 20% [end];
-  background-color:$lightBlueGreyPrimary;
-}
-  
-
-.logoSection {
-  grid-column-start: logo;
-  grid-column-end: mainNav;
-  display: flex;
-  img {
-    height: 50px;
-    width: auto;
-    margin-left: 50px;
-    outline: none;
-    cursor: pointer;
+.icon{
+  width: 45px;
+  height: 45px;
+  background: #c4c6c9;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 50px;
+  .signedInIcon{
+    color:$bluePrimary
+  }
+  .signedOutIcon{
+    color: white;
   }
 }
 
-.mainNav{
-  grid-column-start: mainNav;
-  grid-column-end: signIn;
-  .mainNavList {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 5rem;
+
+.desktopNav {
+  display: grid;
+  grid-template-columns: [logo] 20%  [mainNav] 60% [signIn] 20% [end];
+  background-color:$lightBlueGreyPrimary;
+  .logoSection {
+    grid-column-start: logo;
+    grid-column-end: mainNav;
     display: flex;
-    justify-content: space-around;
-    li {
-      display: inline-block;
-      vertical-align: center;
-      font-size: 1.5rem;
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      height: 100%;
+    img {
+      height: 50px;
+      width: auto;
+      margin-left: 50px;
+      outline: none;
       cursor: pointer;
-
-      a {
-        display: block;
-        text-align: center;
-        text-decoration: none;
-      }
-      
-      &:hover {
-        background-color: $blueAcescent;
-      }
     }
-    .dropdownContainer{
-      position: relative;
-      
-      &:hover .dropdownList{
-        opacity: 1;
-        visibility: visible;
-      }
-      &:hover .arrow-down{
-        transform: rotateZ(180deg);
-      }
-
-      .navDropLabel{
-        width: 100%;
-        height: 100%;
+  }
+  
+  .mainNav{
+    grid-column-start: mainNav;
+    grid-column-end: signIn;
+    .mainNavList {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      height: 5rem;
+      display: flex;
+      justify-content: space-around;
+      li {
+        display: inline-block;
+        vertical-align: center;
+        font-size: 1.5rem;
+        width: 80%;
         display: flex;
         justify-content: center;
-        outline: none;
-    
-        .centerElements{
-          margin: auto;
+        flex-direction: column;
+        height: 100%;
+        cursor: pointer;
+  
+        a {
+          display: block;
+          text-align: center;
+          text-decoration: none;
+        }
+        
+        &:hover {
+          background-color: $blueAcescent;
+        }
+      }
+      .dropdownContainer{
+        position: relative;
+        
+        &:hover .dropdownList{
+          opacity: 1;
+          visibility: visible;
+        }
+        &:hover .arrow-down{
+          transform: rotateZ(180deg);
+        }
+  
+        .navDropLabel{
+          width: 100%;
+          height: 100%;
           display: flex;
-          .arrow-down {
-            width: 0; 
-            height: 0; 
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 10px solid white;
-            margin-top: 10px;
-            margin-left: 10px;
-            transition: all 0.4s ease;
+          justify-content: center;
+          outline: none;
+      
+          .centerElements{
+            margin: auto;
+            display: flex;
+            .arrow-down {
+              width: 0; 
+              height: 0; 
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-bottom: 10px solid white;
+              margin-top: 10px;
+              margin-left: 10px;
+              transition: all 0.4s ease;
+            }
+          }
+        }
+  
+        .dropdownList{
+          position: absolute;
+          top: 100%;
+          width: 100%;
+          background-color:$lightBlueGreyPrimary;
+          opacity: 0;
+          padding:0;
+          transition: all 0.4s ease;
+          visibility: hidden;
+          z-index: 3;
+          li{
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  
+    
+  .signInWidget{
+      grid-column-start: signIn;
+      grid-column-end: end;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    .signInOptions{
+      padding-left: 10px;
+      p{
+        margin: 0;
+      }
+      button{
+        color:white;
+        background-color:$bluePrimary;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+  
+
+
+.mobileNav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $lightBlueGreyPrimary;
+  width: 100%;
+  height: $mobile-header;
+  .flexContainer{
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+    width: 100%;
+    height:inherit;
+
+    .logo{
+      margin-left: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      img{
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    .mobileSignInLogo{
+      margin-right: 10px;
+      // 7 + 8 + iconWidth==45 = 60 = mobileHeaderHeight
+      padding-top: 8px;
+      padding-bottom: 7px;
+    }
+  
+    .hamburger{
+      position: absolute;
+      left: 50%;
+      top: 0px;
+      transform: translate(-50%,0);
+      .hamburgerTurn{
+        transform: rotateZ(90deg);
+      }
+    }
+  
+    .mobileDrop{
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      transform: scaleY(0);
+      transform-origin: top; 
+      transition: all .4s ease;
+      overflow: hidden;
+      &.active{
+        transform: scaleY(1);
+      }
+      ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        @extend .roboto-body-fixed;
+        .navItem{
+          width: 100%;
+          height:50px;
+          background-color: $lightBlueGreyPrimary;
+          box-sizing: border-box;
+          border-color:$bluePrimary;
+          border-width: 1px;
+          border-style: solid;
+          position: relative;
+          &:nth-child(n+2){
+            border-top: 0px;
+          }
+          .navLabel{
+            text-align: center;
+            a{
+              text-decoration: none;
+            }
+          }
+          .navDropLabel{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+            a{
+                text-decoration: none;
+            }
+            .arrow-down {
+              width: 0; 
+              height: 0; 
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-bottom: 10px solid $bluePrimary;
+              margin-left: 10px;
+              transition: all 0.4s ease;
+              &.active{
+                transform: rotateZ(180deg);
+              }
+            }
+            
+          }
+        }
+        .mobileSubDrop{
+          max-height: 0;
+          transform-origin: top;
+          transition: .4s ease all;
+          background-color: $bluePrimary;
+          overflow: hidden;
+          &.active{
+            // Might need to fix later if many more courses are added
+            max-height: 280px;
+          }
+          li{
+            height: 50px;
+            border-color: white;
+            border-style: solid;
+            border-width: 0px;
+            border-bottom-width: 1px;
+            &:last-child{
+              border-bottom-width: 0;
+            }
+            a{
+              margin-left: 10px;
+              color: white;
+              text-decoration: none;
+            }
           }
         }
       }
 
-      .dropdownList{
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        background-color:$lightBlueGreyPrimary;
-        opacity: 0;
-        padding:0;
-        transition: all 0.4s ease;
-        visibility: hidden;
-        z-index: 3;
+    }
+
+    .mobileUserOptions{
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 0;
+      transition: .4s ease all;
+      background-color:$lightBlueGreyPrimary;
+      @extend .roboto-body-fixed;
+      border-radius: 0 0 0 15px;
+      &.active{
+        width: 150px;
+      }
+      ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        
         li{
-          padding-left: 0;
-          padding-right: 0;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          width: 100%;
+          height: 50px;
+          overflow: hidden;
+          text-align: center;
+          border-color: $bluePrimary;
+          border-width: 0;
+          border-left-width: 2px;
+          border-top-width: 2px;
+          border-style: solid;
+          &:last-child{
+            border-bottom-width: 2px;
+            border-radius: 0 0 0 15px;
+          }
+          a{
+            color: $bluePrimary;
+            text-decoration: none;
+            white-space: nowrap;
+          }
         }
       }
     }
   }
 }
 
-  
-.signInWidget{
-    grid-column-start: signIn;
-    grid-column-end: end;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-  .signInOptions{
-    padding-left: 10px;
-    p{
-      margin: 0;
-    }
-    button{
-      color:white;
-      background-color:$bluePrimary;
-      padding-top: 2px;
-      padding-bottom: 2px;
-      cursor: pointer;
-      outline: none;
-      border: none;
-      border-radius: 4px;
-    }
-  }
-    
-  .icon{
-    width: 45px;
-    height: 45px;
-    background: #c4c6c9;
-    text-align: center;
-    font-size: 30px;
-    border-radius: 50px;
-    .signedInIcon{
-      color:$bluePrimary
-    }
-    .signedOutIcon{
-      color: white;
-    }
-  }
-}
-
-
-
-
-
-/* Mobile Nav */
+// Mobile toggle
 .hideDesktop{
   display: none;
 }
 
-.hamburger{
-  padding-left: 20px;
-  padding-right: 20px;
-  .hamburgerTurn{
-    transform: rotateZ(90deg);
-  }
-}
-
-.mobileNav{
-  position: absolute;
-  top: 80px;
-  height: calc(100% - 80px);
-  width: 0;
-  background-color: $mobileHamburger;
-  transition: 0.5s;
-  li{
-    height: auto;
-    width: 100%;
-    padding-top: 20px;
-  }
-  
-}
-
-.slideMobileNav{
-  width: 65%;
-}
-
-
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: $mobileBreakpoint) {
   .hideMobile {
     display: none;
   }
 
   .hideDesktop{
     display: block;
-  }
-
-  .navContainer {
-    grid-template-columns: [logo] 75%  [signIn] 25% [end];
-  }
-
-  .logoSection {
-    grid-column-end: signIn;
-  }
-
-  .mainNavList{
-    flex-direction: column;
-    height: 100%;
-    justify-content: flex-start;
-  }
-
-  .dropdownContainer{
-    position: static;    
-  }
-
-  .dropdownList{
-    position: static;
-    display: flex;
-    flex-direction: column;
-    visibility: hidden;
-    max-height: 0;
-    opacity: 1;
-    transition:all 0.4;
-    height:auto;
-    overflow: hidden;
-    background-color: $mobileHamburger;
-  }
-
-  .mobileHover{
-    ul{
-      max-height:200px;
-      visibility: visible;
-    }
-    .arrow-down{
-      transform: rotateZ(180deg);
-    }
-  }
-
-  .mobileSignInOptions{
-    width: 100px;
-    height: auto;
-    border-style: solid;
-    background-color: black;
-    position: absolute;
-    top: 60px + 10px;
-    right: calc(12.5% - 50px);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s;
-    clip-path: polygon(50% 0%, 70% 13%, 100% 13%, 100% 100%, 0 100%, 0 13%, 31% 13%);
-
-    a{
-      color: black;
-      font-size: 18px;
-    }
-    ul{
-      padding: 0px;
-      margin: 0;
-    }
-    li{
-      width: 100%;
-    }
-    .mobileSignInOptionsClippy{
-      clip-path: polygon(50% -2%, 70% 13%, 100% 13%, 100% 100%, 0% 199%, 0% 13%, 30% 13%);
-      background-color: white;
-    }
-    .mobileSignInOptionsSignIn{
-      padding-top: 8px;
-    }
-    
-  }
-  
-  .mobileSignInOptionsShow{
-    visibility: visible;
-    opacity: 1;
-  }
-
-  //remove hover color incase of hover on mobile
-  li:hover {
-    background-color: $mobileHamburger;
-  }
-
-}
-
-@media only screen and (max-width: 400px) {
-  .mobileSignInOptions{
-    right: 0;
   }
 }

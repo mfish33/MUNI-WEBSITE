@@ -10,3 +10,8 @@
 .main{
     margin-top: $header;
 }
+@media only screen and (max-width: 800px) {
+    .main{
+        margin-top: $mobile-header;
+    }
+}

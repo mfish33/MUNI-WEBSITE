@@ -9,6 +9,7 @@ $lightBlueCard:#EBF2FA;
 $mobileHamburger:#464853;
 
 $header:80px;
+$mobile-header:60px;
 $footer:45px;
 
 // Breakpoints
@@ -140,3 +141,10 @@ html, body {
     font-size: 1.0vw;
     line-height: 1.4vw;
 }
+
+.roboto-body-fixed{
+    @extend .roboto;
+    font-size: 24px;
+    line-height: 28px;
+}
+
