@@ -1,18 +1,12 @@
-<div class="navContainer">
+<div class="desktopNav hideMobile">
 
     <div class="logoSection">
-        <div class="hamburger hamburger--spin hideDesktop" (click)="hamburgerIsActive=!hamburgerIsActive"
-            [ngClass]="hamburgerIsActive ? 'is-active hamburgerTurn' : ''">
-            <div class="hamburger-box">
-                <div class="hamburger-inner"></div>
-            </div>
-        </div>
         <div class="verticalAlign">
             <img src="assets/muni-logo.png" alt="" [routerLink]="['/']">
         </div>
     </div>
     
-    <nav class="mainNav hideMobile">
+    <nav class="mainNav">
         <ul class="mainNavList">
             <li class="dropdownContainer">
                 <div class="navDropLabel" [routerLink]="['courses']">
@@ -54,7 +48,7 @@
     <div class="signInWidget">
         <div style="display: flex;">
             <div *ngIf="$user | async as user; else defaultIcon">
-                <div class="verticalAlign" (click)="mobileSignInOptions=!mobileSignInOptions">
+                <div class="verticalAlign">
                     <img *ngIf="user.photoURL" [src]="user.photoURL" class="icon">
                     <div *ngIf="!user.photoURL" class="icon">
                         <fa-icon [icon]="faUser" class="signedInIcon"></fa-icon>
@@ -62,7 +56,7 @@
                 </div>
             </div>
             <ng-template #defaultIcon>
-                <div class="verticalAlign" (click)="mobileSignInOptions=!mobileSignInOptions">
+                <div class="verticalAlign">
                     <div class="icon">
                         <fa-icon [icon]="faUser" class="signedOutIcon"></fa-icon>
                     </div>
@@ -70,7 +64,7 @@
             </ng-template>
 
             <!--verticalAlign-->
-            <div class="signInOptions verticalAlign hideMobile">
+            <div class="signInOptions verticalAlign">
                 <div *ngIf="$user | async as user; else loginButtons">
                     <p> {{user.displayName}}</p>
                     <button (click)='auth.signOut()'>Sign Out</button>
@@ -81,61 +75,120 @@
                 </ng-template>
             </div>
 
-
-
-            <div class="mobileSignInOptions hideDesktop"
-                [ngClass]="mobileSignInOptions ? 'mobileSignInOptionsShow' : ''">
-                <ul class="mobileSignInOptionsClippy">
-                    <li class="mobileSignInOptionsSignIn">
-                        <a [routerLink]="['/login']">Sign In</a>
-                    </li>
-                    <li>
-                        <a href="#">Register</a>
-                    </li>
-                </ul>
-
-
-            </div>
-
         </div>
 
     </div>
 </div>
 
-<div [ngClass]="hamburgerIsActive ? 'slideMobileNav' : ''" class="mobileNav hideDesktop">
-    <ul class="mainNavList">
-        <li (click)="navDrop1=!navDrop1" [ngClass]="navDrop1 ? 'mobileHover' : ''" class="dropdownContainer">
-            <div class="navDropLabel">
-                <a href="courses">Courses</a>
-                <div class="arrow-down"></div>
+
+
+<div class="mobileNav hideDesktop">
+    <div class="flexContainer">
+        <div class="logo" [routerLink]="['/']" (tap)="resetAndCloseMobileNav()">
+            <img src="assets/mobileLogo.png" alt="">
+        </div>
+
+        <div class="hamburger hamburger--spin hideDesktop" (tap)="toggleMobileDropDown()" [ngClass]="toggles.hamburgerIsActive ? 'is-active hamburgerTurn' : ''">
+            <div class="hamburger-box">
+                <div class="hamburger-inner"></div>
             </div>
-            <ul class="dropdownList">
-                <li *ngFor="let course of courses | async">
-                    <a [routerLink]="['/courses', course.id]">{{course.courseTitle}}</a>
+        </div>
+        
+        <div [class.active]="toggles.hamburgerIsActive" class="mobileDrop">
+            <ul>
+                <li (tap)="toggleMobileSubDropDown('courses')"  class="navItem">
+                    <div class="navDropLabel">
+                        <div class="verticalAlign">
+                            <a>Courses</a>
+                        </div>
+                        
+                        <div class="verticalAlign">
+                            <div class="arrow-down" [class.active]="toggles.dropDowns.courses"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="mobileSubDrop" [class.active]="toggles.dropDowns.courses">
+                    <ul>
+                        <li [routerLink]="['/courses']" (tap)="resetAndCloseMobileNav()" class="verticalAlign">
+                            <a>Course Overview</a>
+                        </li>
+                        <li *ngFor="let course of courses | async" [routerLink]="['/courses', course.id]" (tap)="resetAndCloseMobileNav()" class="verticalAlign">
+                            <a>{{course.courseTitle}}</a>
+                        </li>
+                    </ul>
+                </li>
+        
+                <li (tap)="toggleMobileSubDropDown('tools')" class="navItem">
+                    <div class="navDropLabel">
+                        <div class="verticalAlign">
+                            <a>Tools</a>
+                        </div>
+
+                        <div class="verticalAlign">
+                            <div class="arrow-down" [class.active]="toggles.dropDowns.tools"></div>
+                        </div> 
+                    </div>
+                </li>
+                <li class="mobileSubDrop" [class.active]="toggles.dropDowns.tools">
+                    <ul>
+                        <li class="verticalAlign">
+                            <a [routerLink]="['tools']">All Tools</a>
+                        </li>
+                        <li class="verticalAlign">
+                            <a [routerLink]="['tools','spreadsheet']">Spreadsheet</a>
+                        </li>
+                        <li class="verticalAlign">
+                            <a [routerLink]="['tools','calculator']">Calculator</a>
+                        </li>
+                    </ul>
+                </li>
+        
+                <li class="navItem">
+                    <div class="navLabel verticalAlign">
+                        <a [routerLink]="['/about']" (tap)="resetAndCloseMobileNav()">About</a>
+                    </div>  
+                </li>
+        
+            </ul>
+        </div>
+    
+        <div class="mobileSignInLogo" (tap)="toggleSignIn()">
+            <div *ngIf="$user | async as user; else defaultIcon">
+                <div class="verticalAlign">
+                    <img *ngIf="user.photoURL" [src]="user.photoURL" class="icon">
+                    <div *ngIf="!user.photoURL" class="icon">
+                        <fa-icon [icon]="faUser" class="signedInIcon"></fa-icon>
+                    </div>
+                </div>
+            </div>
+            <ng-template #defaultIcon>
+                <div class="verticalAlign">
+                    <div class="icon">
+                        <fa-icon [icon]="faUser" class="signedOutIcon"></fa-icon>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+
+
+        <div class="mobileUserOptions" [class.active]="toggles.mobileSignInOptions">
+            <ul *ngIf="!($user | async)">
+                <li class="verticalAlign">
+                    <a [routerLink]="['/login']" (tap)="resetAndCloseMobileNav()">Log In</a>
+                </li>
+                <li class="verticalAlign">
+                    <a [routerLink]="['/register']" (tap)="resetAndCloseMobileNav()">Register</a>
                 </li>
             </ul>
-        </li>
-
-        <li class="dropdownContainer" (click)="navDrop2=!navDrop2" [ngClass]="navDrop2 ? 'mobileHover' : ''">
-            <div class="navDropLabel">
-                <a href="#Tools">Tools</a>
-                <div class="arrow-down"></div>
-            </div>
-            <ul class="dropdownList">
-                <li>
-                    <a href="">Spreadsheet</a>
-                </li>
-                <li>
-                    <a href="">Calculator</a>
-                </li>
-                <li>
-                    <a href="">All Tools</a>
+            <ul *ngIf="$user | async as user">
+                <li class="verticalAlign">
+                    <a (tap)='auth.signOut();resetAndCloseMobileNav()'>Sign Out</a>
                 </li>
             </ul>
+        </div>
 
-        </li>
 
-        <li><a [routerLink]="['/about']">About</a></li>
 
-    </ul>
+    </div> 
 </div>
+
