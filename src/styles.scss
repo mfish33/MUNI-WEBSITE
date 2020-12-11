@@ -15,6 +15,7 @@ $footer:45px;
 // Breakpoints
 $mobileBreakpoint:800px;
 
+
 body{
     margin: 0;
 }
@@ -140,6 +141,18 @@ html, body {
     @extend .roboto;
     font-size: 1.0vw;
     line-height: 1.4vw;
+}
+
+.roboto-small-header-fixed {
+    @extend .roboto;
+    font-size: 36px;
+    line-height: 42px;
+}
+
+.roboto-small-body-fixed{
+    @extend .roboto;
+    font-size: 14px;
+    line-height: 17px;
 }
 
 .roboto-body-fixed{
