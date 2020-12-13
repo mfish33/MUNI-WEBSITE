@@ -9,6 +9,7 @@ import { RegisterComponent } from './modules/auth/components/register/register.c
 import { CourseOverviewComponent } from './modules/course-overview/components/course-overview/course-overview.component'
 import { AuthGuard } from './core/guards/auth.guard';
 import { ComingSoonComponent } from './modules/coming-soon/components/coming-soon/coming-soon.component';
+import { InvestingWidgetComponent } from './modules/lesson/components/investing-widget/investing-widget.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'courses/:cid', component: CourseTemplateComponent },
   { path: 'tools', component:ComingSoonComponent},
   { path: 'tools/:name', component:ComingSoonComponent},
+  { path: 'widgetTest', component:InvestingWidgetComponent },
   { path: '**', redirectTo: '' }
 ];
 

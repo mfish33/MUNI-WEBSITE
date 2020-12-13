@@ -142,6 +142,18 @@ html, body {
     line-height: 1.4vw;
 }
 
+.roboto-small-header-fixed {
+    @extend .roboto;
+    font-size: 36px;
+    line-height: 42px;
+}
+
+.roboto-small-body-fixed{
+    @extend .roboto;
+    font-size: 14px;
+    line-height: 16px;
+}
+
 .roboto-body-fixed{
     @extend .roboto;
     font-size: 24px;
