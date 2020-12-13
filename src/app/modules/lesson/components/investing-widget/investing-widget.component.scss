@@ -1,0 +1,142 @@
+@import 'src/styles.scss';
+
+$widgetHeight:520px;
+$widgetWidth:720px;
+$inputSize:200px;
+
+.intro{
+    width: $widgetWidth + $inputSize + 50px;
+    margin: auto;
+    h1{
+        @extend .roboto-small-header-fixed;
+        margin: 0;
+    }
+    p{
+        @extend .roboto-body;
+        font-size: 18px;
+        line-height: 20px;
+    }
+}
+
+.widget{
+    display: flex;
+    justify-content: center;
+    .input{
+        width: 50px + $inputSize;
+        height: $widgetHeight;
+        margin-bottom: 80px;
+        .itemInput{
+            margin-top: 15px;
+            .labelAndTypeValue{
+                display: flex;
+                justify-content: space-between;
+                width: $inputSize;
+                h3{
+                    @extend .roboto;
+                    font-size: 18px;
+                    line-height: 20px;
+                    margin: 0;
+                }
+                
+                .dollar{
+                    display:inline-block;
+                    position: relative;
+                    &:before {
+                        position: absolute;
+                        content:"$";
+                        left:5px;
+                        top:2px;
+                    }
+                    input{
+                        width: 60px;
+                        padding-left: 15px;
+                    }
+                }
+                input{
+                    width: 75px;
+                    height: 20px;
+                }
+                select{
+                    width: 90px;
+                }  
+            }
+        }
+    }
+    .output{
+        position: relative;
+        height: $widgetHeight;
+        width: $widgetWidth;
+        background-color: #E2E3E4;
+        border-radius: 10px;
+        .header{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            @extend .roboto-body-fixed;
+            .highlight{
+                color:#0099FF;
+                margin-left: 4px;
+                margin-right: 4px;
+            }
+        }
+        canvas{
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: $widgetWidth - 50px !important;
+            height: $widgetHeight - 80px !important;
+        }
+        .bottomButtons{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            button{
+                @extend .roboto; 
+                font-size: 18px;
+                line-height: 20px;;
+                background-color:#A1A1A1;
+                width: inherit;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                padding-top: 10px;
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-bottom: 10px;
+                color: white;
+                cursor: pointer;
+                outline: none;
+                border: none;
+                border-radius: 10px;
+                &.active{
+                    background-color: #0099FF;
+                }
+            }
+        }
+    }
+}
+
+// Styling for sliders
+
+::ng-deep .mat-slider-wrapper{
+    width:$inputSize !important;
+  }
+
+::ng-deep .mat-slider-thumb {
+    background-color:white;
+    box-shadow: 0 0 10px 1px #c5c5c5;;
+    height: 25px;
+    width: 25px;
+    bottom: -12.5px;
+    right: -12.5px;
+}
+
+::ng-deep .mat-slider-track-fill {
+    background-color: #3586e4;
+}
+
+::ng-deep .mat-slider-track-background{
+    background-color: grey;
+}

@@ -1,0 +1,99 @@
+<div class="intro">
+    <h1><b>Compare Investing Strategies</b></h1>
+    <p>Now that you've learned the basics of some common investing strategies, let's see which ones might work well for you. Enter your financial information in the fields below and see which investment strategies work for you.</p>
+</div>
+<div class="widget">
+    <div class="input verticalAlign">
+
+        <div class="itemInput">
+            <div class="labelAndTypeValue">
+                <h3>Age</h3>
+
+                <input type="number" [min]="input.age.min" [max]="input.age.max" [(ngModel)]="input.age.value"
+                    (keyup)="input.age.value > input.age.max ? input.age.value = input.age.max:''"
+                    (focusout)="input.age.value < input.age.min ? input.age.value = input.age.min:''">
+            </div>
+            <mat-slider [(ngModel)]="input.age.value" [min]="input.age.min" [max]="input.age.max" (input)="input.age.value = $event.value"></mat-slider>
+        </div>
+
+        <div class="itemInput">
+            <div class="labelAndTypeValue">
+                <h3>Starting Capital</h3>
+                <div class="dollar">
+                    <input type="number" [min]="input.startingCapital.min" [max]="input.startingCapital.max" [(ngModel)]="input.startingCapital.value"
+                        (keyup)="input.startingCapital.value > input.startingCapital.max ? input.startingCapital.value = input.startingCapital.max:''"
+                        (focusout)="input.startingCapital.value < input.startingCapital.min ? input.startingCapital.value = input.startingCapital.min:''">
+                </div>
+            </div>
+            <mat-slider [(ngModel)]="input.startingCapital.value" [min]="input.startingCapital.min" [max]="input.startingCapital.max" (input)="input.startingCapital.value = $event.value"></mat-slider>
+        </div>
+
+        <div class="itemInput">
+            <div class="labelAndTypeValue">
+                <div>
+                    <h3>Contribution</h3>
+                    <select matNativeControl required [(ngModel)]="input.contribution.multiplier">
+                        <option value="26">Bi-Weekly</option>
+                        <option value="12">monthly</option>
+                        <option value="1">Yearly</option>
+                    </select>
+                </div>
+                <div class="dollar">
+                    <input type="number" [min]="input.contribution.min" [max]="input.contribution.max" [(ngModel)]="input.contribution.value"
+                        (keyup)="input.contribution.value > input.contribution.max ? input.contribution.value = input.contribution.max:''"
+                        (focusout)="input.contribution.value < input.contribution.min ? input.contribution.value = input.contribution.min:''">
+                </div>
+            </div>
+            <mat-slider [(ngModel)]="input.contribution.value" [min]="input.contribution.min" [max]="input.contribution.max" (input)="input.contribution.value = $event.value" step="10"></mat-slider>
+        </div>
+
+        <div class="itemInput">
+            <div class="labelAndTypeValue">
+                <div>
+                    <h3>Expenses</h3>
+                    <select matNativeControl required [(ngModel)]="input.expenses.multiplier">
+                        <option value="12">monthly</option>
+                        <option value="1">Yearly</option>
+                    </select>
+                </div>
+                <div class="dollar">
+                    <input type="number" [min]="input.expenses.min" [max]="input.expenses.max" [(ngModel)]="input.expenses.value"
+                        (keyup)="input.expenses.value > input.expenses.max ? input.expenses.value = input.expenses.max:''"
+                        (focusout)="input.expenses.value < input.expenses.min ? input.expenses.value = input.expenses.min:''">
+                </div>
+            </div>
+            <mat-slider [(ngModel)]="input.expenses.value" [min]="input.expenses.min" [max]="input.expenses.max" (input)="input.expenses.value = $event.value"></mat-slider>
+        </div>
+
+        <div class="itemInput">
+            <div class="labelAndTypeValue">
+                <h3>Time Horizon</h3>
+                <input type="number" [min]="input.timeHorizon.min" [max]="input.timeHorizon.max" [(ngModel)]="input.timeHorizon.value"
+                    (keyup)="input.timeHorizon.value > input.timeHorizon.max ? input.timeHorizon.value = input.timeHorizon.max:''"
+                    (focusout)="input.timeHorizon.value < input.timeHorizon.min ? input.timeHorizon.value = input.timeHorizon.min:''">
+            </div>
+            <mat-slider [(ngModel)]="input.timeHorizon.value" [min]="input.timeHorizon.min" [max]="input.timeHorizon.max" (input)="input.timeHorizon.value = $event.value"></mat-slider>
+        </div>
+
+    </div>
+    <div class="output">
+        <div class="header">
+            Potential:
+            <div class="highlight">
+                {{makeHeading()}}
+            </div>
+            after
+            <div class="highlight">
+                {{input.timeHorizon.value}}
+            </div>
+            years
+        </div>
+        <canvas #chart></canvas>
+        <div class="bottomButtons">
+            <div *ngFor="let option of input.risk.options">
+                <button [class.active]="option.value == input.risk.value && option.uncertainty == input.risk.uncertainty" (click)="input.risk.uncertainty=option.uncertainty;input.risk.value = option.value">{{option.name}}</button>
+            </div>
+        </div>
+    </div>
+
+</div>
