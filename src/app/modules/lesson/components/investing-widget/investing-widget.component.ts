@@ -50,7 +50,7 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
         return this._multiplier
       },
       self:this,
-      _value:3000,
+      _value:900,
       set value(value){
         this._value = value
         this.self.generateData()
@@ -59,7 +59,7 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
         return this._value
       },
       min:0,
-      get max(){return 1000000 / parseInt(this.multiplier)}
+      get max(){return 200000 / parseInt(this.multiplier)}
     },
     expenses:{
       // Multiplier is defaulted to monthly
@@ -83,12 +83,12 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
       },
       min:0,
       get max(){
-        return this.self.input.contribution.value * parseInt(this.self.input.contribution.multiplier) / parseInt(this.multiplier)
+        return this.self.input.contribution.value * parseInt(this.self.input.contribution.multiplier) / parseInt(this.multiplier) * 15
       }
     },
     timeHorizon:{
       self:this,
-      _value:10,
+      _value:15,
       set value(value){
         this._value = value
         this.self.generateData()
@@ -105,37 +105,54 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
       options:[
         {
           name:'Low Risk',
-          value:.03,
-          uncertainty:.01
+          formalName:'Passive Short Term',
+          description:'This strategy can work for people that have expensive short term goals. Typically this means using your savings within the next 5 years.',
+          value:.0075,
+          uncertainty:.0025
         },
         {
           name:'Low-Medium Risk',
-          value:.05,
-          uncertainty:.015
+          formalName:'Passive Long Term: Dividends',
+          description:'This strategy is useful for people that are looking for a source of consistent income (whether to reinvest and grow assets faster or withdrawal to live off).',
+          value:.075,
+          uncertainty:.025
         },
         {
-          name:'Medium-High Risk',
-          value:.08,
-          uncertainty:.04
+          name:'Medium Risk',
+          formalName:'Passive Long Term: Funds',
+          description:'This strategy tends to work for people with a “set it and forget it” mentality. You could be in this bucket if you are satisfied with your current job/industry and can see yourself working in it for many years before retiring.',
+          value:.09,
+          uncertainty:.01
         },
         {
           name:'High Risk',
-          value:.08,
-          uncertainty:.5
+          formalName:'Active Short Term',
+          description:'Active short term investing typically means that you are actively trading in the stock market. Examples of this strategy include day trading and swing trading. These methods require buying and selling stocks within the day or a few days.',
+          value:.1,
+          uncertainty:.2
         }
       ],
       self:this,
-      _value:.08,
-      set value(value){
-        this._value = value
+      get value() {
+        return this.options[this.activePlanIndex].value
+      },
+      get uncertainty(){
+        return this.options[this.activePlanIndex].uncertainty
+      },
+      _activePlanIndex:2,
+      get activePlanIndex(){
+        return this._activePlanIndex
+      },
+      set activePlanIndex(value) {
+        this._activePlanIndex = value
         this.self.generateData()
       },
-      get value() {
-        return this._value
-      },
-      uncertainty:.5
+      get activePlan() {
+        return this.options[this.activePlanIndex]
+      }
     }
   }
+  public toolTipToggle = ''
 
   constructor() { }
 
@@ -189,7 +206,7 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
               yAxes: [{
                 scaleLabel:{
                   display:true,
-                  labelString:'Investment value (Dollars)',
+                  labelString:'Investment Value (Dollars)',
                   fontFamily:'Roboto',
                   fontSize:18,
                   fontColor:'black'
@@ -290,28 +307,7 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
             textAlign:'center',
             color:'black',
             value:'Starting Capital'
-          },
-          {
-            dataset:0,
-            index:this.data.projected.length - 1,
-            xOffset:-60,
-            yOffset:-80,
-            textYAdjust:5,
-            textAlign:'right',
-            color:'black',
-            value:`Average: ${this.input.risk.value * 100}%`
-          },
-          {
-            dataset:2,
-            index:this.data.projected.length - 1,
-            xOffset:-60,
-            yOffset:-100,
-            textYAdjust:5,
-            textAlign:'right',
-            color:'black',
-            value:`Uncertainty: ±${this.input.risk.uncertainty * 100}%`
-          }
-        ]
+          }]
         }
       },
       
@@ -327,9 +323,9 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
     this.data.upperBound = []
     this.data.lowerBound = []
 
-    const eqProjected = (x) => (this.data.projected[x-1]?.y ?? this.input.startingCapital.value) * (1 + this.input.risk.value) + (this.input.contribution.value * parseInt(this.input.contribution.multiplier) - this.input.expenses.value * parseInt(this.input.expenses.multiplier))
-    const eqUpperBound = (x) => (this.data.projected[x-1]?.y ?? this.input.startingCapital.value) * (1 + this.input.risk.value + this.input.risk.uncertainty) + (this.input.contribution.value * parseInt(this.input.contribution.multiplier) - this.input.expenses.value * parseInt(this.input.expenses.multiplier))
-    const eqLowerBound = (x) => (this.data.projected[x-1]?.y ?? this.input.startingCapital.value) * (1 + this.input.risk.value - this.input.risk.uncertainty) + (this.input.contribution.value * parseInt(this.input.contribution.multiplier) - this.input.expenses.value * parseInt(this.input.expenses.multiplier))
+    const eqProjected = (x) => this.data.projected[x-1] ? this.data.projected[x-1].y * (1 + this.input.risk.value) + (this.input.contribution.value * parseInt(this.input.contribution.multiplier)) : this.input.startingCapital.value
+    const eqUpperBound = (x) => this.data.upperBound[x-1] ? this.data.upperBound[x-1].y * (1 + this.input.risk.value + this.input.risk.uncertainty) + (this.input.contribution.value * parseInt(this.input.contribution.multiplier)) : this.input.startingCapital.value
+    const eqLowerBound = (x) => this.data.lowerBound[x-1] ? this.data.lowerBound[x-1].y * (1 + this.input.risk.value - this.input.risk.uncertainty) + (this.input.contribution.value * parseInt(this.input.contribution.multiplier)) : this.input.startingCapital.value
     let startingAge = this.input.age.value
     for(let year = startingAge; year < this.input.timeHorizon.value + 5 + startingAge; year++) {
       this.data.years.push(year)
@@ -365,11 +361,6 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
     this.chartjsChart.options.annotation.annotations[1].label.content = `Financial Freedom Number $${this.numberWithCommas(this.numberWithCommas(financialFreedomNumber))}`
     this.chartjsChart.data.labels = this.data.years
 
-    // Update Point annotations
-    this.chartjsChart.options.plugins.labelPoint[1].value = `Average ${this.input.risk.value * 100}%`
-    this.chartjsChart.options.plugins.labelPoint[2].value = `Uncertainty ±${this.input.risk.uncertainty * 100}%`
-    this.chartjsChart.options.plugins.labelPoint[1].index = this.data.projected.length - 1
-    this.chartjsChart.options.plugins.labelPoint[2].index = this.data.projected.length - 1
     this.chartjsChart.update()
   }
 

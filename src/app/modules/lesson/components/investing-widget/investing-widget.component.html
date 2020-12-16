@@ -7,18 +7,34 @@
 
         <div class="itemInput">
             <div class="labelAndTypeValue">
-                <h3>Age</h3>
-
+                <div class="label">
+                    <h3>Age</h3>
+                    <div class="tooltip">
+                        <span>(i)</span>
+                        <div class="popup">
+                            <p>Enter your current age.</p>
+                        </div>
+                    </div>
+                </div>
                 <input type="number" [min]="input.age.min" [max]="input.age.max" [(ngModel)]="input.age.value"
-                    (keyup)="input.age.value > input.age.max ? input.age.value = input.age.max:''"
-                    (focusout)="input.age.value < input.age.min ? input.age.value = input.age.min:''">
+                   (keyup)="input.age.value > input.age.max ? input.age.value = input.age.max:''"
+                   (focusout)="input.age.value < input.age.min ? input.age.value = input.age.min:''">
+                    
             </div>
             <mat-slider [(ngModel)]="input.age.value" [min]="input.age.min" [max]="input.age.max" (input)="input.age.value = $event.value"></mat-slider>
         </div>
 
         <div class="itemInput">
             <div class="labelAndTypeValue">
-                <h3>Starting Capital</h3>
+                <div class="label">
+                    <h3>Starting Capital</h3>
+                    <div class="tooltip">
+                        <span>(i)</span>
+                        <div class="popup">
+                            <p>Enter the amount of money you currently have saved.</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="dollar">
                     <input type="number" [min]="input.startingCapital.min" [max]="input.startingCapital.max" [(ngModel)]="input.startingCapital.value"
                         (keyup)="input.startingCapital.value > input.startingCapital.max ? input.startingCapital.value = input.startingCapital.max:''"
@@ -31,7 +47,15 @@
         <div class="itemInput">
             <div class="labelAndTypeValue">
                 <div>
-                    <h3>Contribution</h3>
+                    <div class="label">
+                        <h3>Contribution</h3>
+                        <div class="tooltip">
+                            <span >(i)</span>
+                            <div class="popup">
+                                <p>Enter the amount you expect to save in investments. The calculator assumes these contributions are post-tax dollars.</p>
+                            </div>
+                        </div>
+                    </div>
                     <select matNativeControl required [(ngModel)]="input.contribution.multiplier">
                         <option value="26">Bi-Weekly</option>
                         <option value="12">monthly</option>
@@ -50,7 +74,15 @@
         <div class="itemInput">
             <div class="labelAndTypeValue">
                 <div>
-                    <h3>Expenses</h3>
+                    <div class="label">
+                        <h3>Expenses</h3>
+                        <div class="tooltip">
+                            <span>(i)</span>
+                            <div class="popup">
+                                <p>Enter your expected living expenses. This number will only be used to calculate your financial freedom number based on the 4% rule.</p>
+                            </div>
+                        </div>
+                    </div>
                     <select matNativeControl required [(ngModel)]="input.expenses.multiplier">
                         <option value="12">monthly</option>
                         <option value="1">Yearly</option>
@@ -67,7 +99,15 @@
 
         <div class="itemInput">
             <div class="labelAndTypeValue">
-                <h3>Time Horizon</h3>
+                <div class="label">
+                    <h3>Time Horizon</h3>
+                    <div class="tooltip">
+                        <span>(i)</span>
+                        <div class="popup">
+                            <p>Enter the time that you want these investments to grow. The tool will automatically add 5 years beyond this time so you can see the potential growth.</p>
+                        </div>
+                    </div>
+                </div>
                 <input type="number" [min]="input.timeHorizon.min" [max]="input.timeHorizon.max" [(ngModel)]="input.timeHorizon.value"
                     (keyup)="input.timeHorizon.value > input.timeHorizon.max ? input.timeHorizon.value = input.timeHorizon.max:''"
                     (focusout)="input.timeHorizon.value < input.timeHorizon.min ? input.timeHorizon.value = input.timeHorizon.min:''">
@@ -90,10 +130,25 @@
         </div>
         <canvas #chart></canvas>
         <div class="bottomButtons">
-            <div *ngFor="let option of input.risk.options">
-                <button [class.active]="option.value == input.risk.value && option.uncertainty == input.risk.uncertainty" (click)="input.risk.uncertainty=option.uncertainty;input.risk.value = option.value">{{option.name}}</button>
+            <div *ngFor="let option of input.risk.options;let i = index">
+                <button [class.active]="i==input.risk.activePlanIndex" (click)="input.risk.activePlanIndex = i">{{option.name}}</button>
             </div>
         </div>
+    </div>
+    <div class="verticalAlign">
+        <mat-card class="infoCard">
+            <div class="title">
+                <b><u>{{input.risk.activePlan.name}}:</u></b><br>
+                {{input.risk.activePlan.formalName}}
+            </div>
+            <div class="planValues">
+                Average: {{input.risk.activePlan.value * 100}}%<br>
+                Uncertainty: ±{{input.risk.activePlan.uncertainty * 100}}%
+            </div>
+            <div class="lower">
+                {{input.risk.activePlan.description}}
+            </div>
+        </mat-card>
     </div>
 
 </div>
