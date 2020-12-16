@@ -2,11 +2,13 @@
 
 $widgetHeight:520px;
 $widgetWidth:720px;
-$inputSize:200px;
+$inputSize:250px;
 
 .intro{
     width: $widgetWidth + $inputSize + 50px;
     margin: auto;
+    padding-top: 20px;
+    margin-bottom: 30px;
     h1{
         @extend .roboto-small-header-fixed;
         margin: 0;
@@ -31,13 +33,45 @@ $inputSize:200px;
                 display: flex;
                 justify-content: space-between;
                 width: $inputSize;
-                h3{
-                    @extend .roboto;
-                    font-size: 18px;
-                    line-height: 20px;
-                    margin: 0;
-                }
-                
+                .label{
+                    display: flex;
+                    h3{
+                        @extend .roboto;
+                        font-size: 18px;
+                        line-height: 20px;
+                        margin: 0;
+                    }
+                    .tooltip{
+                        position: relative;
+                        span{
+                            cursor: pointer;
+                            margin-left: 5px;
+                            @extend .roboto-small-body-fixed;
+                            &:hover + .popup {
+                                animation: tooltipIn .5s forwards;
+                            }
+                        }
+                        .popup{
+                            position: absolute;
+                            bottom: 10px;
+                            left: 20px;
+                            opacity: 0;
+                            background-color: rgb(39, 39, 39);
+                            color: white;
+                            border-radius: 8px;
+                            transition: .4s ease all;
+                            width: 150px;
+                            z-index: -100;
+    
+                            p{
+                                @extend .roboto-small-body-fixed;
+                                margin-top: 5px;
+                                margin-bottom: 5px;
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+                }        
                 .dollar{
                     display:inline-block;
                     position: relative;
@@ -55,6 +89,7 @@ $inputSize:200px;
                 input{
                     width: 75px;
                     height: 20px;
+                    @extend .roboto-small-body-fixed;
                 }
                 select{
                     width: 90px;
@@ -101,10 +136,10 @@ $inputSize:200px;
                 width: inherit;
                 margin-top: 10px;
                 margin-bottom: 20px;
-                padding-top: 10px;
+                padding-top: 15px;
+                padding-bottom: 15px;
                 padding-left: 15px;
                 padding-right: 15px;
-                padding-bottom: 10px;
                 color: white;
                 cursor: pointer;
                 outline: none;
@@ -113,6 +148,22 @@ $inputSize:200px;
                 &.active{
                     background-color: #0099FF;
                 }
+            }
+        }
+    }
+    .verticalAlign{
+        height: $widgetHeight;
+        .infoCard{
+            width: 250px;
+            background-color: #E2E3E4;
+            border-radius: 10px;
+            margin-left: 30px;
+            @extend .roboto;
+            font-size: 18px;
+            line-height: 20px;
+            .planValues{
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
         }
     }
@@ -140,3 +191,15 @@ $inputSize:200px;
 ::ng-deep .mat-slider-track-background{
     background-color: grey;
 }
+
+@keyframes tooltipIn {
+    from {
+      z-index: 100;
+      opacity: 0;
+    }
+  
+    to {
+      opacity: .95;
+      z-index: 100;
+    }
+  }
