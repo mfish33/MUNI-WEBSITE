@@ -1,0 +1,15 @@
+@import './src/styles.scss';
+
+.hideDesktop{
+    display: none;
+}
+  
+@media only screen and (max-width: $mobileBreakpoint) {
+    .hideMobile {
+        display: none;
+    }
+
+    .hideDesktop{
+        display: block;
+    }
+}

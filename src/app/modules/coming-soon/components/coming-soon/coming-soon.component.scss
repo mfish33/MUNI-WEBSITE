@@ -21,3 +21,17 @@ mat-card{
         @extend .roboto-small-header;
     }
 }
+
+@media only screen and (max-width: $mobileBreakpoint) {
+    mat-card{
+        width:80% !important;
+    }
+    h2 {
+        font-size: 36px !important;
+        line-height: 42px !important;
+    }
+    p{
+        font-size: 14px !important;
+        line-height: 16px !important;
+    }
+  }

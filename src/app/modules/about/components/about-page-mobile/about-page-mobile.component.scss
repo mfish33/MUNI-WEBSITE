@@ -1,0 +1,116 @@
+@import 'src/styles.scss';
+
+.backgroundPlane{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-color: $lightBlueCard;
+}
+
+.topSection{
+    background-image: url("src/assets/aboutMobileBackground.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #94785b80; // Tint color
+    background-blend-mode: multiply;
+    color:white;
+    h1{
+        text-align: center;
+        @extend .roboto-small-header-fixed;
+        padding-top: 15px;
+    }
+    p{
+        @extend .roboto-small-body-fixed;
+        width: 80%;
+        margin: auto;
+        padding-bottom: 15px;
+    }
+}
+
+.teamTitle{
+    @extend .roboto-small-header-fixed;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.aboutSelector{
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 40px;
+    background-color: $lightBlueCard;
+    mat-card{
+        background-color: $bluePrimary;
+        height:350px;
+        padding: 0;
+        border-radius: 8px;
+        color: white;
+    }
+    .facesCard{
+        width: 22%;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        img{
+            box-sizing: border-box;
+            margin-left: 5%;
+            width: 90%;
+            &:first-child{
+                margin-top: 10px;
+            }
+            &.active{
+                border-color: white;
+                border-style: solid;
+                border-width: 3px;
+                border-radius: 100%;
+            }
+        }
+    }
+    .bioCard{
+        position: relative;
+        width: 60%;
+        .nameAndPicture{
+            display: flex;
+            margin-top: 5px;
+            img{
+                margin-left: 5px;
+                width: 35%;
+                height: 35%;
+            }
+            div{
+                height: inherit;
+                width: 65%;
+                p{
+                    @extend .roboto-body-fixed;
+                    text-align: center;
+                    margin: 0;
+                }
+            }
+            
+        }
+        .position{
+            @extend .roboto-small-body-fixed;
+            margin: 0;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .bio{
+            @extend .roboto;
+            font-size: 20px;
+            line-height: 22px;
+            width: 90%;
+            margin-left: 5%;
+        }
+        .linkedInLogo{ 
+            position: absolute;
+            width: 30px;
+            bottom: 10px;
+            right: 10px;
+            background-color: white;
+            border-radius: 5px;
+        }
+    }
+}

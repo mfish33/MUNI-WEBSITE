@@ -132,13 +132,13 @@
                 <li class="mobileSubDrop" [class.active]="toggles.dropDowns.tools">
                     <ul>
                         <li class="verticalAlign">
-                            <a [routerLink]="['tools']">All Tools</a>
+                            <a [routerLink]="['tools']" (tap)="resetAndCloseMobileNav()">All Tools</a>
                         </li>
                         <li class="verticalAlign">
-                            <a [routerLink]="['tools','spreadsheet']">Spreadsheet</a>
+                            <a [routerLink]="['tools','spreadsheet']" (tap)="resetAndCloseMobileNav()">Spreadsheet</a>
                         </li>
                         <li class="verticalAlign">
-                            <a [routerLink]="['tools','calculator']">Calculator</a>
+                            <a [routerLink]="['tools','calculator']" (tap)="resetAndCloseMobileNav()">Calculator</a>
                         </li>
                     </ul>
                 </li>

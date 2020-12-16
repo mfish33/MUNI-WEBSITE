@@ -1,7 +1,6 @@
 @import "./src/styles.scss";
 $hamburger-layer-color:$bluePrimary;
 $hamburger-hover-opacity :1;
-
 @import '~hamburgers/_sass/hamburgers/hamburgers.scss';
 
 // Shared mobile and desktop nav
@@ -333,17 +332,5 @@ $hamburger-hover-opacity :1;
   }
 }
 
-// Mobile toggle
-.hideDesktop{
-  display: none;
-}
-
-@media only screen and (max-width: $mobileBreakpoint) {
-  .hideMobile {
-    display: none;
-  }
-
-  .hideDesktop{
-    display: block;
-  }
-}
+// Import last to override display settings
+@import './src/mobile-toggle.scss';
