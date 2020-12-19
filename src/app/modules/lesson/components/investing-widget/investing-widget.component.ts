@@ -121,8 +121,8 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
           name:'Medium Risk',
           formalName:'Passive Long Term: Funds',
           description:'This strategy tends to work for people with a “set it and forget it” mentality. You could be in this bucket if you are satisfied with your current job/industry and can see yourself working in it for many years before retiring.',
-          value:.09,
-          uncertainty:.01
+          value:.08,
+          uncertainty:.04
         },
         {
           name:'High Risk',

@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'about', component: AboutPageComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'courses/Investing', redirectTo:'lessons/Investing/Investing' },
   { path: 'courses/:cid', component: CourseTemplateComponent },
   { path: 'tools', component:ComingSoonComponent},
   { path: 'tools/:name', component:ComingSoonComponent},
