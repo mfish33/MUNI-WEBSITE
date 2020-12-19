@@ -5,13 +5,16 @@
   box-sizing: border-box;
 }
 
+.content{
+  background-color: $lightBlueCard;
+}
 h1 {
   @extend .frank;
   font-size: 72pt;
   line-height: 1.4;
   font-weight: bold;
   text-align: center;
-  color: gray;
+  color: rgb(39, 38, 38);
 }
 
 .courseCardsWrapper {
@@ -31,5 +34,15 @@ h1 {
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: $mobileBreakpoint) {
+  h1{
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .courseCards{
+    width: 80% !important;
   }
 }

@@ -1,0 +1,25 @@
+<div class="backgroundPlane"></div>
+<div class="topSection">
+    <h1>About Us</h1>
+    <p>At RIPE, our mission is to provide practical financial literacy to help you achieve your life goals. We provide you with free detailed courses on topics ranging from food expenses to managing your taxes. In addition, our free Life Planning Calculator allows you to establish a budget, organize debt, plan out life events, and achieve retirement at whatever age you desire.</p>
+    <p><br>This website was created by people from all walks of life, who care deeply about financial freedom. We drew inspiration from our different backgrounds and ambitions to create a program that anyone can use to get their life on track toward a bright future. </p>
+</div>
+
+<h1 class="teamTitle">The Team</h1>
+<div class="aboutSelector" *ngIf="profiles$ | async as profiles">
+    <mat-card class="facesCard">
+        <img *ngFor="let profile of profiles; let i = index" [src]="content.getAsset(profile.fields.pictureOfPerson)" (click)="activeProfile=i" [class.active]="activeProfile==i">
+    </mat-card>
+    <mat-card class="bioCard">
+        <div class="nameAndPicture">
+            <img [src]="content.getAsset(profiles[activeProfile].fields.pictureOfPerson)" alt="">
+            <div class="verticalAlign">
+                <p><b>{{profiles[activeProfile].fields.nameOfPerson}}</b></p>
+            </div>
+        </div>
+        <p class="position">{{profiles[activeProfile].fields.positionTitle}}</p>
+        <p class="bio">{{profiles[activeProfile].fields.bio}}</p>
+        <a *ngIf="profiles[activeProfile].fields.linkedInUrl" [href]="profiles[activeProfile].fields.linkedInUrl" target="_blank"><img src="assets/linked-in.png" alt="linked-in logo" class="linkedInLogo"></a>
+    </mat-card>
+</div>
+<app-shared-footer></app-shared-footer>

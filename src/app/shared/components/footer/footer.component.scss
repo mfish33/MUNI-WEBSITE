@@ -38,3 +38,14 @@ footer{
         }
     }
 }
+
+@media only screen and (max-width: $mobileBreakpoint) {
+    p{
+        top:4px !important;
+    }
+    .right{
+        right: 10px !important;
+    }
+}
+
+@import "./src/mobile-toggle.scss";
