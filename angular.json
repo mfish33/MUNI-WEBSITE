@@ -125,6 +125,12 @@
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {}
+        },
+        "analyze": {
+          "builder": "@ngx-builders/analyze:analyze",
+          "options": {
+            "outputPath": "dist/ripewebsite"
+          }
         }
       }
     }

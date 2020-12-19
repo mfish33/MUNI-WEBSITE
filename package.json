@@ -45,6 +45,7 @@
     "@angular/cli": "~9.1.9",
     "@angular/compiler-cli": "~9.1.11",
     "@angular/language-service": "~9.1.11",
+    "@ngx-builders/analyze": "^2.1.0",
     "@types/chart.js": "^2.9.28",
     "@types/chartjs-plugin-annotation": "^0.5.1",
     "@types/hammerjs": "^2.0.15-alpha",
