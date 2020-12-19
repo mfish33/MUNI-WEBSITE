@@ -142,6 +142,65 @@ html, body {
     line-height: 1.4vw;
 }
 
+@media only screen and (min-width: 1600px) {
+    
+    .roboto-large-header {
+        font-size: 120px;
+        line-height: 62.4px;
+    }
+    
+    .roboto-header {
+        font-size: 52.8px;
+        line-height: 62.4px;
+    }
+    
+    .roboto-small-header {
+        font-size: 30.4px;
+        line-height: 33.6px;
+    }
+    
+    .roboto-large-body{
+        font-size: 22.4px;
+        line-height: 26.4px;
+    }
+    
+    .roboto-body{
+        font-size: 20px;
+        line-height: 27.2px;
+    }
+    
+    .roboto-small-body{
+        font-size: 16px;
+        line-height: 22.4px;
+    }
+    
+    .nunito-body{
+        font-size: 22.4px;
+        line-height: 36.64px;
+    }
+    
+    .frank-picture-header{
+        font-size: 120px;
+        line-height: 137.6px;
+    }
+    
+    .frank-small-header{
+        font-size: 71.04px;
+        line-height: 92.16px;
+    }
+    
+    .frank-numbers{
+        font-size: 106.72px;
+        line-height: 137.76px;
+    }
+    
+    .frank-sources{
+        font-size: 20px;
+        line-height: 25.6px;
+    }
+    
+}
+
 .roboto-small-header-fixed {
     @extend .roboto;
     font-size: 36px;

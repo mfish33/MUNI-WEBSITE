@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as contentful from 'contentful'
-import { Lesson, LessonLink, Course, CourseOrder, CourseOrdered, Profile, ProfileList } from '../../shared/models/contentfulTypes'
+import { Lesson, LessonLink, Course, CourseOrder, CourseOrdered, Profile, ProfileList, isInvestingLesson } from '../../shared/models/contentfulTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { ProgressTrackerService } from './progress-tracker.service';
 
@@ -70,7 +70,13 @@ export class ContentfulService {
   }
 
   public convertRichText(doc): string {
-    return documentToHtmlString(doc)
+    let options = {
+      renderNode: {
+        'embedded-asset-block': (node) =>
+          `<div class="imgCenter"><img src="${node.data.target.fields.file.url}"/></div>`
+      }
+    }
+    return documentToHtmlString(doc,options)
   }
 
   public getAsset(asset: contentful.Asset): string {
@@ -98,7 +104,12 @@ export class ContentfulService {
       this.content = courseOrder.fields.courses.reduce((acc, course, i) => {
         course.fields.idx = i
         course.fields.lessons.map(lesson => {
-          lesson.fields.lesson.fields.titleURLNormalized = this.normalizeURLNames(lesson.fields.lesson.fields.titleText)
+          let lessonBody = lesson.fields.lesson.fields
+          if(isInvestingLesson(lessonBody)) {
+            lesson.fields.lesson.fields.titleURLNormalized = this.normalizeURLNames(lessonBody.Title)
+          } else {
+            lesson.fields.lesson.fields.titleURLNormalized = this.normalizeURLNames(lessonBody.titleText)
+          }   
         })
         acc[this.normalizeURLNames(course.fields.courseTitle)] = course.fields
         return acc

@@ -1,0 +1,115 @@
+<app-quick-feedback [location]="lesson.titleText + ' lesson'"></app-quick-feedback>
+
+<app-parallax-title [imgUrl]="content.getAsset(lesson.titleGraphic)" [title]="lesson.titleText"></app-parallax-title>
+
+
+<div class="introBlock">
+  <div class="text">
+    <h2 class="frank-small-header">Introduction</h2>
+    <div [innerHTML]="content.convertRichText(lesson.introduction)" class="nunito-body"></div>
+  </div>
+
+  <div class="infoGraphic verticalAlign">
+    <img [src]="content.getAsset(lesson.introductionInfographic)" alt="">
+  </div>
+
+</div>
+
+<div class="videoBlock">
+  <iframe [src]="lesson.introVideo | safe" frameborder="0" allowfullscreen></iframe>
+  <div class="caption">
+    <div class="text" [innerHTML]="content.convertRichText(lesson.introVideoCaption)"></div>
+  </div>
+</div>
+
+<div class="banner">
+  <h2 class="verticalAlign">Overview</h2>
+</div>
+
+<div class="overviewPoints">
+  <div class="listItem" *ngFor="let item of lesson.goalsListField;let i = index;">
+    <h2 class="number frank-numbers">{{i+1}}</h2>
+    <p class="text nunito-body">{{item}}</p>
+  </div>
+</div>
+
+<div class="banner">
+  <h2 class="verticalAlign">What Do I Need to Know?</h2>
+</div>
+
+<div [ngClass]="pageSettings.whatDoINeedToKnowAlt ? 'mainContentAlt' : 'mainContent'">
+  <div class="contentSide">
+    <div [innerHTML]="content.convertRichText(lesson.whatDoINeedToKnow)" class="nunito-body"></div>
+  </div>
+  <div class="graphic">
+    <img class="verticalAlign" [src]="content.getAsset(lesson.whatDoINeedToKnowInfographic)" alt="">
+  </div>
+  <div class="graphic2" *ngIf="lesson.wdintkImg2?.fields?.file">
+    <img [src]="content.getAsset(lesson.wdintkImg2)" alt="">
+  </div>
+  <div *ngIf="lesson.wdintkText2" class="content2">
+    <div [innerHTML]="content.convertRichText(lesson.wdintkText2)" class="nunito-body"></div>
+  </div>
+</div>
+
+<div class="WDISBanner">
+  <h2 class="verticalAlign frank-small-header">Where do I start?</h2>
+  <a target="_blank" (click)="goToSpreadSheet()" class="verticalAlign disabled"
+    [ngClass]="isAuthenticated ? 'enabled' : 'disabled'"><u>Click here to get the template</u>
+    <div class="popUp">
+      <p>Sign in to use the Life Planner tool</p>
+    </div>
+  </a>
+
+</div>
+
+<div class="WDSI">
+  <div class="listItem" *ngFor="let item of lesson.whereDoIStart;let i = index;">
+    <h2 *ngIf="lesson.whereDoIStart.length > 1" class="number frank-numbers">{{i+1}}</h2>
+    <p [ngClass]="lesson.whereDoIStart.length > 1 ? 'testWithNum' : 'testWithoutNum'" class="nunito-body">
+      {{item}}</p>
+    <img [src]="content.getAsset(lesson.whereDoIStartMedia[i])" alt="">
+  </div>
+</div>
+
+<div class="banner">
+  <h2 class="verticalAlign">{{lesson.titleText}}</h2>
+</div>
+
+<div class="dosDonts">
+  <div class="column">
+    <div class="horizontalAlign">
+      <img src="assets/dos.png" alt="Do">
+    </div>
+    <div class="nunito-body" [innerHTML]="content.convertRichText(lesson.dos)"></div>
+  </div>
+  <div class="column">
+    <div class="horizontalAlign">
+      <img src="assets/donts.png" alt="Don't">
+    </div>
+    <div class="nunito-body" [innerHTML]="content.convertRichText(lesson.donts)"></div>
+  </div>
+</div>
+
+<div class="banner">
+  <h2 class="verticalAlign">Summary</h2>
+</div>
+
+<div class="summary">
+  <div class="content nunito-body" [innerHTML]="content.convertRichText(lesson.summary)"></div>
+</div>
+
+<div class="sources">
+  <h3>Sources</h3>
+  <div class="frank-sources" [innerHTML]="content.convertRichText(lesson.sources)"></div>
+</div>
+
+<div class="nextButtons">
+  <h2 *ngIf="!nextLesson">Congrats You Have Finished the Course!</h2>
+  <div class="buttons">
+    <button [routerLink]="['/courses',courseId]">Course Home</button>
+    <button *ngIf="nextLesson"
+      [routerLink]="['/lessons',courseId,nextLesson.titleURLNormalized]">{{nextLesson.titleText}}</button>
+  </div>
+
+</div>
