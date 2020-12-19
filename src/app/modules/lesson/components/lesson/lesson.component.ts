@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class LessonComponent implements OnInit {
   public lesson$: Promise<InvestingLesson | LivingExpensesLesson>
-  public nextLesson: Lesson
+  public nextLesson: LivingExpensesLesson | InvestingLesson
 
   public isInvestingLesson = isInvestingLesson
 
@@ -33,7 +33,7 @@ export class LessonComponent implements OnInit {
         this.router.navigateByUrl('')
       }
       this.lesson$ = Promise.resolve(lesson.fields)
-      this.nextLesson = this.content.getNextLesson(this.courseId, lessonId)
+      this.nextLesson = this.content.getNextLesson(this.courseId, lessonId)?.fields
     })
 
   }
