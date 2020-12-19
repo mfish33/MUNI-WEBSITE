@@ -1,5 +1,5 @@
 const config = {
-    prod:false
+    prod:true
 }
 
 export default config
