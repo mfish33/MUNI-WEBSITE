@@ -6,7 +6,9 @@
 </div>
 
 <div class="goalOfCourse">
-    <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.goalOfCourse)"></div>
+    <div class="verticalAlign">
+        <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.goalOfCourse)"></div>
+    </div>
     <div class="horizontalAlign">
         <div class="verticalAlign">
             <img [src]="content.getAsset(lesson.goalOfThisCourseImage)" alt="">
