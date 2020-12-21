@@ -106,10 +106,12 @@
 
 <div class="nextButtons">
   <h2 *ngIf="!nextLesson">Congrats You Have Finished the Course!</h2>
+  <h2 *ngIf="!nextLesson && nextCourse">Next Course:</h2>
   <div class="buttons">
-    <button [routerLink]="['/courses',courseId]">Course Home</button>
+    <button *ngIf="!nextLesson && nextCourse" [routerLink]="['/courses',nextCourse.id]"><p>{{nextCourse.courseTitle}}</p></button>
+    <button *ngIf="nextLesson" [routerLink]="['/courses',courseId]"><p>Course Home</p></button>
     <button *ngIf="nextLesson"
-      [routerLink]="['/lessons',courseId,nextLesson.titleURLNormalized]">{{nextLesson.titleText}}</button>
+      [routerLink]="['/lessons',courseId,nextLesson.titleURLNormalized]"><p>{{nextLesson.titleText}}</p></button>
   </div>
 
 </div>

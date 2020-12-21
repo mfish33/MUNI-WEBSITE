@@ -1,6 +1,6 @@
 <div class="background"></div>
 <div class="content" *ngIf="lesson$ | async as lesson;">
-  <app-living-expenses-lesson *ngIf="!isInvestingLesson(lesson)" [lesson]="lesson" [nextLesson]="nextLesson" [courseId]="courseId"></app-living-expenses-lesson>
+  <app-living-expenses-lesson *ngIf="!isInvestingLesson(lesson)" [lesson]="lesson" [nextLesson]="nextLesson" [courseId]="courseId" [nextCourse]="nextCourse"></app-living-expenses-lesson>
   <app-investing-lesson *ngIf="isInvestingLesson(lesson)" [lesson]="lesson"></app-investing-lesson>
 </div>
 

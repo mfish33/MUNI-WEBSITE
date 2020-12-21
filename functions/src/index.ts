@@ -19,8 +19,8 @@ const mailTransport = nodemailer.createTransport({
 export const delOldUnverifiedAccs = functions.pubsub
   .schedule("0 0 * * 0") //run at 00:00 every sunday
   .onRun(async (context) => {
-    let unverifiedUsers = await getUnverifiedUsers();
-    let pool = new PromisePool(
+    const unverifiedUsers = await getUnverifiedUsers();
+    const pool = new PromisePool(
       () => deleteUnverifiedUser(unverifiedUsers),
       MAX_CONCURRENT
     );
@@ -32,24 +32,22 @@ async function getUnverifiedUsers(
   users: admin.auth.UserRecord[] = [],
   nextPageToken: string | undefined = undefined
 ): Promise<admin.auth.UserRecord[]> {
-  let weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+  const weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
 
-  let result = await admin.auth().listUsers(1000, nextPageToken);
+  const result = await admin.auth().listUsers(1000, nextPageToken);
 
-  let filteredUsers = result.users.filter(
+  const filteredUsers = result.users.filter(
     (user) =>
-      user.providerData.length == 1 &&
-      user.providerData[0].providerId == "password" &&
-      user.emailVerified == false &&
+      user.providerData.length === 1 &&
+      user.providerData[0].providerId === "password" &&
+      user.emailVerified === false &&
       Date.parse(user.metadata.lastSignInTime) < Date.now() - weekInMilliseconds
   );
 
-  users = [...users, ...filteredUsers];
-
   if (result.pageToken) {
-    return getUnverifiedUsers(users, result.pageToken);
+    return getUnverifiedUsers([...users, ...filteredUsers], result.pageToken);
   }
-  return users;
+  return [...users, ...filteredUsers];
 }
 
 function deleteUnverifiedUser(
