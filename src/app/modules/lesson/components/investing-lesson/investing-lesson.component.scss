@@ -16,9 +16,13 @@
 
 .goalOfCourse{
     display: flex;
-    .contentfulContent{
+    .verticalAlign{
+        height: inherit;
         width: 60%;
-        margin-left: 40px;
+        .contentfulContent{
+            // .1 / .6 or 10% / 60%
+            margin-left: 16.6%;
+        }
     }
     .horizontalAlign{
         width: 40%;
