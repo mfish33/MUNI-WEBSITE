@@ -5,9 +5,14 @@
   box-sizing: border-box;
 }
 
+.wrapper{
+  background-color: $lightBlueCard;
+}
+
 .content{
   background-color: $lightBlueCard;
 }
+
 h1 {
   @extend .frank;
   font-size: 72pt;
