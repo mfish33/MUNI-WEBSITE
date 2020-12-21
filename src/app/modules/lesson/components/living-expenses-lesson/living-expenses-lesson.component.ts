@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ContentfulService } from 'src/app/core/services/contentful.service';
-import { defaultPageSettings, LivingExpensesLesson } from 'src/app/shared/models/contentfulTypes';
+import { Course, CourseOrdered, defaultPageSettings, LivingExpensesLesson } from 'src/app/shared/models/contentfulTypes';
 
 @Component({
   selector: 'app-living-expenses-lesson',
@@ -25,6 +25,7 @@ export class LivingExpensesLessonComponent implements OnInit, OnDestroy {
   @Input() lesson:LivingExpensesLesson
   @Input() nextLesson:LivingExpensesLesson
   @Input() courseId: string
+  @Input() nextCourse: CourseOrdered | undefined
 
   ngOnInit(): void {
     this.authSub = this.auth.user$.subscribe(user => this.isAuthenticated = !!user)
