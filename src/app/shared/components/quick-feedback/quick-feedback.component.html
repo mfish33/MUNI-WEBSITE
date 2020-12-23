@@ -1,12 +1,12 @@
-<div class="circle" *ngIf="!thankYou" [ngClass]="showForm ? 'selected' : ''" (click) = "showForm = !showForm" [@fadeIn]>
+<div class="circle" *ngIf="state != 'complete'" [ngClass]="state == 'open' ? 'selected' : ''" (click) = "state == 'open' ? state = 'closed' : state = 'open'" [@fadeIn]>
         <div class="verticalAlign">
             <p>?</p>
         </div>
 </div>
 
-<div class="popup" *ngIf="showForm && !thankYou && !isMobile" [@enterAnimation-desktop]>
+<div class="popup" *ngIf="state == 'open' && !isMobile" [@enterAnimation-desktop]>
     <mat-card>
-        <div class="xbutton cardButton" (click)="showForm = !showForm"><p>X</p></div>
+        <div class="xbutton cardButton" (click)="state = 'closed'"><p>X</p></div>
         <form [formGroup]="quickFeedBack">
             <div class="formItem">
                 <span>Feedback:</span>
@@ -27,9 +27,9 @@
     </mat-card>
 </div>
 
-<div class="popup" *ngIf="showForm && !thankYou && isMobile" [@enterAnimation-mobile] (swipedown)="showForm = !showForm">
+<div class="popup" *ngIf="state == 'open' && isMobile" [@enterAnimation-mobile] (swipedown)="state = 'closed'">
     <mat-card>
-        <div class="xbutton cardButton" (tap)="showForm = !showForm"><p>X</p></div>
+        <div class="xbutton cardButton" (tap)="state = 'closed'"><p>X</p></div>
         <form [formGroup]="quickFeedBack">
             <div class="formItem">
                 <span>Feedback:</span>
@@ -52,11 +52,11 @@
 
 
 
-<div class="confirmation" *ngIf="thankYou" [@fadeIn]>
+<div class="confirmation" *ngIf="state == 'complete'" [@fadeIn]>
     <mat-card>
         <div class="wrapper">
             <p>Thank You!</p>
-            <div class="xbutton" (click)="thankYou = false"><p>X</p></div>
+            <div class="xbutton" (click)="state = 'closed'"><p>X</p></div>
         </div>
     </mat-card>
 </div>

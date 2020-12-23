@@ -81,7 +81,7 @@ export const sendFeedback = functions.https.onRequest(async (req, res) => {
   if (config.prod) {
     res.set(
       "Access-Control-Allow-Origin",
-      "https://ripe-website-40a9a.web.app"
+      "https://learnmuni.com"
     );
   } else {
     res.set("Access-Control-Allow-Origin", "*");

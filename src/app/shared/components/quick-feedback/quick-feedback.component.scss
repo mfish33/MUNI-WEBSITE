@@ -128,7 +128,7 @@ $feedbackAcescent:#679436;
         .wrapper{
             display: flex;
             p{
-                @extend .roboto-body;
+                @extend .roboto-body-fixed;
                 color: white;
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -139,8 +139,8 @@ $feedbackAcescent:#679436;
 }
 
 .xbutton{
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     background-color: $grey;
     margin-left: 10px;
@@ -151,10 +151,12 @@ $feedbackAcescent:#679436;
         background-color: rgb(148, 147, 147);
     }
     p{
-        @extend .roboto-small-body;
-        color:black;
-        margin: 0;
+        @extend .roboto-body-fixed;
+        // use important so I do not need absolute path since it is used twice
+        color:black !important;
+        margin: 0 !important;
         text-align: center;
+        padding-top: 2px;
     }
 }
 
@@ -211,14 +213,11 @@ $feedbackAcescent:#679436;
                 .xbutton{
                     position: absolute;
                     right: 0px;
-                    top: 5px;
+                    top: 2px;
                     p{
-                        // position: absolute;
-                        // left: 50%;
-                        transform: translate(-3px,-7px);
+                        padding-top: 2px;
                         color: black;
                         text-align: center;
-                        padding-bottom: 10px;
                     }
                 }
             }
