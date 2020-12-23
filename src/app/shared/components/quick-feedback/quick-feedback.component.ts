@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+type State = 'closed' | 'open' | 'complete'
+
 @Component({
   selector: 'app-quick-feedback',
   animations: [
@@ -79,8 +81,7 @@ import { take } from 'rxjs/operators';
 export class QuickFeedbackComponent implements OnInit {
 
   public quickFeedBack:FormGroup
-  public showForm = false
-  public thankYou = false
+  public state:State = 'closed'
   public isMobile:boolean = false
   public $user:Observable<firebase.User>
   @Input('location') reportingLocation:string
@@ -115,8 +116,7 @@ export class QuickFeedbackComponent implements OnInit {
         }
       })
     })
-    this.thankYou = true
-    this.showForm = false
+    this.state = 'complete'
   }
 
 }
