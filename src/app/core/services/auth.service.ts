@@ -29,8 +29,8 @@ export class AuthService {
   }
 
   get user$() {
-    // need to allow facebook since email will always be unverified
-    return this.afAuth.authState.pipe(map(user => user?.emailVerified || user?.photoURL.includes('facebook') ? user : null))
+    // allows all users because unverified users are immediately logged out
+    return this.afAuth.authState
   }
 
   async signInGoogle(): Promise<UserCredential> {
