@@ -108,7 +108,7 @@ export const sendFeedback = functions.https.onRequest(async (req, res) => {
 
   const mailOptions = {
     from: gmailConfig.email,
-    to: "RIPEwebsite@gmail.com",
+    to: "Muni.website@gmail.com",
     subject: `${reason} Feedback from ${name} at ${email}`,
     text: body,
   };
