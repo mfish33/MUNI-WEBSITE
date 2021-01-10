@@ -1,0 +1,33 @@
+@import './src/styles.scss';
+
+h2{
+    @extend .roboto-small-header-fixed;
+    max-width: 80%;
+    min-width: 300px;
+    text-align: center;
+    color: $bluePrimary;
+}
+
+.callToAction{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%,0);
+
+    button{
+        @extend .roboto-body-fixed;
+        white-space: nowrap;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color:$bluePrimary;
+        width: inherit;
+        color: white;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        border-radius: 15px;
+    }
+}
+
