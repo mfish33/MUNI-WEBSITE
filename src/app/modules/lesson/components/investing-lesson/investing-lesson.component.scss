@@ -1,105 +1,184 @@
 @import 'src/styles.scss';
+@import 'src/mobile-toggle.scss';
 
-.banner{
-    background-color: $bluePrimary;
-    h2{
-        @extend .frank-small-header;
-        color: white;
-        margin: 0;
-        margin-left: 40px;
-    }
-}
-
-.contentfulContent{
-    @extend .nunito-body;
-}
-
-.goalOfCourse{
-    display: flex;
-    .verticalAlign{
-        height: inherit;
-        width: 60%;
-        .contentfulContent{
-            // .1 / .6 or 10% / 60%
-            margin-left: 16.6%;
-        }
-    }
-    .horizontalAlign{
-        width: 40%;
-        .verticalAlign{
-            height: inherit;
-            img{
-                width: auto;
-                height: 300px;
-            }
+.hideMobile{
+    .banner{
+        background-color: $bluePrimary;
+        h2{
+            @extend .frank-small-header;
+            color: white;
+            margin: 0;
+            margin-left: 40px;
         }
     }
     
-}
-
-.introduction{
-    display: flex;
-    flex-direction: column;
     .contentfulContent{
-        width: 80%;
+        @extend .nunito-body;
     }
-    img{
-        width: 700px;
-        height: auto;
-    }
-}
-
-.whyInvest{
-    display: flex;
-    justify-content: center;
-    .contentfulContent{
-        width: 80%;
-        margin-left: 40px;   
-    }
-}
-
-
-.strategies{
-    .introText {
-        width: 80%;
-        margin-top: 20px;
-    }
-    .strategy{
-        background-color: $lightBlueCard;
-        width: 80%;
-        border-radius: 10px;
-        margin-top: 40px;
-        .header{
-            display: flex;
-            justify-content: space-between;
-            margin-left: 5%;
-            margin-right: 5%;
-            .stats{
-                width: 400px;
-                height: auto;
-            }
-            .graphic{
-                width: 200px;
-                height: auto;
+    
+    .goalOfCourse{
+        display: flex;
+        .verticalAlign{
+            height: inherit;
+            width: 60%;
+            .contentfulContent{
+                // .1 / .6 or 10% / 60%
+                margin-left: 16.6%;
             }
         }
+        .horizontalAlign{
+            width: 40%;
+            .verticalAlign{
+                height: inherit;
+                img{
+                    width: auto;
+                    height: 300px;
+                }
+            }
+        }
+        
+    }
+    
+    .introduction{
+        display: flex;
+        flex-direction: column;
         .contentfulContent{
-            width: 90%; 
+            width: 80%;
+        }
+        img{
+            width: 700px;
+            height: auto;
         }
     }
-    .first-child {
-        .strategy {
-            margin-top: 10px;
+    
+    .whyInvest{
+        display: flex;
+        justify-content: center;
+        .contentfulContent{
+            width: 80%;
+            margin-left: 40px;   
         }
     }
-    .last-child {
-        margin-bottom: 40px;
+     
+    .strategies{
+        .introText {
+            width: 80%;
+            margin-top: 20px;
+        }
+        .strategy{
+            background-color: $lightBlueCard;
+            width: 80%;
+            border-radius: 10px;
+            margin-top: 40px;
+            .header{
+                display: flex;
+                justify-content: space-between;
+                margin-left: 5%;
+                margin-right: 5%;
+                .stats{
+                    width: 400px;
+                    height: auto;
+                }
+                .graphic{
+                    width: 200px;
+                    height: auto;
+                }
+            }
+            .contentfulContent{
+                width: 90%; 
+            }
+        }
+        .first-child {
+            .strategy {
+                margin-top: 10px;
+            }
+        }
+        .last-child {
+            margin-bottom: 40px;
+        }
     }
 }
 
+.hideDesktop{
+    .pictureIntro{
+        position: relative;
+        height: inherit;
+        overflow: hidden;
+        h2{
+            @extend .frank-small-header-fixed;
+            position: absolute;
+            color: white;
+            top:50%;
+            left: 50%;
+            margin: 0;
+            transform: translate(-50%,-50%);
+        }
+        img{
+            display: block;
+            height: 200px;
+            width: auto;
+        }
+    }
+    
+    .banner{
+        background-color: $bluePrimary;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        h2{
+            @extend .frank-small-header-fixed;
+            color: white;
+            margin: 0;
+            text-align: center;
+        }
+    }
 
+    .contentfulContent{
+        width: 80%;
+    }
+
+    .introduction{
+        img{
+            width: 80%;
+            height: auto;
+        }
+    }
+
+    .investingStrategiesList{
+        .strategy{
+            background-color: $lightBlueCard;
+            width: 80%;
+            border-radius: 10px;
+            margin-top: 40px;
+            .header{
+                margin-left: 5%;
+                margin-right: 5%;
+                .stats{
+                    width: 250px;
+                    height: auto;
+                }
+                .graphic{
+                    width: 100px;
+                    height: auto;
+                }
+            }
+            .contentfulContent{
+                width: 90%;
+                background-color: inherit; 
+            }
+        }
+
+    }
+
+}
 
 ::ng-deep .imgCenter{
     display: flex;
     justify-content: center;
+    @media only screen and (max-width: $mobileBreakpoint) {
+        img{
+            width: 110%;
+            height: auto;
+        } 
+    }
+    
 }

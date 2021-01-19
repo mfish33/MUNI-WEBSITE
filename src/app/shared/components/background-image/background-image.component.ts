@@ -16,7 +16,9 @@ export class BackgroundImageComponent implements OnInit {
   public windowRatio:number
   @ViewChild('background') backgroundImage: ElementRef
   @Input() src: string
+  @Input() centered:boolean
   public imgSrc:SafeUrl
+  public offset = 0
 
   async ngOnInit(): Promise<void> {
     const imgRes = await fetch(this.src)
@@ -25,7 +27,7 @@ export class BackgroundImageComponent implements OnInit {
     this.imgSrc = this.sanitizer.bypassSecurityTrustUrl(imgUrl)
     const imgDims = await this.getPngDimensions(imgBlob)
     this.backgroundRatio = imgDims.width / imgDims.height
-    this.windowRatio = window.innerWidth / window.innerHeight
+    this.onResize()
   }
 
   async getPngDimensions(pngBlob:Blob): Promise<{width:number, height:number}> {
@@ -39,6 +41,12 @@ export class BackgroundImageComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.windowRatio = window.innerWidth / window.innerHeight
+    if(this.centered && this.windowRatio < this.backgroundRatio) {
+      let imgWidth = this.backgroundRatio * window.innerHeight
+      this.offset = Math.round((imgWidth - window.innerWidth) / 2)
+    } else {
+      this.offset = 0
+    }
   }
 
 }

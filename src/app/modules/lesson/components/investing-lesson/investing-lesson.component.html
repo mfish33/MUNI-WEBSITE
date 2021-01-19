@@ -1,71 +1,143 @@
 <app-quick-feedback [location]="lesson.Title + ' lesson'"></app-quick-feedback>
-<app-parallax-title [imgUrl]="content.getAsset(lesson.Image)" [title]="lesson.Title"></app-parallax-title>
 
-<div class="banner">
-    <h2>Goal of this course</h2>
-</div>
-
-<div class="goalOfCourse">
-    <div class="verticalAlign">
-        <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.goalOfCourse)"></div>
-    </div>
-    <div class="horizontalAlign">
-        <div class="verticalAlign">
-            <img [src]="content.getAsset(lesson.goalOfThisCourseImage)" alt="">
-        </div>
-    </div>
-</div>
-
-<div class="banner">
-    <h2>Introduction</h2>
-</div>
-
-<div class="introduction">
-    <div class="horizontalAlign">
-        <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.whatIsInvesting)"></div>
-    </div>
-    <div class="horizontalAlign">
-        <img [src]="content.getAsset(lesson.introductionImage)" alt="">
-    </div>
-</div>
-
-<div class="banner">
-    <h2>Why Invest Now?</h2>
-</div>
-
-<div class="whyInvest">
-    <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.whyInvestNow)"></div>
-</div>
-
-<div class="banner">
-    <h2>Investing Strategies</h2>
-</div>
-
-<div class="strategies">
-    <div class="horizontalAlign">
-        <div class="introText contentfulContent" [innerHTML]="content.convertRichText(lesson.investingStrategies)"></div>
+<div class="hideMobile">
+    <app-parallax-title [imgUrl]="content.getAsset(lesson.Image)" [title]="lesson.Title"></app-parallax-title>
+    
+    <div class="banner">
+        <h2>Goal of this course</h2>
     </div>
     
-    <div class="horizontalAlign" *ngFor="let strategy of lesson.investingStrategiesArr; let last = last; let first = first" [ngClass]="{'last-child': last,'first-child':first}">
-        <mat-card class="strategy">
-            <div class="header">
-                <div>
-                    <img class="stats" [src]="content.getAsset(strategy.fields.stats)" alt="">
-                </div>
-                <div>
-                    <img class="graphic" [src]="content.getAsset(strategy.fields.graphic)" alt="">
-                </div>
-                
+    <div class="goalOfCourse">
+        <div class="verticalAlign">
+            <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.goalOfCourse)"></div>
+        </div>
+        <div class="horizontalAlign">
+            <div class="verticalAlign">
+                <img [src]="content.getAsset(lesson.goalOfThisCourseImage)" alt="">
             </div>
-            <div class="horizontalAlign">
-                <div class="contentfulContent" [innerHTML]="content.convertRichText(strategy.fields.text)"></div>
-            </div>
-        </mat-card>
+        </div>
     </div>
+    
+    <div class="banner">
+        <h2>Introduction</h2>
+    </div>
+    
+    <div class="introduction">
+        <div class="horizontalAlign">
+            <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.whatIsInvesting)"></div>
+        </div>
+        <div class="horizontalAlign">
+            <img [src]="content.getAsset(lesson.introductionImage)" alt="">
+        </div>
+    </div>
+    
+    <div class="banner">
+        <h2>Why Invest Now?</h2>
+    </div>
+    
+    <div class="whyInvest">
+        <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.whyInvestNow)"></div>
+    </div>
+    
+    <div class="banner">
+        <h2>Investing Strategies</h2>
+    </div>
+    
+    <div class="strategies">
+        <div class="horizontalAlign">
+            <div class="introText contentfulContent" [innerHTML]="content.convertRichText(lesson.investingStrategies)"></div>
+        </div>
+        
+        <div class="horizontalAlign" *ngFor="let strategy of lesson.investingStrategiesArr; let last = last; let first = first" [ngClass]="{'last-child': last,'first-child':first}">
+            <mat-card class="strategy">
+                <div class="header">
+                    <div>
+                        <img class="stats" [src]="content.getAsset(strategy.fields.stats)" alt="">
+                    </div>
+                    <div>
+                        <img class="graphic" [src]="content.getAsset(strategy.fields.graphic)" alt="">
+                    </div>
+                    
+                </div>
+                <div class="horizontalAlign">
+                    <div class="contentfulContent" [innerHTML]="content.convertRichText(strategy.fields.text)"></div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    
+    <div class="banner">
+        <h2>Try it Yourself!</h2>
+    </div>
+    
+    <app-investing-widget *ngIf="lesson.widget.widgetType == 'exponentialGrowthWidget'"></app-investing-widget>
 </div>
 
-<div class="banner">
-    <h2>Try it Yourself!</h2>
-</div>
+<div class="hideDesktop">
+    <div class="pictureIntro">
+        <h2>{{lesson.Title}}</h2>
+        <img [src]="content.getAsset(lesson.Image)" alt="header">
+    </div>
 
-<app-investing-widget *ngIf="lesson.widget.widgetType == 'exponentialGrowthWidget'"></app-investing-widget>
+    <div class="banner">
+        <h2>Goal of this course</h2>
+    </div>
+
+    <div class="goalOfCourse">
+        <div class="horizontalAlign">
+            <img [src]="content.getAsset(lesson.goalOfThisCourseImage)" alt="">
+        </div>
+        <div class="horizontalAlign">
+            <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.goalOfCourse)"></div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <h2>Introduction</h2>
+    </div>
+    
+    <div class="introduction">
+        <div class="horizontalAlign">
+            <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.whatIsInvesting)"></div>
+        </div>
+        <div class="horizontalAlign">
+            <img [src]="content.getAsset(lesson.introductionImage)" alt="">
+        </div>
+    </div>
+
+    <div class="banner">
+        <h2>Why invest now?</h2>
+    </div>
+
+    <div class="whyInvestNow">
+        <div class="horizontalAlign">
+            <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.whyInvestNow)"></div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <h2>Investing Strategies</h2>
+    </div>
+
+    <div class="investingStrategies">
+        <div class="horizontalAlign">
+            <div class="contentfulContent" [innerHTML]="content.convertRichText(lesson.investingStrategies)"></div>
+        </div>
+    </div>
+
+    <div class="investingStrategiesList">
+        <div class="horizontalAlign" *ngFor="let strategy of lesson.investingStrategiesArr">
+            <mat-card class="strategy">
+                <div class="header horizontalAlign">
+                    <img class="stats" [src]="content.getAsset(strategy.fields.stats)" alt="">
+                    <!-- Don't think it is worth it to include the graphic on the mobile site -->
+                    <!-- <img class="graphic" [src]="content.getAsset(strategy.fields.graphic)" alt=""> -->
+                </div>
+                <div class="horizontalAlign">
+                    <div class="contentfulContent" [innerHTML]="content.convertRichText(strategy.fields.text)"></div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    
+</div>

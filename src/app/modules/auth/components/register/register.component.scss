@@ -19,7 +19,12 @@
     }
 }
 
-
+@media only screen and (max-width: $mobileBreakpoint) {
+    mat-card{
+        transform: translate(-50%,-40%) !important;
+        margin-bottom: 40px !important;
+    }
+}
 
 
 
