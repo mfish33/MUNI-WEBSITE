@@ -1,64 +1,134 @@
 @import './src/styles.scss';
+@import './src/mobile-toggle.scss';
 
 :host {
   box-sizing: border-box;
 }
 
-.flowchart{
-  margin-top:20px;
-}
 
-.introBlock{
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  .content{
-    width: 92%;
-    @extend .nunito-body
-  } 
-}
-
-.lesson{
-  margin: 20px 4% 20px 4%;
-  display: flex;
-  flex-flow: row;
-  position: relative;
-  width: 92%;
-  height: 330px;
-}
-
-.nextButtons{
-  margin-top: 40px;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  h2{
-      text-align: center;
-      font-weight: 300;
-      font-size: 64px;
-      line-height: 83px;
+.hideMobile {
+  .flowchart{
+    margin-top:20px;
   }
-  .buttons{    
+  
+  .introBlock{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    .content{
+      width: 92%;
+      @extend .nunito-body
+    } 
+  }
+  
+  .lesson{
+    margin: 20px 4% 20px 4%;
+    display: flex;
+    flex-flow: row;
+    position: relative;
+    width: 92%;
+    height: 330px;
+  }
+  
+  .nextButtons{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    h2{
+        text-align: center;
+        font-weight: 300;
+        font-size: 64px;
+        line-height: 83px;
+    }
+    .buttons{    
+        display: flex;
+        justify-content: space-around;
+        button{
+            max-width: 400px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            border-width: thin;
+            border-color: $bluePrimary;
+            font-weight: bold;
+            font-size: 48px;
+            line-height: 62px;
+            transition: ease-out 0.4s;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        button:hover{
+            box-shadow: inset 400px 0 0 0 #2c7bd0ab;
+        }
+    }
+  }
+}
+
+.hideDesktop{
+  .header{
+    position: relative;
+    h1{
+      position: absolute;
+      margin: 0;
+      left: 50%;
+      top:50%;
+      transform: translate(-50%,-50%);
+      color: white;
+      white-space: nowrap;
+    }
+    img{
+      width: 100%;
+    }
+  }
+
+  .courseDescription{
+    .contentfulContent{
+      width: 90%;
+      @extend .frank-body-fixed;
+    }
+  }
+
+  .cards{
+    .card{
+      $cardBorderRadius:10px;
+      width: 90%;
+      background-color: $bluePrimary;
       display: flex;
-      justify-content: space-around;
-      button{
-          max-width: 400px;
-          background-color: #f0f0f0;
-          border-radius: 4px;
-          border-width: thin;
-          border-color: $bluePrimary;
-          font-weight: bold;
-          font-size: 48px;
-          line-height: 62px;
-          transition: ease-out 0.4s;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          padding-left: 20px;
-          padding-right: 20px;
+      margin-bottom: 20px;
+      border-radius: $cardBorderRadius;
+      .imgWrapper{
+        width: 35%;
+        
+        img{
+          vertical-align: bottom;
+          width: 100%;
+          height: auto;
+          border-top-left-radius: $cardBorderRadius;
+          border-bottom-left-radius: $cardBorderRadius;
+        }
       }
-      button:hover{
-          box-shadow: inset 400px 0 0 0 #2c7bd0ab;
+      .verticalAlign{
+        width: 65%;
+        h2{
+          color: white;
+          text-align: center;
+          @extend .frank;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 23px;
+        }
       }
+    }
+  }
+
+}
+
+
+@media only screen and (max-width: $mobileBreakpoint) {
+  .background{
+    background-color: white;
   }
 }

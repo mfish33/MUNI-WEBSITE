@@ -97,6 +97,20 @@ color: white;
 }
 
 
-
+@media only screen and (max-width: $mobileBreakpoint) {
+    mat-card{
+        min-width: 250px !important;
+    }
+    .signInOptions{
+        justify-content: space-between !important;
+    }
+    app-google-sign-in{
+        width: auto !important;
+    }
+    app-facebook-sign-in{
+        width: auto !important;
+    }
+    
+}
 
 

@@ -1,10 +1,10 @@
 <div class="background"></div>
 
-<div *ngIf="course$ | async as course; else invalidCourseBlock">
-  <div class="content">
+<div *ngIf="course$ | async as course">
+  <div class="content hideMobile">
       <app-quick-feedback [location] = "course.courseTitle + ' course'"></app-quick-feedback>
     
-      <app-parallax-title imgUrl="{{content.getAsset(course.courseImage)}}" title="{{course.courseTitle}}">
+      <app-parallax-title [imgUrl]="content.getAsset(course.courseImage)" [title]="course.courseTitle">
       </app-parallax-title>
     
       <div class="flowchart">
@@ -31,12 +31,34 @@
         </div>
       </div>
   </div>
+
+  <div class="hideDesktop">
+
+    <div class="header">
+      <h1>{{course.courseTitle}}</h1>
+      <img [src]="content.getAsset(course.courseImage)" alt="">
+    </div>
+
+    <div class="courseDescription horizontalAlign">
+      <div class="contentfulContent" [innerHTML]="content.convertRichText(course.courseDescription)"></div>
+    </div>
+
+    <div class="cards">
+      <div class="horizontalAlign" *ngFor="let lesson of course.lessons">
+        <div class="card" [routerLink]="['/lessons', courseId, lesson.fields.lesson.fields.titleURLNormalized]">
+          <div class="imgWrapper">
+
+            <img [src]="content.getAsset(lesson.fields.lessonPreviewImg)" alt="">
+          </div>
+          <div class="verticalAlign">
+            <div class="horizontalAlign">
+              <h2>{{lesson.fields.lessonTitle}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
   <app-shared-footer></app-shared-footer>
 </div>
-
-
-<ng-template #invalidCourseBlock>
-  <div class="content">
-    <h2>Could not load course. The given course ID is most likely invalid.</h2>
-  </div>
-</ng-template>

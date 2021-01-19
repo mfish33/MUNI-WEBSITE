@@ -89,6 +89,20 @@ html, body {
     line-height: 1.6vw;
 }
 
+.frank-small-header-fixed{
+    @extend .frank;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 38px;
+}
+
+.frank-body-fixed {
+    @extend .frank;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+}
+
 .nunito{
     font-family: Nunito Sans;
     font-style: normal;
@@ -99,6 +113,12 @@ html, body {
     @extend .nunito;
     font-size: 1.4vw;
     line-height: 2.29vw;
+}
+
+.nunito-body-fixed{
+    @extend .nunito;
+    font-size: 24px;
+    line-height: 26px;
 }
 
 .roboto{
