@@ -88,7 +88,9 @@
 <div class="mobileNav hideDesktop">
     <div class="flexContainer">
         <div class="logo" [routerLink]="['/']" (tap)="resetAndCloseMobileNav()">
-            <img src="assets/mobileLogo.png" alt="">
+            <div class="verticalAlign">
+                <img src="assets/mobileLogo.png" alt="">
+            </div>
         </div>
 
         <div class="hamburger hamburger--spin hideDesktop" (tap)="toggleMobileDropDown()" [ngClass]="toggles.hamburgerIsActive ? 'is-active hamburgerTurn' : ''">

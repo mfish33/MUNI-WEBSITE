@@ -70,6 +70,8 @@
 .hideDesktop{
   .header{
     position: relative;
+    width: 100%;
+    overflow: hidden;
     h1{
       position: absolute;
       margin: 0;
@@ -81,6 +83,8 @@
     }
     img{
       width: 100%;
+      filter: blur(2px);
+      transform: scale(1.1);
     }
   }
 

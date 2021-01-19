@@ -35,8 +35,8 @@
   <div class="hideDesktop">
 
     <div class="header">
-      <h1>{{course.courseTitle}}</h1>
       <img [src]="content.getAsset(course.courseImage)" alt="">
+      <h1>{{course.courseTitle}}</h1>
     </div>
 
     <div class="courseDescription horizontalAlign">
@@ -47,7 +47,6 @@
       <div class="horizontalAlign" *ngFor="let lesson of course.lessons">
         <div class="card" [routerLink]="['/lessons', courseId, lesson.fields.lesson.fields.titleURLNormalized]">
           <div class="imgWrapper">
-
             <img [src]="content.getAsset(lesson.fields.lessonPreviewImg)" alt="">
           </div>
           <div class="verticalAlign">
