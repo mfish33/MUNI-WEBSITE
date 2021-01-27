@@ -10,4 +10,9 @@ describe("ContentfulService", () => {
     const contentfulService = new ContentfulService(progressTrackerSpy);
     return { progressTrackerSpy, contentfulService };
   }
+
+  it("should get the courses by order", () => {
+    const { progressTrackerSpy, contentfulService } = setup();
+    
+  });
 });

@@ -33,7 +33,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.courses = this.content.getActiveCourses();
     this.$user = this.auth.user$;
-    this.$user.subscribe((user) => console.log(JSON.stringify(user)));
   }
 
   resetAndCloseMobileNav() {
