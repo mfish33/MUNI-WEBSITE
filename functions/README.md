@@ -3,8 +3,8 @@
 1. Create a gmailConfig.ts file in the src folder in the format
 ```ts
 const emailInfo = {
-    email:'RIPE_FEEDBACK_EMAIL_HERE',
-    password:'RIPE_FEEDBACK_EMAIL_PASSWORD_HERE'
+    email:'MUNI_FEEDBACK_EMAIL_HERE',
+    password:'MUNI_FEEDBACK_EMAIL_PASSWORD_HERE'
 }
 
 export default emailInfo
