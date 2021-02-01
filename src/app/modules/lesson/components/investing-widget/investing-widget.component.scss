@@ -109,7 +109,7 @@ $inputSize:250px;
             justify-content: center;
             @extend .roboto-body-fixed;
             .highlight{
-                color:#0099FF;
+                color:$bluePrimary;
                 margin-left: 4px;
                 margin-right: 4px;
             }
@@ -146,7 +146,7 @@ $inputSize:250px;
                 border: none;
                 border-radius: 10px;
                 &.active{
-                    background-color: #0099FF;
+                    background-color: $bluePrimary;
                 }
             }
         }
@@ -185,7 +185,7 @@ $inputSize:250px;
 }
 
 ::ng-deep .mat-slider-track-fill {
-    background-color: #3586e4;
+    background-color: $bluePrimary;
 }
 
 ::ng-deep .mat-slider-track-background{
@@ -202,4 +202,4 @@ $inputSize:250px;
       opacity: .95;
       z-index: 100;
     }
-  }
+}

@@ -1,295 +1,506 @@
 @import "./src/styles.scss";
+@import "./src/mobile-toggle.scss";
 
-/* Vars */
-$groupSpacing:40px;
 
-/* Layout */
-
-.introBlock{
-    display: grid;
-    grid-template-columns: [start] 5%  [text] 50%  7% [graphic] 30% [spaceRight] 8% [end];
-    background-color:$bluePrimary;
-    .text{
-        h2{
-            margin-top: 20px;
-            margin-bottom: 0;
-        }
-        grid-column: text;
-        color:white;
-    }
-    .infoGraphic{
-        grid-column: graphic;
-        img{
-           width: 100%;
-           max-width: 600px;
-           margin: 20px;
-           margin-top: 40px;
-           height: auto;
-        }
-    }
-}
-
-.videoBlock{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top:$groupSpacing;
-    iframe{
-        //see if I can set aspect ratio dynamically
-        width:1300px;
-        height:730px;
-        margin-left: 50%;
-        transform: translate(-50%, 0%);
-    }
-    .caption{
-        display: flex;
-        justify-content: center;
-        .text{
-            font-weight: 300;
-            font-size: 25px;
-            line-height: 32px;
-            text-align: center;
-            text-transform: uppercase;
-        }
-    }
-}
-
-.banner{
-    background-color: $bluePrimary;
-    display: flex;
-    justify-content: center;
-    color: white;
-    margin-top:$groupSpacing;
-    height: 120px;
-    h2{
-        @extend .frank-small-header;
-        text-align: center;
-        margin: 0;
-    }
-}
-
-.overviewPoints{
-    display: flex;
-    justify-content: space-around;
-    margin-top: $groupSpacing;
-    .listItem{
-        display: flex;
+.hideMobile {
+    /* Vars */
+    $groupSpacing:40px;
     
-        .number{
-            text-align: center;
-            margin: 0;
-        }
-        .text{
-            text-align: center;
-            width: 300px;
-            margin-right: 0;
-            margin-bottom: 0;
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-        
-    }
-}
-
-.mainContent{
-    margin-top: $groupSpacing;
-    display: grid;
-    grid-template-columns: [start] 5%  [text] 55%  [spaceBetween] 5% [graphic] 30% [spaceRight] 5% [end];
-    .contentSide{
-        grid-column: text;
-    }
-    .graphic{
-        grid-column: graphic;
-        img{
-            width: 100%;
-            height: auto;
-        }
-    }
-}
-
-.mainContentAlt{
-    margin-top: $groupSpacing;
-    display: grid;
-    grid-template-columns: [start] 10%  [content] auto 10% [end];
-    grid-template-rows: [graphic] auto [text] auto [graphic2] auto [text2] auto;
-    .contentSide{
-        grid-column:content;
-        grid-row: text;
-    }
-    .graphic{
-        grid-column:content;
-        grid-row: graphic;
-        img{
-            width: 100%;
-            height: auto;
-        }
-    }
-    .graphic2{
-        @extend .graphic;
-        grid-row:graphic2;
-    }
-    .content2{
-        grid-column: content;
-        grid-row: text2;
-    }
-}
-
-.WDISBanner{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-    background-color: $bluePrimary;
-    color:white;
-    height: 120px;
-    h2{
-        text-align: center;
-        margin: 0;
-        margin-left: 60px;
-    }
-    .disabled{
-        cursor: not-allowed;
-        &:hover{
-            .popUp{
-               opacity: 1;
-            }
-        }
-    }
-    .enabled{
-        cursor: pointer;
-        &:hover{
-            .popUp{
-                opacity: 0;
-             }
-        }
+    /* Layout */
     
-    }
-    a{
-        font-weight: 300;
-        font-size: 36px;
-        line-height: 46px;
-        margin-right: 60px;
-        color: white;
-        position: relative;
-        cursor: pointer;
-        
-        .popUp{
-            opacity: 0;
-            background-color: $grey;
-            border-radius: 2vw;
-            position: absolute;
-            top: 27%;
-            transition: all .4s;
-            p{
-                @extend .frank-sources;
-                color: black;
-                margin: 8px 8px 8px 8px;
-            }
-        }
-    }
-  
-}
-
-.WDSI{
-    display: flex;
-    flex-direction: column;
-    .listItem{
-        margin-top:$groupSpacing;
-        margin-bottom:$groupSpacing;
+    .introBlock{
         display: grid;
-        grid-template-columns: [start] 5%  [number] 5%  [spaceBetween1] 5% [text] 30% [spaceBetween2] 10% [img] 40% [spaceRight] 5% [end];
-        h2{
-            grid-column: number;
-            margin: 0;
-            text-align: center;
-        }
-        .testWithNum{
+        grid-template-columns: [start] 5%  [text] 50%  7% [graphic] 30% [spaceRight] 8% [end];
+        background-color:$bluePrimary;
+        .text{
+            h2{
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
             grid-column: text;
+            color:white;
         }
-        .testWithoutNum{
-            grid-column-start: number;
-            grid-column-end: spaceBetween2;
-        }
-        img{
-            grid-column: img;
-            width:100%;
-            margin: 20px;
-            height: auto;
+        .infoGraphic{
+            grid-column: graphic;
+            img{
+               width: 100%;
+               max-width: 600px;
+               margin: 20px;
+               margin-top: 40px;
+               height: auto;
+            }
         }
     }
-}
-
-.dosDonts{
-    display: flex;
-    justify-content: space-around;
-    margin-top: $groupSpacing;
-    .column{
+    
+    .videoBlock{
         display: flex;
         flex-direction: column;
-        width: 35%;
-        img{
-           height: 6vw;
-           width: 16vw;
+        justify-content: center;
+        margin-top:$groupSpacing;
+        iframe{
+            //see if I can set aspect ratio dynamically
+            width:1300px;
+            height:730px;
+            margin-left: 50%;
+            transform: translate(-50%, 0%);
         }
-    }
-}
-
-.summary{
-    margin-top: $groupSpacing;
-    display: flex;
-    justify-content: center;
-    .content{
-        width: 70%;
-        max-width: 1000px;
-    }
-}
-
-.sources{
-    display: flex;
-    flex-direction: column;
-    padding-top: $groupSpacing;
-    padding-left: $groupSpacing;
-    h3{
-        font-weight: bold;
-        font-size: 24px;
-        line-height: 31px;
-    }
-}
-
-.nextButtons{
-    margin-top: $groupSpacing;
-    margin-bottom: $groupSpacing;
-    display: flex;
-    flex-direction: column;
-    h2{
-        text-align: center;
-        font-weight: 300;
-        font-size: 64px;
-        line-height: 83px;
-        margin: 10px;
-    }
-    .buttons{    
-        display: flex;
-        justify-content: space-around;
-        button{
-            background-color: #f0f0f0;
-            border-radius: 4px;
-            border-width: thin;
-            border-color: $bluePrimary;
-            transition: ease-out 0.4s;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 20px;
-            padding-right: 20px;
-            p{
-                max-width: 350px;
-                font-weight: bold;
-                font-size: 48px;
-                line-height: 62px;
-                margin: 0;
+        .caption{
+            display: flex;
+            justify-content: center;
+            .text{
+                font-weight: 300;
+                font-size: 25px;
+                line-height: 32px;
+                text-align: center;
+                text-transform: uppercase;
             }
         }
-        button:hover{
-            box-shadow: inset 400px 0 0 0 #2c7bd0ab;
+    }
+    
+    .banner{
+        background-color: $bluePrimary;
+        display: flex;
+        justify-content: center;
+        color: white;
+        margin-top:$groupSpacing;
+        height: 120px;
+        h2{
+            @extend .frank-small-header;
+            text-align: center;
+            margin: 0;
         }
     }
+    
+    .overviewPoints{
+        display: flex;
+        justify-content: space-around;
+        margin-top: $groupSpacing;
+        .listItem{
+            display: flex;
+        
+            .number{
+                text-align: center;
+                margin: 0;
+            }
+            .text{
+                text-align: center;
+                width: 300px;
+                margin-right: 0;
+                margin-bottom: 0;
+                margin-top: 20px;
+                margin-left: 20px;
+            }
+            
+        }
+    }
+    
+    .mainContent{
+        margin-top: $groupSpacing;
+        display: grid;
+        grid-template-columns: [start] 5%  [text] 55%  [spaceBetween] 5% [graphic] 30% [spaceRight] 5% [end];
+        .contentSide{
+            grid-column: text;
+        }
+        .graphic{
+            grid-column: graphic;
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+    
+    .mainContentAlt{
+        margin-top: $groupSpacing;
+        display: grid;
+        grid-template-columns: [start] 10%  [content] auto 10% [end];
+        grid-template-rows: [graphic] auto [text] auto [graphic2] auto [text2] auto;
+        .contentSide{
+            grid-column:content;
+            grid-row: text;
+        }
+        .graphic{
+            grid-column:content;
+            grid-row: graphic;
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+        .graphic2{
+            @extend .graphic;
+            grid-row:graphic2;
+        }
+        .content2{
+            grid-column: content;
+            grid-row: text2;
+        }
+    }
+    
+    .WDISBanner{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        background-color: $bluePrimary;
+        color:white;
+        height: 120px;
+        h2{
+            text-align: center;
+            margin: 0;
+            margin-left: 60px;
+        }
+        .disabled{
+            cursor: not-allowed;
+            &:hover{
+                .popUp{
+                   opacity: 1;
+                }
+            }
+        }
+        .enabled{
+            cursor: pointer;
+            &:hover{
+                .popUp{
+                    opacity: 0;
+                 }
+            }
+        
+        }
+        a{
+            font-weight: 300;
+            font-size: 36px;
+            line-height: 46px;
+            margin-right: 60px;
+            color: white;
+            position: relative;
+            cursor: pointer;
+            
+            .popUp{
+                opacity: 0;
+                background-color: $grey;
+                border-radius: 2vw;
+                position: absolute;
+                top: 27%;
+                transition: all .4s;
+                p{
+                    @extend .frank-sources;
+                    color: black;
+                    margin: 8px 8px 8px 8px;
+                }
+            }
+        }
+      
+    }
+    
+    .WDSI{
+        display: flex;
+        flex-direction: column;
+        .listItem{
+            margin-top:$groupSpacing;
+            margin-bottom:$groupSpacing;
+            display: grid;
+            grid-template-columns: [start] 5%  [number] 5%  [spaceBetween1] 5% [text] 30% [spaceBetween2] 10% [img] 40% [spaceRight] 5% [end];
+            h2{
+                grid-column: number;
+                margin: 0;
+                text-align: center;
+            }
+            .testWithNum{
+                grid-column: text;
+            }
+            .testWithoutNum{
+                grid-column-start: number;
+                grid-column-end: spaceBetween2;
+            }
+            img{
+                grid-column: img;
+                width:100%;
+                margin: 20px;
+                height: auto;
+            }
+        }
+    }
+    
+    .dosDonts{
+        display: flex;
+        justify-content: space-around;
+        margin-top: $groupSpacing;
+        .column{
+            display: flex;
+            flex-direction: column;
+            width: 35%;
+            img{
+               height: 6vw;
+               width: 16vw;
+            }
+        }
+    }
+    
+    .summary{
+        margin-top: $groupSpacing;
+        display: flex;
+        justify-content: center;
+        .content{
+            width: 70%;
+            max-width: 1000px;
+        }
+    }
+    
+    .sources{
+        display: flex;
+        flex-direction: column;
+        padding-top: $groupSpacing;
+        padding-left: $groupSpacing;
+        h3{
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 31px;
+        }
+    }
+    
+    .nextButtons{
+        margin-top: $groupSpacing;
+        margin-bottom: $groupSpacing;
+        display: flex;
+        flex-direction: column;
+        h2{
+            text-align: center;
+            font-weight: 300;
+            font-size: 64px;
+            line-height: 83px;
+            margin: 10px;
+        }
+        .buttons{    
+            display: flex;
+            justify-content: space-around;
+            button{
+                background-color: #f0f0f0;
+                border-radius: 4px;
+                border-width: thin;
+                border-color: $bluePrimary;
+                transition: ease-out 0.4s;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+                p{
+                    max-width: 350px;
+                    font-weight: bold;
+                    font-size: 48px;
+                    line-height: 62px;
+                    margin: 0;
+                }
+            }
+            button:hover{
+                box-shadow: inset 400px 0 0 0 #2c7bd0ab;
+            }
+        }
+    }
+}
+
+
+.hideDesktop{
+    h2{
+        // Default h2 styling
+        @extend .frank-small-header-fixed;
+    }
+
+    .pictureIntro{
+        position: relative;
+        height: inherit;
+        overflow: hidden;
+        overflow: hidden;
+        h2{
+            position: absolute;
+            color: white;
+            top:50%;
+            left: 50%;
+            margin: 0;
+            transform: translate(-50%,-50%);
+            white-space: nowrap;
+        }
+        img{
+            display: block;
+            height: 200px;
+            width: auto;
+            filter: blur(3px);
+            transform: scale(1.1);
+        }
+    }
+
+    .contentfulContent{
+        width: 80%;
+    }
+
+    .introduction{
+        background-color: $bluePrimary;
+        color: white;
+        padding-bottom: 10px;
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            padding-top: 20px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .videoBlock {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .goals {
+        background-color: $lightBlueGreyPrimary;
+        border-radius: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 80%;
+        .listItem{
+            display: flex;
+            justify-content: space-evenly;
+            .verticalAlign {
+                height: inherit;
+                p{
+                    padding-right: 10px;
+                }
+            }
+            h2{
+                font-weight: bold;
+                font-size: 64px;
+                line-height: 83px;
+                width: 90%;
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .whatDoINeedToKnow {
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+    
+    .banner{
+        background-color: $bluePrimary;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        h2{
+            @extend .frank-small-header-fixed;
+            color: white;
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    .templateBanner {
+        a{
+            position: relative;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            .popUp {
+                position: absolute;
+                // transition: .4s ease all;
+                border-radius: 10px;
+                background-color: grey;
+                left: 50%;
+                transform: translateX(-50%);
+                white-space: nowrap;
+                opacity: 0;
+                transition: .4s ease all;
+            }
+
+            &:active {
+                .popUp {
+                   animation:TemplateWarn 2s forwards;
+                }
+            }
+
+        }
+    }
+
+    @keyframes TemplateWarn {
+        from {
+            opacity: 0;
+        }
+
+        33% {
+            opacity: 1;
+        }
+    
+        to {
+            opacity: 0;
+        }
+    }
+
+    .WDSI {
+        .listItem {
+            .text {
+                display: flex;
+                justify-content: space-evenly;
+                h2 {
+                    font-weight: bold;
+                    font-size: 64px;
+                    line-height: 83px;
+                    text-align: center;
+                    width: 25%;
+                }
+                .verticalAlign {
+                    height: inherit;
+                    width: 70%;
+                    .textWithNumber {
+                        margin-right: 5%;
+                    }
+                }
+            }
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+    
+    .dosDonts{
+        img {
+            width: 200px;
+            height: auto;
+        }
+    }
+
+    .sources{
+        margin-left: 5%;
+    }
+
+
+    .nextButtons {
+        h2 {
+            margin-bottom: 5px;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            button{
+                white-space: nowrap;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 30px;
+                padding-right: 30px;
+                background-color:$bluePrimary;
+                color: white;
+                cursor: pointer;
+                outline: none;
+                border: none;
+                border-radius: 15px;
+                margin-bottom: 10px;
+                p {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+
 }

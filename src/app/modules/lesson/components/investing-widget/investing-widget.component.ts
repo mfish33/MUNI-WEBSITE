@@ -187,15 +187,15 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
             label: 'Upper Bound',
             data: this.data.upperBound, 
             fill:false,
-            borderColor:"green"
+            borderColor:"#427AA1"
 
           },
           {
             label: 'Lower Bound',
             data: this.data.lowerBound,
-            backgroundColor: '#6EE376',
+            backgroundColor: '#6EA0C4',
             fill:'-1',
-            borderColor:'green'
+            borderColor:'#427AA1'
           }
         ]
       },
@@ -264,7 +264,7 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
               scaleID: 'x-axis-0',
               value: this.input.timeHorizon.value + this.input.age.value,
               borderWidth: 2,
-              borderColor: '#0099FF',
+              borderColor: 'black',
               label:{
                 enabled:true,
                 content:'Time Horizon',
@@ -281,7 +281,7 @@ export class InvestingWidgetComponent implements OnInit,AfterViewInit {
               scaleID: 'y-axis-0',
               value: this.input.expenses.value * parseInt(this.input.expenses.multiplier) * 25,
               borderWidth: 2,
-              borderColor: '#0099FF',
+              borderColor: 'black',
               label:{
                 enabled:true,
                 content:`Financial Freedom Number $${this.numberWithCommas(this.numberWithCommas(this.input.expenses.value * parseInt(this.input.expenses.multiplier) * 25))}`,

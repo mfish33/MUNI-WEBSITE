@@ -32,6 +32,12 @@ html, body {
     padding-bottom: 40px;
 }
 
+@media only screen and (max-width: $mobileBreakpoint) {
+    .content {
+        padding-bottom: 20px;
+    }
+}
+
 .background{
     position: fixed;
     width: 100%;
@@ -52,6 +58,9 @@ html, body {
 .horizontalAlign{
     display: flex;
     justify-content: center;
+    @media screen and (-webkit-min-device-pixel-ratio:0) {  
+        align-items: flex-start;
+    }
 }
 
 /* FONTS */
