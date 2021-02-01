@@ -13,6 +13,7 @@ export class LivingExpensesLessonComponent implements OnInit, OnDestroy {
 
   public isAuthenticated: boolean
   public pageSettings: LivingExpensesLesson['pageSettings']
+  public mobileAuthenticationPopupOpacity = 0;
 
   
   private authSub: Subscription
@@ -41,6 +42,13 @@ export class LivingExpensesLessonComponent implements OnInit, OnDestroy {
       return
     }
     window.open('https://docs.google.com/spreadsheets/d/15djg2Hxzp1BfpWw3OUiHDFuemVTRdjDZqNVd9GslWK0/edit#gid=213958007')
+  }
+
+  setMobileAuthenticationOpacity() {
+    if(!this.isAuthenticated && !this.mobileAuthenticationPopupOpacity) {
+      this.mobileAuthenticationPopupOpacity = 1;
+      setTimeout(() => this.mobileAuthenticationPopupOpacity = 0,1000)
+    }
   }
 
 }

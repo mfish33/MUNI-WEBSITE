@@ -169,9 +169,9 @@
 
   <div class="banner templateBanner">
     <h2>Where do I start?</h2>
-    <a target="_blank" (click)="goToSpreadSheet()" class="verticalAlign disabled"
+    <a target="_blank" (click)="goToSpreadSheet();setMobileAuthenticationOpacity()" class="verticalAlign disabled"
       [ngClass]="isAuthenticated ? 'enabled' : 'disabled'"><u>Click here to get the template</u>
-      <div class="popUp">
+      <div class="popUp" [style.opacity]="mobileAuthenticationPopupOpacity">
         <p>Sign in to use the Life Planner tool</p>
       </div>
     </a>

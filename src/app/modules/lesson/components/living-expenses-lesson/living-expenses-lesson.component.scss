@@ -409,32 +409,14 @@
                 left: 50%;
                 transform: translateX(-50%);
                 white-space: nowrap;
-                opacity: 0;
                 transition: .4s ease all;
-            }
-
-            &:active {
-                .popUp {
-                   animation:TemplateWarn 2s forwards;
-                }
+                padding-right: 10px;
+                padding-left: 10px;
             }
 
         }
     }
 
-    @keyframes TemplateWarn {
-        from {
-            opacity: 0;
-        }
-
-        33% {
-            opacity: 1;
-        }
-    
-        to {
-            opacity: 0;
-        }
-    }
 
     .WDSI {
         .listItem {
