@@ -174,6 +174,9 @@
 ::ng-deep .imgCenter{
     display: flex;
     justify-content: center;
+    @media screen and (-webkit-min-device-pixel-ratio:0) {  
+        align-items: flex-start;
+    }
     @media only screen and (max-width: $mobileBreakpoint) {
         img{
             width: 110%;
