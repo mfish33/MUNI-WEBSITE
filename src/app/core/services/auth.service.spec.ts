@@ -1,6 +1,7 @@
 import { TestBed } from "@angular/core/testing";
+import { AngularFireAuth } from "@angular/fire/auth";
 import { userInfo } from "os";
-import { Observable, Subscriber } from "rxjs";
+import { Observable, Subscriber, of } from "rxjs";
 
 import { AuthService } from "./auth.service";
 
@@ -17,9 +18,6 @@ describe("AuthService", () => {
   });*/
 
   function setup() {
-    const stubObservable = new Observable<firebase.User>((subscriber) =>
-      subscriber.next(stubUser)
-    );
     const afAuthSpy = jasmine.createSpyObj("afAuthSpy", [
       "authState",
       "signInWithPopup",
@@ -37,6 +35,12 @@ describe("AuthService", () => {
       `{"credential":{"providerId":"google.com","signInMethod":"google.com","oauthIdToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImVlYTFiMWY0MjgwN2E4Y2MxMzZhMDNhM2MxNmQyOWRiODI5NmRhZjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjE1MDEzMDUyNzEzLTZuODduYWQwM2dtZjZsZjIxMmFlcHJsanVzaGhybXR0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMjE1MDEzMDUyNzEzLTZuODduYWQwM2dtZjZsZjIxMmFlcHJsanVzaGhybXR0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAyODgzMDk5NjUxMTU3NDAyNjQyIiwiZW1haWwiOiJreWxlLm1jcmFlMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IjI3RE5mZTFaNXdaTzhEbnpnMVR5VWciLCJpYXQiOjE2MTE2MTE5MjcsImV4cCI6MTYxMTYxNTUyN30.yxZArI6TERvD2w_waYYwZnbdezoYDPWnoHF_9dIAHTBX3mqVXxAzoxcwnXJtv7qUyj3OAD60DRwRqyRo_FHYHY7WxCFFFvxidv7TCRzPaWFOnGBAWH8XGN6PAilI_3i_J-zW5G76BLUCn0gjrVXm4ElHRL_4DCzPD0AFbB1qXztSGsJYWRn0LI6DS2PGHUkmyFAlxx086HzSm3YS1PBEd-n3wbzcL3jIYHRv3SZRiCbdYCQT6UY693n1spGj0mpmteplfbkKaPhODpJUZg_cJH72Pyl3WO9IhHKS_qHOJ5uXqBb1w6e4RmGW7OLrLYLhF4qwcnQCxEE4w8nzI1taTA","oauthAccessToken":"ya29.a0AfH6SMCsv5xZLo5bD16GaafZF61huWgynoSaYeTqpnHNhK1p8Xxqsn1LCPCi_TS6dapujh2IDAebwP_aZPmwhC7PBA9UIy8jMfBhVSKoIitP2qFF7ziG6wEeInn4-5Oa7c4-sTHfDqhq1AS0lnpOY6fVCRKL8VPyy8q95pJLbE-bmw"},"additionalUserInfo":{"providerId":"google.com","isNewUser":false,"profile":{"name":"Kyle McRae","granted_scopes":"openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email","id":"102883099651157402642","verified_email":true,"given_name":"Kyle","locale":"en","family_name":"McRae","email":"kyle.mcrae1@gmail.com","picture":"https://lh3.googleusercontent.com/a-/AOh14Giqo84lWXuaSviRMJFeI4Fn83CDnJ6etX9kLIZMdg=s96-c"}},"operationType":"signIn"}`
     );
     stubUserCred["user"] = stubUser;
+    const stubObservable = new Observable<firebase.User | null>((subscriber) =>
+      subscriber.next(stubUser)
+    );
+    const afAuthStub = {
+      authState: jasmine.createSpy('authState').and.returnValue(of(stubUser))
+    }
     const authService = new AuthService(
       afAuthSpy,
       afsSpy,
@@ -44,7 +48,13 @@ describe("AuthService", () => {
       routerSpy,
       httpSpy
     );
-    afAuthSpy.authState.and.returnValue(stubObservable);
+    const authUserService = new AuthService(
+      afAuthStub,
+      afsSpy,
+      historySpy,
+      routerSpy,
+      httpSpy
+    );
     return {
       authService,
       stubObservable,
@@ -58,24 +68,27 @@ describe("AuthService", () => {
     };
   }
 
-  /*it("should get the user", () => {
+  it("should get the user", () => {
     const {
       authService,
       stubObservable,
       stubUser,
+      stubUserCred,
       afAuthSpy,
       afsSpy,
       historySpy,
       routerSpy,
       httpSpy,
     } = setup();
-    console.log(authService.user$)
-    expect(authService.user$).toEqual(stubObservable, 'auth service returns observable')
+    afAuthSpy.authState.and.returnValue(() => of(stubUser));
+    console.log(stubObservable);
+    console.log(afAuthSpy.authState);
+    expect(authService.user$).toEqual(stubObservable, 'auth service returns observable');
     authService.user$.subscribe(user => {
       expect(user).toBe(stubUser, 'observable returned user')
     })
-    expect(stubObservable).toBeTruthy()
-  });*/
+    expect(stubObservable).toBeTruthy();
+  });
 
   it("should sign in with google properly", async () => {
     const {
