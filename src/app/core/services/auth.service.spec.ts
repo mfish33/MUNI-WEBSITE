@@ -19,7 +19,6 @@ describe("AuthService", () => {
 
   function setup() {
     const afAuthSpy = jasmine.createSpyObj("afAuthSpy", [
-      "authState",
       "signInWithPopup",
       "signOut",
       "signInWithEmailAndPassword"
@@ -38,8 +37,42 @@ describe("AuthService", () => {
     const stubObservable = new Observable<firebase.User | null>((subscriber) =>
       subscriber.next(stubUser)
     );
-    const afAuthStub = {
-      authState: jasmine.createSpy('authState').and.returnValue(of(stubUser))
+    // Only to be used to get the authState and any other properties, for function calls use the spy
+    const afAuthStub:AngularFireAuth = {
+      authState : stubObservable,
+      idToken : null,
+      user : null,
+      idTokenResult : null,
+      app : null,
+      currentUser : null,
+      languageCode : null,
+      settings : null,
+      tenantId : null,
+      isSignInWithEmailLink : null,
+      onAuthStateChanged: null,
+      signInWithEmailAndPassword : null,
+      onIdTokenChanged : null,
+      useDeviceLanguage : null,
+      signInAndRetrieveDataWithCredential : null,
+      signInAnonymously : null,
+      signInWithCredential : null,
+      signInWithCustomToken : null,
+      signInWithEmailLink : null,
+      signInWithPhoneNumber : null,
+      signInWithPopup : null,
+      signInWithRedirect : null,
+      signOut : null,
+      applyActionCode : null,
+      checkActionCode : null,
+      createUserWithEmailAndPassword : null,
+      confirmPasswordReset : null,
+      updateCurrentUser : null,
+      verifyPasswordResetCode : null,
+      fetchSignInMethodsForEmail : null,
+      getRedirectResult : null,
+      sendPasswordResetEmail : null,
+      sendSignInLinkToEmail : null,
+      setPersistence : null
     }
     const authService = new AuthService(
       afAuthSpy,
@@ -57,9 +90,11 @@ describe("AuthService", () => {
     );
     return {
       authService,
+      authUserService,
       stubObservable,
       stubUser,
       stubUserCred,
+      afAuthStub,
       afAuthSpy,
       afsSpy,
       historySpy,
@@ -71,31 +106,32 @@ describe("AuthService", () => {
   it("should get the user", () => {
     const {
       authService,
+      authUserService,
       stubObservable,
       stubUser,
       stubUserCred,
+      afAuthStub,
       afAuthSpy,
       afsSpy,
       historySpy,
       routerSpy,
       httpSpy,
     } = setup();
-    afAuthSpy.authState.and.returnValue(() => of(stubUser));
     console.log(stubObservable);
-    console.log(afAuthSpy.authState);
-    expect(authService.user$).toEqual(stubObservable, 'auth service returns observable');
-    authService.user$.subscribe(user => {
+    console.log(afAuthStub.authState);
+    authUserService.user$.subscribe(user => {
       expect(user).toBe(stubUser, 'observable returned user')
     })
-    expect(stubObservable).toBeTruthy();
   });
 
   it("should sign in with google properly", async () => {
     const {
       authService,
+      authUserService,
       stubObservable,
       stubUser,
       stubUserCred,
+      afAuthStub,
       afAuthSpy,
       afsSpy,
       historySpy,
@@ -117,9 +153,11 @@ describe("AuthService", () => {
   it("should sign in with facebook properly", async () => {
     const {
       authService,
+      authUserService,
       stubObservable,
       stubUser,
       stubUserCred,
+      afAuthStub,
       afAuthSpy,
       afsSpy,
       historySpy,
@@ -142,9 +180,11 @@ describe("AuthService", () => {
   it("should sign out properly", () => {
     const {
       authService,
+      authUserService,
       stubObservable,
       stubUser,
       stubUserCred,
+      afAuthStub,
       afAuthSpy,
       afsSpy,
       historySpy,
@@ -158,9 +198,11 @@ describe("AuthService", () => {
   it("should sign in with email properly", async () => {
     const {
       authService,
+      authUserService,
       stubObservable,
       stubUser,
       stubUserCred,
+      afAuthStub,
       afAuthSpy,
       afsSpy,
       historySpy,
@@ -184,9 +226,11 @@ describe("AuthService", () => {
   it("should sign out with unverified email properly", async () => {
     const {
       authService,
+      authUserService,
       stubObservable,
       stubUser,
       stubUserCred,
+      afAuthStub,
       afAuthSpy,
       afsSpy,
       historySpy,

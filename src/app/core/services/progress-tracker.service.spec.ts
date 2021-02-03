@@ -1,5 +1,6 @@
 import { ProgressTrackerService } from "./progress-tracker.service";
 import { Course } from "src/app/shared/models/contentfulTypes";
+import { AuthService } from "./auth.service";
 
 const testCourse: any = {
   courseImage: {} as any,
@@ -27,7 +28,9 @@ const lids = ["12345", "67890"];
 
 describe("ProgressTrackerService", () => {
   function setup() {
-    const authSpy = jasmine.createSpyObj("authSpy", ["hasVisited"]);
+    const authSpy:AuthService = {
+      
+    }
     const afsSpy = jasmine.createSpyObj("afsSpy", ["collection"]);
     const progressTrackerService = new ProgressTrackerService(authSpy, afsSpy);
     return { authSpy, afsSpy, progressTrackerService };
