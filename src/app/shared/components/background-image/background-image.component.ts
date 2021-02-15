@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, HostListener } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import * as probe from 'probe-image-size'
+import { Buffer } from 'buffer'
 
 @Component({
   selector: 'app-background-image',
@@ -25,17 +27,10 @@ export class BackgroundImageComponent implements OnInit {
     const imgBlob = await imgRes.blob()
     const imgUrl = URL.createObjectURL(imgBlob)
     this.imgSrc = this.sanitizer.bypassSecurityTrustUrl(imgUrl)
-    const imgDims = await this.getPngDimensions(imgBlob)
+    const imgArrayBuffer = await imgBlob.arrayBuffer()
+    const imgDims = probe.sync(Buffer.from(imgArrayBuffer))
     this.backgroundRatio = imgDims.width / imgDims.height
     this.onResize()
-  }
-
-  async getPngDimensions(pngBlob:Blob): Promise<{width:number, height:number}> {
-    let dv = new DataView(await pngBlob.slice(16, 24).arrayBuffer()) 
-    return{
-      width: dv.getInt32(0),
-      height: dv.getInt32(4)
-    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -48,5 +43,14 @@ export class BackgroundImageComponent implements OnInit {
       this.offset = 0
     }
   }
+
+//   toBuffer(ab):Buffer {
+//     var buf = Buffer.alloc(ab.byteLength);
+//     var view = new Uint8Array(ab);
+//     for (var i = 0; i < buf.length; ++i) {
+//         buf[i] = view[i];
+//     }
+//     return buf;
+// }
 
 }

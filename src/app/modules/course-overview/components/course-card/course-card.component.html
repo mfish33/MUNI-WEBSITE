@@ -9,7 +9,7 @@
 
 <ng-template #inactiveCourseCard>
   <mat-card class="inactiveCourseCard"> 
-    <img [src]="course.previewImage ? content.getAsset(course.previewImage) : 'assets/inactiveCourseCardImage.png'" alt=""/>
+    <img [src]="course.previewImage ? content.getAsset(course.previewImage) : 'assets/inactiveCourseCardImage.webp'" alt=""/>
     <div class="title"> {{course.courseTitle}} </div>
     
     <div *ngIf="course.previewDescription; else defaultInactiveDescription" class="description" [innerHTML]="content.convertRichText(course.previewDescription)"></div>
