@@ -16,7 +16,9 @@ import { CourseTemplateModule } from './modules/course-template/course-template.
 import { CourseOverviewModule } from './modules/course-overview/course-overview.module';
 import { ComingSoonModule } from './modules/coming-soon/coming-soon.module';
 import * as Hammer from 'hammerjs'
-import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser'
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment'
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -45,7 +47,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     CourseTemplateModule,
     BrowserAnimationsModule,
     ComingSoonModule,
-    HammerModule
+    HammerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerImmediately' }),
   ],
   providers: [{
     provide:HAMMER_GESTURE_CONFIG,
