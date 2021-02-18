@@ -1,6 +1,6 @@
 # MUNI Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
+MUNI is a website and community empowering recent college grads to reach financial freedom. The website is live at [learnmuni.com](https://learnmuni.com). The website was built using angular and firebase. Below are the instructions developing and building the angular app. Please read the README in the functions folder for modifying the cloud functions.
 
 ## Development server
 
@@ -17,11 +17,3 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
