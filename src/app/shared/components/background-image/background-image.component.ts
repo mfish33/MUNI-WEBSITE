@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, HostListener } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import * as probe from 'probe-image-size'
-import { Buffer } from 'buffer'
+import sizer from 'image-sizer'
 
 @Component({
   selector: 'app-background-image',
@@ -10,25 +9,19 @@ import { Buffer } from 'buffer'
 })
 export class BackgroundImageComponent implements OnInit {
 
-  constructor(
-    private sanitizer:DomSanitizer
-  ) { }
+  constructor() { }
 
   public backgroundRatio:number
   public windowRatio:number
   @ViewChild('background') backgroundImage: ElementRef
   @Input() src: string
   @Input() centered:boolean
-  public imgSrc:SafeUrl
   public offset = 0
 
   async ngOnInit(): Promise<void> {
     const imgRes = await fetch(this.src)
-    const imgBlob = await imgRes.blob()
-    const imgUrl = URL.createObjectURL(imgBlob)
-    this.imgSrc = this.sanitizer.bypassSecurityTrustUrl(imgUrl)
-    const imgArrayBuffer = await imgBlob.arrayBuffer()
-    const imgDims = probe.sync(Buffer.from(imgArrayBuffer))
+    const imgArrayBuffer = await imgRes.arrayBuffer()
+    const imgDims = sizer(imgArrayBuffer)
     this.backgroundRatio = imgDims.width / imgDims.height
     this.onResize()
   }
