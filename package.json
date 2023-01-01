@@ -37,13 +37,13 @@
     "image-sizer": "^1.0.2",
     "rxjs": "~6.5.5",
     "simple-crypto-js": "^3.0.0",
-    "simple-parallax-js": "^5.5.1",
+    "simple-parallax-js": "^5.6.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/architect": ">= 0.900 < 0.1100",
-    "@angular-devkit/build-angular": "~0.901.9",
+    "@angular-devkit/build-angular": "~15.0.4",
     "@angular/cli": "~9.1.9",
     "@angular/compiler-cli": "~9.1.11",
     "@angular/language-service": "~9.1.11",
